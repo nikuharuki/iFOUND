@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="261dp"
+        android:layout_height="278dp"
+        android:contentDescription="@string/iTrackLogo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.426"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ilogo" />
+
+    <ImageView
+        android:id="@+id/itrack"
+        android:layout_width="177dp"
+        android:layout_height="87dp"
+        android:layout_marginTop="230dp"
+        android:contentDescription="@string/iTracklabel"
+        app:layout_constraintBottom_toTopOf="@id/ll1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.351"
+        app:srcCompat="@drawable/ifound" />
+    <LinearLayout
+        android:id="@+id/ll1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/itrack">
+        <TextView
+            android:id="@+id/tvEmail"
+            android:labelFor="@id/etEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/medium"
+            android:text="@string/et1"
+            android:textColor="#000"
+            android:textSize="17sp"
+            android:layout_marginStart="30dp" />
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="315dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="12dp"
+            android:autofillHints="emailAddress"
+            android:background="@drawable/edit_text_bg"
+            android:ems="10"
+            android:hint="@string/HintEmail"
+            android:includeFontPadding="true"
+            android:inputType="textEmailAddress"
+            android:paddingStart="10dp"
+            android:paddingEnd="0dp"
+            android:singleLine="true"
+            android:textColor="#000"
+            android:layout_gravity="center"
+            tools:ignore="LabelFor"/>
+        <TextView
+            android:id="@+id/tvPw"
+            android:labelFor="@id/etPw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/medium"
+            android:text="@string/et2"
+            android:textColor="#000"
+            android:textSize="17sp"
+            android:layout_marginStart="30dp" />
+
+
+        <EditText
+            android:id="@+id/etPw"
+            android:layout_width="315dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="12dp"
+            android:includeFontPadding="true"
+            android:paddingStart="10dp"
+            android:paddingEnd="0dp"
+            android:background="@drawable/edit_text_bg"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="@string/HintPass"
+            android:autofillHints="password"
+            android:textColor="#000"
+            android:layout_gravity="center"
+            tools:ignore="LabelFor"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/Loginbutton"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_login_bg"
+            android:elevation="4dp"
+            android:text="@string/bt1"
+            android:textColor="#fff"
+            android:layout_gravity="center"/>
+
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/GLoginbutton"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/button_glogin_bg"
+            android:elevation="4dp"
+            android:text="@string/bt2"
+            android:textColor="#fff"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/tvAcc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/acc"
+            android:textColor="@color/lightblack"
+            android:textSize="15sp"
+            android:layout_gravity="center"/>
+
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
