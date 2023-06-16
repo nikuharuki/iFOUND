@@ -6,4 +6,10 @@
 
     <color name="blue">#2c62ec</color>
     <color name="pink">#FD5068</color>
+
+    <color name="blue1"> #5370A3</color>
+    <color name="gray1">#647277</color>
+    <color name="lightblack"> #524B6B </color>
+    <color name="outlineGray">#5F747C</color>
+    <color name="transparent">#005F747C</color>
 </resources>
