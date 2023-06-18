@@ -23,14 +23,14 @@
         android:layout_height="87dp"
         android:layout_marginTop="110dp"
         android:contentDescription="@string/iv_iTracklabel"
-        app:layout_constraintBottom_toTopOf="@id/ll1"
+        app:layout_constraintBottom_toTopOf="@id/ll1_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ifound" />
 
     <LinearLayout
-        android:id="@+id/ll1"
+        android:id="@+id/ll1_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
