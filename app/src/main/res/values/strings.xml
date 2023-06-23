@@ -21,6 +21,22 @@
     <string name="bt_signup">Sign Up</string>
     <string name="bt_signup_w_G">Sign Up with Google</string>
 
+    <string name="txt_hi_lost_form">Hi!</string>
+    <string name="txt_Lost_Something_lost_form">Lost Something?</string>
+    <string name="txt_tv_what_have_you_lost">What have you lost?</string>
+    <string name="txt_Hint_Lost">I lost my...</string>
+    <string name="txt_where_did_you_lose_it">Where did you lose it?</string>
+    <string name="txt_Hint_Where">I lost it at...</string>
+    <string name="txt_any_specifics">Any Specifics?</string>
+    <string name="txt_Hint_Specifics">example: with red case, apple pencil, etc...</string>
+    <string name="bt_lost_LostForm">Lost</string>
+
+
+
+
+
+
+
 
 
 
