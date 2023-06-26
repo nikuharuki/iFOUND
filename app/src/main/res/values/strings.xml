@@ -17,4 +17,12 @@
     <string name="HintPass">Password</string>
     <string name="cEmail">Email</string>
 
+    <string name="txt_lost_item_form_q_1">What have you lost?</string>
+    <string name="txt_lost_item_form_q_2">Where did you lose it?</string>
+    <string name="txt_lost_item_form_q_3">When did you lose it?</string>
+    <string name="txt_lost_item_form_q_4">Any specifics?</string>
+    <string name="txt_lost_item_form_add_btn">+ Add a photo</string>
+    <string name="txt_lost_item_form_cancel_btn">Cancel</string>
+    <string name="txt_lost_item_form_submit_btn">Submit</string>
+
 </resources>
