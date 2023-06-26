@@ -39,20 +39,6 @@
     <string name="tv_email_foundItemForm">Email Address</string>
     <string name="et_hint7_email_foundItemForm">ex:john.doe@email.com...</string>
     <string name="bt_add_Photo_foundItemForm">+ add a photo</string>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
     <string name="test_two">Test Commit></string>
 </resources>
