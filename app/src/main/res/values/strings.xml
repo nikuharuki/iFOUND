@@ -21,6 +21,37 @@
     <string name="bt_signup">Sign Up</string>
     <string name="bt_signup_w_G">Sign Up with Google</string>
 
+    <string name="contentDecription_nested_foundItemForm">Nested Scroll View</string>
+    <string name="contentDecription_iv1_foundItemForm">title</string>
+    <string name="contentDecription_iv2_foundItemForm">hand image</string>
+    <string name="tv_whatHaveYouFound_foundItemForm">What have you found?</string>
+    <string name="et_hint1_foundItem_foundItemForm">I found a...</string>
+    <string name="tv_additionalInfo_foundItemForm">Any additional information about the item?</string>
+    <string name="et_hint2_additionalInfo_foundItemForm"> </string>
+    <string name="tv_where_foundItemForm">Where did you find it?</string>
+    <string name="et_hint3_where_foundItemForm">ex: Found it under the table in Jimini...</string>
+    <string name="tv_room_foundItemForm">Room Number/ Floor</string>
+    <string name="et_hint4_room_foundItemForm">ex:1005-N...</string>
+    <string name="tv_name_foundItemForm">What’s your name?</string>
+    <string name="et_hint5_name_foundItemForm">ex:John Doe...</string>
+    <string name="tv_phone_foundItemForm">Contact Number</string>
+    <string name="et_hint6_phone_foundItemForm">ex:097842143...</string>
+    <string name="tv_email_foundItemForm">Email Address</string>
+    <string name="et_hint7_email_foundItemForm">ex:john.doe@email.com...</string>
+    <string name="bt_add_Photo_foundItemForm">+ add a photo</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <string name="test_two">Test Commit></string>
