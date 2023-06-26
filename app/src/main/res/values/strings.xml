@@ -25,4 +25,16 @@
     <string name="txt_lost_item_form_cancel_btn">Cancel</string>
     <string name="txt_lost_item_form_submit_btn">Submit</string>
 
+    <string name="txt_lost_item_page_item_name">Item Name</string>
+    <string name="txt_lost_item_page_last_seen_header">Last seen:</string>
+    <string name="txt_lost_item_page_last_seen_body">Insert Text Here</string>
+    <string name="txt_lost_item_page_floor_num_header">Room number/Floor</string>
+    <string name="txt_lost_item_page_floor_num_body">Insert Text Here</string>
+    <string name="txt_lost_item_page_lost_by_header">Lost by:</string>
+    <string name="txt_lost_item_page_lost_by_body">Insert Text Here</string>
+    <string name="txt_lost_item_page_contact_info_header">Contact Information:</string>
+    <string name="txt_lost_item_page_contact_info_number">xx-xxx-xxx</string>
+    <string name="txt_lost_item_page_contact_info_email">Insert Text Here</string>
+
+
 </resources>
