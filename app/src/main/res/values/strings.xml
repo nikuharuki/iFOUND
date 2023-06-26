@@ -36,5 +36,14 @@
     <string name="txt_lost_item_page_contact_info_number">xx-xxx-xxx</string>
     <string name="txt_lost_item_page_contact_info_email">Insert Text Here</string>
 
+    <!-- I realize na I could have reused some of these, pero too late. lol-->
+
+    <string name="txt_found_page_item_name">Item Name</string>
+    <string name="txt_found_page_found_by_header">Found by:</string>
+    <string name="txt_found_page_found_by_body">Insert Text Here</string>
+    <string name="txt_found_page_contact_info_header">Found by:</string>
+    <string name="txt_found_page_contact_info_body">Insert Text Here</string>
+    <string name="txt_found_page_contact_info_number">xx-xxx-xxx</string>
+    <string name="txt_found_page_contact_info_email">Insert Text Here</string>
 
 </resources>
