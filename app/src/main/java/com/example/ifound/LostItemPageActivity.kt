@@ -5,9 +5,9 @@ import android.os.Bundle
 
 // FoundItemPage =/= FoundItemFeed
 
-class FoundItemPageActivity : AppCompatActivity() {
+class LostItemPageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_found_item_page)
+        setContentView(R.layout.activity_lost_item_page)
     }
 }
