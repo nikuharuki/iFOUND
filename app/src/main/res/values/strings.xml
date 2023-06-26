@@ -4,37 +4,24 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="et1">Email</string>
-    <string name="et2">Password</string>
-    <string name="bt1">Log In</string>
-    <string name="bt2">Log In with Google</string>
-    <string name="acc">Dont have an account yet? Sign up</string>
-    <string name="signup"><u>Sign up</u></string>
+    <string name="email">Email</string>
+    <string name="pw">Password</string>
+    <string name="bt_login">Log In</string>
+    <string name="bt_login_w_G">Log In with Google</string>
+    <string name="clickable_acc_signup">Dont have an account yet? Sign up</string>
     <string name="afEmail">Password</string>
-    <string name="iTrackLogo">iTrack</string>
-    <string name="iTracklabel">label</string>
+    <string name="iv_iTrackLogo">iTrack</string>
+    <string name="iv_iTracklabel">label</string>
     <string name="HintEmail">Email Address</string>
     <string name="HintPass">Password</string>
     <string name="cEmail">Email</string>
 
-    <string name="txt_lost_item_form_q_1">What have you lost?</string>
-    <string name="txt_lost_item_form_q_2">Where did you lose it?</string>
-    <string name="txt_lost_item_form_q_3">When did you lose it?</string>
-    <string name="txt_lost_item_form_q_4">Any specifics?</string>
-    <string name="txt_lost_item_form_add_btn">+ Add a photo</string>
-    <string name="txt_lost_item_form_cancel_btn">Cancel</string>
-    <string name="txt_lost_item_form_submit_btn">Submit</string>
+    <string name="name">Name</string>
+    <string name="re_enter_pw">Re-Enter Password</string>
+    <string name="bt_signup">Sign Up</string>
+    <string name="bt_signup_w_G">Sign Up with Google</string>
 
-    <string name="txt_lost_item_page_item_name">Item Name</string>
-    <string name="txt_lost_item_page_last_seen_header">Last seen:</string>
-    <string name="txt_lost_item_page_last_seen_body">Insert Text Here</string>
-    <string name="txt_lost_item_page_floor_num_header">Room number/Floor</string>
-    <string name="txt_lost_item_page_floor_num_body">Insert Text Here</string>
-    <string name="txt_lost_item_page_lost_by_header">Lost by:</string>
-    <string name="txt_lost_item_page_lost_by_body">Insert Text Here</string>
-    <string name="txt_lost_item_page_contact_info_header">Contact Information:</string>
-    <string name="txt_lost_item_page_contact_info_number">xx-xxx-xxx</string>
-    <string name="txt_lost_item_page_contact_info_email">Insert Text Here</string>
+
 
 
 </resources>
