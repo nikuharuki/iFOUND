@@ -10,7 +10,7 @@
         android:id="@+id/iv_header_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:layout_marginStart="30dp"
         android:src="@drawable/img_lost_item_form_header"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,7 +25,7 @@
         app:layout_constraintStart_toEndOf="@id/iv_header_title"/>
 
     <LinearLayout
-        android:id="@+id/ll"
+        android:id="@+id/ll_questions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -100,7 +100,41 @@
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_bg"
             android:fontFamily="@font/semibold"
-            android:text="@string/txt_lost_item_form_btn"/>
+            android:text="@string/txt_lost_item_form_add_btn"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/ll_questions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/button_glogin_bg"
+            android:text="@string/txt_lost_item_form_cancel_btn"
+            android:textColor="@color/white"
+            android:fontFamily="@font/semibold"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/button_login_bg"
+            android:text="@string/txt_lost_item_form_submit_btn"
+            android:textColor="@color/white"
+            android:fontFamily="@font/semibold"/>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
