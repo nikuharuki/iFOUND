@@ -4,18 +4,18 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="et1">Email</string>
-    <string name="et2">Password</string>
-    <string name="bt1">Log In</string>
-    <string name="bt2">Log In with Google</string>
-    <string name="acc">Dont have an account yet? Sign up</string>
-    <string name="signup"><u>Sign up</u></string>
+    <string name="email">Email</string>
+    <string name="pw">Password</string>
+    <string name="bt_login">Log In</string>
+    <string name="bt_login_w_G">Log In with Google</string>
+    <string name="clickable_acc_signup">Dont have an account yet? Sign up</string>
     <string name="afEmail">Password</string>
-    <string name="iTrackLogo">iTrack</string>
-    <string name="iTracklabel">label</string>
+    <string name="iv_iTrackLogo">iTrack</string>
+    <string name="iv_iTracklabel">label</string>
     <string name="HintEmail">Email Address</string>
     <string name="HintPass">Password</string>
     <string name="cEmail">Email</string>
+
 
     <string name="txt_lost_item_form_q_1">What have you lost?</string>
     <string name="txt_lost_item_form_q_2">Where did you lose it?</string>
@@ -47,4 +47,30 @@
     <string name="txt_found_page_contact_info_email">Insert Text Here</string>
     <string name="testing">test!</string>
 
+    <string name="name">Name</string>
+    <string name="re_enter_pw">Re-Enter Password</string>
+    <string name="bt_signup">Sign Up</string>
+    <string name="bt_signup_w_G">Sign Up with Google</string>
+
+
+    <string name="contentDecription_nested_foundItemForm">Nested Scroll View</string>
+    <string name="contentDecription_iv1_foundItemForm">title</string>
+    <string name="contentDecription_iv2_foundItemForm">hand image</string>
+    <string name="tv_whatHaveYouFound_foundItemForm">What have you found?</string>
+    <string name="et_hint1_foundItem_foundItemForm">I found a...</string>
+    <string name="tv_additionalInfo_foundItemForm">Any additional information about the item?</string>
+    <string name="et_hint2_additionalInfo_foundItemForm"> </string>
+    <string name="tv_where_foundItemForm">Where did you find it?</string>
+    <string name="et_hint3_where_foundItemForm">ex: Found it under the table in Jimini...</string>
+    <string name="tv_room_foundItemForm">Room Number/ Floor</string>
+    <string name="et_hint4_room_foundItemForm">ex:1005-N...</string>
+    <string name="tv_name_foundItemForm">What’s your name?</string>
+    <string name="et_hint5_name_foundItemForm">ex:John Doe...</string>
+    <string name="tv_phone_foundItemForm">Contact Number</string>
+    <string name="et_hint6_phone_foundItemForm">ex:097842143...</string>
+    <string name="tv_email_foundItemForm">Email Address</string>
+    <string name="et_hint7_email_foundItemForm">ex:john.doe@email.com...</string>
+    <string name="bt_add_Photo_foundItemForm">+ add a photo</string>
+  
+    <string name="test_two">Test Commit></string>
 </resources>
