@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent=".13"/>
-    
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
             android:id="@+id/iv_lost_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/img_lost_item_text"
+            android:src="@drawable/img_found_item_text"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="30dp"
@@ -60,7 +60,7 @@
             android:paddingStart="30dp"
             android:paddingEnd="30dp"
             android:orientation="vertical"
-            android:weightSum="10">
+            android:weightSum="6">
 
             <TextView
                 android:layout_width="match_parent"
@@ -69,7 +69,7 @@
                 android:layout_marginBottom="15dp"
                 android:textSize="25sp"
                 android:textColor="@color/black"
-                android:text="@string/txt_found_page_item_name"
+                android:text="@string/txt_lost_item_page_item_name"
                 android:fontFamily="@font/bold"/>
 
             <TextView
@@ -78,7 +78,7 @@
                 android:layout_weight="1"
                 android:textSize="15sp"
                 android:textColor="@color/black"
-                android:text="@string/txt_lost_item_page_last_seen_header"
+                android:text="@string/txt_found_page_found_by_header"
                 android:fontFamily="@font/bold"/>
 
             <TextView
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="15sp"
-                android:text="@string/txt_lost_item_page_last_seen_body"
+                android:text="@string/txt_found_page_found_by_body"
                 android:fontFamily="@font/regular"/>
 
             <TextView
@@ -95,7 +95,7 @@
                 android:layout_weight="1"
                 android:textSize="15sp"
                 android:textColor="@color/black"
-                android:text="@string/txt_lost_item_page_floor_num_header"
+                android:text="@string/txt_found_page_contact_info_header"
                 android:fontFamily="@font/bold"/>
 
             <TextView
@@ -103,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="15sp"
-                android:text="@string/txt_lost_item_page_floor_num_body"
+                android:text="@string/txt_found_page_contact_info_number"
                 android:fontFamily="@font/regular"/>
 
             <TextView
@@ -111,40 +111,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="15sp"
-                android:textColor="@color/black"
-                android:text="@string/txt_lost_item_page_lost_by_header"
-                android:fontFamily="@font/bold"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="15sp"
-                android:text="@string/txt_lost_item_page_lost_by_body"
-                android:fontFamily="@font/regular"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="15sp"
-                android:textColor="@color/black"
-                android:text="@string/txt_lost_item_page_contact_info_header"
-                android:fontFamily="@font/bold"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="15sp"
-                android:text="@string/txt_lost_item_page_contact_info_number"
-                android:fontFamily="@font/regular"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="15sp"
-                android:text="@string/txt_lost_item_page_contact_info_email"
+                android:text="@string/txt_found_page_contact_info_email"
                 android:fontFamily="@font/regular"/>
         </LinearLayout>
 

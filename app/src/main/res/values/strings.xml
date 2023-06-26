@@ -16,10 +16,42 @@
     <string name="HintPass">Password</string>
     <string name="cEmail">Email</string>
 
+
+    <string name="txt_lost_item_form_q_1">What have you lost?</string>
+    <string name="txt_lost_item_form_q_2">Where did you lose it?</string>
+    <string name="txt_lost_item_form_q_3">When did you lose it?</string>
+    <string name="txt_lost_item_form_q_4">Any specifics?</string>
+    <string name="txt_lost_item_form_add_btn">+ Add a photo</string>
+    <string name="txt_lost_item_form_cancel_btn">Cancel</string>
+    <string name="txt_lost_item_form_submit_btn">Submit</string>
+
+    <string name="txt_lost_item_page_item_name">Item Name</string>
+    <string name="txt_lost_item_page_last_seen_header">Last seen:</string>
+    <string name="txt_lost_item_page_last_seen_body">Insert Text Here</string>
+    <string name="txt_lost_item_page_floor_num_header">Room number/Floor</string>
+    <string name="txt_lost_item_page_floor_num_body">Insert Text Here</string>
+    <string name="txt_lost_item_page_lost_by_header">Lost by:</string>
+    <string name="txt_lost_item_page_lost_by_body">Insert Text Here</string>
+    <string name="txt_lost_item_page_contact_info_header">Contact Information:</string>
+    <string name="txt_lost_item_page_contact_info_number">xx-xxx-xxx</string>
+    <string name="txt_lost_item_page_contact_info_email">Insert Text Here</string>
+
+    <!-- I realize na I could have reused some of these, pero too late. lol-->
+
+    <string name="txt_found_page_item_name">Item Name</string>
+    <string name="txt_found_page_found_by_header">Found by:</string>
+    <string name="txt_found_page_found_by_body">Insert Text Here</string>
+    <string name="txt_found_page_contact_info_header">Found by:</string>
+    <string name="txt_found_page_contact_info_body">Insert Text Here</string>
+    <string name="txt_found_page_contact_info_number">xx-xxx-xxx</string>
+    <string name="txt_found_page_contact_info_email">Insert Text Here</string>
+    <string name="testing">test!</string>
+
     <string name="name">Name</string>
     <string name="re_enter_pw">Re-Enter Password</string>
     <string name="bt_signup">Sign Up</string>
     <string name="bt_signup_w_G">Sign Up with Google</string>
+
 
     <string name="contentDecription_nested_foundItemForm">Nested Scroll View</string>
     <string name="contentDecription_iv1_foundItemForm">title</string>
