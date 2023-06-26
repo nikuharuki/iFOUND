@@ -45,5 +45,6 @@
     <string name="txt_found_page_contact_info_body">Insert Text Here</string>
     <string name="txt_found_page_contact_info_number">xx-xxx-xxx</string>
     <string name="txt_found_page_contact_info_email">Insert Text Here</string>
+    <string name="testing">test!</string>
 
 </resources>
