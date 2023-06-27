@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,26 +12,28 @@
         android:theme="@style/Theme.IFOUND"
         tools:targetApi="31">
         <activity
-
-            android:name=".FoundItemPageActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LostItemPageActivity"
-
             android:name=".FoundItemForm"
-
             android:exported="false" />
         <activity
-            android:name=".LostFormActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SignupActivity"
+            android:name=".FoundItemPageActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
+            android:name=".LostItemFormActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LostItemPageActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,5 +42,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
