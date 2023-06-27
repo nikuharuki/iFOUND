@@ -13,14 +13,8 @@
         android:theme="@style/Theme.IFOUND"
         tools:targetApi="31">
         <activity
-
-            android:name=".FoundItemPageActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LostItemPageActivity"
-
+<activity
             android:name=".FoundItemFormActivity"
-
             android:exported="false" />
         <activity
             android:name=".LostFormActivity"
