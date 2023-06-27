@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignupActivity">
+    <ImageView
+        android:id="@+id/iv_iac_logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:contentDescription="@string/iv_iTrackLogo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ilogo" />
+
+    <ImageView
+        android:id="@+id/iv_itrack"
+        android:layout_width="125dp"
+        android:layout_height="87dp"
+        android:layout_marginTop="110dp"
+        android:contentDescription="@string/iv_iTracklabel"
+        app:layout_constraintBottom_toTopOf="@id/ll1_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ifound" />
+
+    <LinearLayout
+        android:id="@+id/ll1_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/iv_itrack">
+        <TextView
+            android:id="@+id/tv_name"
+            android:labelFor="@id/et_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/medium"
+            android:text="@string/name"
+            android:textColor="#000"
+            android:textSize="17sp"
+            android:layout_marginStart="30dp" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="315dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="12dp"
+            android:autofillHints="name"
+            android:background="@drawable/bg_edit_text"
+            android:ems="10"
+            android:hint="@string/name"
+            android:includeFontPadding="true"
+            android:inputType="textPersonName"
+            android:paddingStart="10dp"
+            android:paddingEnd="0dp"
+            android:singleLine="true"
+            android:textColor="#000"
+            android:layout_gravity="center"
+            tools:ignore="LabelFor"/>
+
+        <TextView
+            android:id="@+id/tv_email"
+            android:labelFor="@id/et_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/medium"
+            android:text="@string/email"
+            android:textColor="#000"
+            android:textSize="17sp"
+            android:layout_marginStart="30dp" />
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="315dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="12dp"
+            android:includeFontPadding="true"
+            android:paddingStart="10dp"
+            android:paddingEnd="0dp"
+            android:background="@drawable/bg_edit_text"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email"
+            android:autofillHints="emailAddress"
+            android:textColor="#000"
+            android:layout_gravity="center"
+            tools:ignore="LabelFor"/>
+
+        <TextView
+            android:id="@+id/tv_pw"
+            android:labelFor="@id/et_pw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/medium"
+            android:text="@string/pw"
+            android:textColor="#000"
+            android:textSize="17sp"
+            android:layout_marginStart="30dp" />
+        <EditText
+            android:id="@+id/et_pw"
+            android:layout_width="315dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="12dp"
+            android:includeFontPadding="true"
+            android:paddingStart="10dp"
+            android:paddingEnd="0dp"
+            android:background="@drawable/bg_edit_text"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="@string/pw"
+            android:autofillHints="password"
+            android:textColor="#000"
+            android:layout_gravity="center"
+            tools:ignore="LabelFor"/>
+
+        <TextView
+            android:id="@+id/tv_repw"
+            android:labelFor="@id/et_repw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/medium"
+            android:text="@string/re_enter_pw"
+            android:textColor="#000"
+            android:textSize="17sp"
+            android:layout_marginStart="30dp" />
+        <EditText
+            android:id="@+id/et_repw"
+            android:layout_width="315dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="12dp"
+            android:includeFontPadding="true"
+            android:paddingStart="10dp"
+            android:paddingEnd="0dp"
+            android:background="@drawable/bg_edit_text"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="@string/re_enter_pw"
+            android:autofillHints="password"
+            android:textColor="#000"
+            android:layout_gravity="center"
+            tools:ignore="LabelFor"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_signup"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/bg_button_login"
+            android:elevation="4dp"
+            android:text="@string/bt_signup"
+            android:textColor="#fff"
+            android:layout_gravity="center"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_signup_w_G"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_button_glogin"
+            android:elevation="4dp"
+            android:text="@string/bt_signup_w_G"
+            android:textColor="#fff"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

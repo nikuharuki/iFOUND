@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/logo"
+        android:id="@+id/iv_iac_logo"
         android:layout_width="261dp"
         android:layout_height="278dp"
         android:contentDescription="@string/iTrackLogo"
@@ -16,47 +16,51 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.061"
         app:srcCompat="@drawable/ilogo" />
 
     <ImageView
-        android:id="@+id/itrack"
+        android:id="@+id/iv_itrack"
         android:layout_width="177dp"
         android:layout_height="87dp"
-        android:layout_marginTop="230dp"
-        android:contentDescription="@string/iTracklabel"
-        app:layout_constraintBottom_toTopOf="@id/ll1"
+        android:layout_marginTop="288dp"
+        android:contentDescription="@string/iv_iTracklabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
         app:srcCompat="@drawable/ifound" />
 
     <LinearLayout
-        android:id="@+id/ll1"
+        android:id="@+id/ll1_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:layout_marginTop="4dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/itrack">
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_itrack"
+        app:layout_constraintVertical_bias="0.393"
+        tools:layout_editor_absoluteX="16dp">
+
         <TextView
-            android:id="@+id/tvEmail"
-            android:labelFor="@id/etEmail"
+            android:id="@+id/tv_Email_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
             android:fontFamily="@font/medium"
-            android:text="@string/et1"
+            android:labelFor="@id/et_Email_login"
+            android:text="@string/email"
             android:textColor="#000"
-            android:textSize="17sp"
-            android:layout_marginStart="30dp" />
+            android:textSize="17sp" />
 
         <EditText
-            android:id="@+id/etEmail"
-            android:layout_width="315dp"
-            android:layout_height="53dp"
+            android:id="@+id/et_Email_login"
+            android:layout_width="307dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
             android:layout_marginTop="12dp"
             android:autofillHints="emailAddress"
-            android:background="@drawable/edit_text_bg"
+            android:background="@drawable/bg_edit_text"
             android:ems="10"
             android:hint="@string/HintEmail"
             android:includeFontPadding="true"
@@ -65,74 +69,71 @@
             android:paddingEnd="0dp"
             android:singleLine="true"
             android:textColor="#000"
-            android:layout_gravity="center"
-            tools:ignore="LabelFor"/>
+            tools:ignore="LabelFor" />
+
         <TextView
-            android:id="@+id/tvPw"
-            android:labelFor="@id/etPw"
+            android:id="@+id/tv_Pw_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/medium"
-            android:text="@string/et2"
+            android:labelFor="@id/et_Pw_login"
+            android:text="@string/pw"
             android:textColor="#000"
-            android:textSize="17sp"
-            android:layout_marginStart="30dp" />
+            android:textSize="17sp" />
 
 
         <EditText
-            android:id="@+id/etPw"
+            android:id="@+id/et_Pw_login"
             android:layout_width="315dp"
             android:layout_height="53dp"
+            android:layout_gravity="center"
             android:layout_marginTop="12dp"
+            android:autofillHints="password"
+            android:background="@drawable/bg_edit_text"
+            android:ems="10"
+            android:hint="@string/HintPass"
             android:includeFontPadding="true"
+            android:inputType="textPassword"
             android:paddingStart="10dp"
             android:paddingEnd="0dp"
-            android:background="@drawable/edit_text_bg"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:hint="@string/HintPass"
-            android:autofillHints="password"
             android:textColor="#000"
+            tools:ignore="LabelFor" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_login"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
-            tools:ignore="LabelFor"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/Loginbutton"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/button_login_bg"
+            android:background="@drawable/bg_button_login"
             android:elevation="4dp"
-            android:text="@string/bt1"
-            android:textColor="#fff"
-            android:layout_gravity="center"/>
-
+            android:text="@string/bt_login"
+            android:textColor="#fff" />
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/GLoginbutton"
+            android:id="@+id/bt_login_w_G"
             android:layout_width="250dp"
             android:layout_height="50dp"
+            android:layout_gravity="center"
             android:layout_marginTop="24dp"
-            android:background="@drawable/button_glogin_bg"
+            android:background="@drawable/bg_button_glogin"
             android:elevation="4dp"
-            android:text="@string/bt2"
-            android:textColor="#fff"
-            android:layout_gravity="center" />
+            android:text="@string/bt_login_w_G"
+            android:textColor="#fff" />
 
         <TextView
-            android:id="@+id/tvAcc"
+            android:id="@+id/tv_sign_up_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:fontFamily="sans-serif"
-            android:text="@string/acc"
+            android:text="@string/clickable_acc_signup"
             android:textColor="@color/lightblack"
-            android:textSize="15sp"
-            android:layout_gravity="center"/>
-
-
+            android:textSize="15sp" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
