@@ -12,9 +12,6 @@
         android:theme="@style/Theme.IFOUND"
         tools:targetApi="31">
         <activity
-            android:name=".FoundItemForm"
-            android:exported="false" />
-        <activity
             android:name=".FoundItemPageActivity"
         <activity
             android:name=".FoundItemFormActivity"
@@ -43,5 +40,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+      
+
     </application>
+
 </manifest>
+
