@@ -14,11 +14,16 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:name="com.example.ifound.homeFragment"
+        tools:layout="@layout/fragment_home" />
+        <!-- may need ichange    -->
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -28,8 +33,6 @@
             android:layout_margin="18dp"
             app:cardCornerRadius="100dp"
             app:cardElevation="8dp">
-
-
 
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -59,10 +62,6 @@
             app:layout_anchor="@+id/cardView"
             app:layout_anchorGravity="center"
             app:maxImageSize="42dp" />
-
-
-
-
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
