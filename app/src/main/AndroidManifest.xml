@@ -16,6 +16,8 @@
             android:exported="false" />
         <activity
             android:name=".FoundItemPageActivity"
+        <activity
+            android:name=".FoundItemFormActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
