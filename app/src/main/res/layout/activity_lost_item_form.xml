@@ -43,10 +43,11 @@
             android:layout_marginBottom="5dp"/>
 
         <EditText
+            android:id="@+id/et_itemName"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:inputType="text"
-            android:background="@drawable/edit_text_bg"
+            android:background="@drawable/bg_edit_text"
             android:layout_marginBottom="5dp"/>
 
         <TextView
@@ -58,10 +59,11 @@
             android:layout_marginBottom="5dp"/>
 
         <EditText
+            android:id="@+id/et_itemLocation"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:inputType="text"
-            android:background="@drawable/edit_text_bg"
+            android:background="@drawable/bg_edit_text"
             android:layout_marginBottom="5dp"/>
 
         <TextView
@@ -73,10 +75,11 @@
             android:layout_marginBottom="5dp"/>
 
         <EditText
+            android:id="@+id/et_itemDate"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:inputType="text"
-            android:background="@drawable/edit_text_bg"
+            android:background="@drawable/bg_edit_text"
             android:layout_marginBottom="5dp"/>
 
         <TextView
@@ -88,17 +91,18 @@
             android:layout_marginBottom="5dp"/>
 
         <EditText
+            android:id="@+id/et_itemSpecifics"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:inputType="text|textMultiLine"
             android:scrollHorizontally="false"
-            android:background="@drawable/edit_text_bg"
+            android:background="@drawable/bg_edit_text"
             android:layout_marginBottom="15dp"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_bg"
+            android:background="@drawable/bg_edit_text"
             android:fontFamily="@font/semibold"
             android:text="@string/txt_lost_item_form_add_btn"/>
     </LinearLayout>
@@ -116,21 +120,23 @@
         android:weightSum="2">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="btn_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/button_glogin_bg"
+            android:background="@drawable/bg_button_glogin"
             android:text="@string/txt_lost_item_form_cancel_btn"
             android:textColor="@color/white"
             android:fontFamily="@font/semibold"/>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="10dp"
-            android:background="@drawable/button_login_bg"
+            android:background="@drawable/bg_button_login"
             android:text="@string/txt_lost_item_form_submit_btn"
             android:textColor="@color/white"
             android:fontFamily="@font/semibold"/>

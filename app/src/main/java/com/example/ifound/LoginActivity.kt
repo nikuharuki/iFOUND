@@ -43,9 +43,12 @@ class   LoginActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 1004) {
+
 //          val task : Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
 
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+
+            val task : Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
 
             try {
                 task.getResult(ApiException::class.java)
