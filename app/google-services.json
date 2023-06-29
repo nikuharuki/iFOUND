@@ -1,37 +1,26 @@
 {
   "project_info": {
-    "project_number": "75339843836",
-    "firebase_url": "https://ifound-e7e28-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "ifound-e7e28",
-    "storage_bucket": "ifound-e7e28.appspot.com"
+    "project_number": "1037361269230",
+    "project_id": "ifound-731c1",
+    "storage_bucket": "ifound-731c1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:75339843836:android:cf1b4a8662217d2622ef79",
+        "mobilesdk_app_id": "1:1037361269230:android:c533d08b15b268313ee6ff",
         "android_client_info": {
           "package_name": "com.example.ifound"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "75339843836-8qloic7i036lr9oebi8ptj399p8tm32j.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBSMthouWdFMFK7E2AdDqS_rLiuhEkMPVA"
+          "current_key": "AIzaSyCsy_GCR_4aiCfPV8t_zDXDvC_5wYICYWU"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "75339843836-8qloic7i036lr9oebi8ptj399p8tm32j.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
