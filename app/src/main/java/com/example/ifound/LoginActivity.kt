@@ -43,6 +43,11 @@ class   LoginActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 1004) {
+
+//          val task : Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
+
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+
             val task : Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
 
             try {
@@ -50,7 +55,7 @@ class   LoginActivity : AppCompatActivity() {
                 navigateToMainActivity()
             } catch (e : ApiException) {
                 Log.e("Google Sign-In", "Sign-In failed", e)
-//                Toast.makeText(this, "Google Sign In Failed", Toast.LENGTH_SHORT).show()
+//              Toast.makeText(this, "Google Sign In Failed", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -60,5 +65,9 @@ class   LoginActivity : AppCompatActivity() {
         finish()
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun handleLogInResult(completedTask: Task<GoogleSignInAccount>) {
+
     }
 }
