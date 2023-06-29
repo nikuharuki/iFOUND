@@ -43,6 +43,7 @@
             android:layout_marginBottom="5dp"/>
 
         <EditText
+            android:id="@+id/et_itemName"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:inputType="text"
@@ -58,6 +59,7 @@
             android:layout_marginBottom="5dp"/>
 
         <EditText
+            android:id="@+id/et_itemLocation"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:inputType="text"
@@ -73,6 +75,7 @@
             android:layout_marginBottom="5dp"/>
 
         <EditText
+            android:id="@+id/et_itemDate"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:inputType="text"
@@ -88,6 +91,7 @@
             android:layout_marginBottom="5dp"/>
 
         <EditText
+            android:id="@+id/et_itemSpecifics"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:inputType="text|textMultiLine"
@@ -116,6 +120,7 @@
         android:weightSum="2">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="btn_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -126,6 +131,7 @@
             android:fontFamily="@font/semibold"/>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
