@@ -17,5 +17,13 @@
     <color name="text_shadow">#7F000000</color>
     <color name="text_shadow_white">#FFFFFF</color>
 
+    <color name="bt_button_myReports">#F2454D</color>
+    <color name="bt_button_myFoundItems">#FED545</color>
+
+    <color name="bg_button_myReportsFragment">#FEECED</color>
+    <color name="bg_button_myFoundItemsFragment">#FBF7E7</color>
+
+
+
 
 </resources>

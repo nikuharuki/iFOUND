@@ -71,6 +71,16 @@
     <string name="tv_email_foundItemForm">Email Address</string>
     <string name="et_hint7_email_foundItemForm">ex:john.doe@email.com...</string>
     <string name="bt_add_Photo_foundItemForm">+ add a photo</string>
-  
+
+    <string name="tv_user_name_fragmentProfile">John Doe Garcia</string>
+    <string name="tv_user_email_fragmentProfile">johndoe.garcia@gmail.com</string>
+    <string name="bt_my_reports_fragmentProfile">My Reports</string>
+    <string name="bt_my_found_items_fragmentProfile">My Found items</string>
+
+
+
+
+
+
     <string name="test_two">Test Commit></string>
 </resources>

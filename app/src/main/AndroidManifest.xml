@@ -16,7 +16,11 @@
         android:theme="@style/Theme.IFOUND"
         tools:targetApi="31">
         <activity
-            android:name=".FoundItemPageActivity"/>
+            android:name=".FoundItemPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LostItemPageActivity"
+            android:exported="false" />
         <activity
             android:name=".FoundItemFormActivity"
             android:exported="false" />
@@ -44,7 +48,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <!-- Google Sign In Implementation -->
 
         <activity android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
@@ -57,7 +60,7 @@
         <meta-data
             android:name="com.google.android.gms.signin"
             android:value="C3:EC:F7:DC:9D:32:E6:95:AE:48:0F:BF:DA:8E:A5:AC:7E:6B:74:DD" />
-
-
     </application>
+
 </manifest>
+
