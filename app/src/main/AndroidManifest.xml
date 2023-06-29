@@ -31,9 +31,6 @@
             android:name=".LostItemFormActivity"
             android:exported="false" />
         <activity
-            android:name=".LostItemPageActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
