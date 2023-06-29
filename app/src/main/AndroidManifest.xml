@@ -12,10 +12,8 @@
         android:theme="@style/Theme.IFOUND"
         tools:targetApi="31">
         <activity
-            android:name=".FoundItemForm"
-            android:exported="false" />
-        <activity
             android:name=".FoundItemPageActivity"
+            android:exported="false" />
         <activity
             android:name=".FoundItemFormActivity"
             android:exported="false" />

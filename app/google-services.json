@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1037361269230",
+    "project_id": "ifound-731c1",
+    "storage_bucket": "ifound-731c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037361269230:android:c533d08b15b268313ee6ff",
+        "android_client_info": {
+          "package_name": "com.example.ifound"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsy_GCR_4aiCfPV8t_zDXDvC_5wYICYWU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
