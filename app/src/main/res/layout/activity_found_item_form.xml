@@ -247,16 +247,51 @@
                 android:textColor="#000"
                 tools:ignore="LabelFor"
                 android:importantForAutofill="no" />
-             <androidx.appcompat.widget.AppCompatButton
-                 android:layout_width="200dp"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="40dp"
-                 android:layout_gravity="center"
-                 android:text="@string/bt_add_Photo_foundItemForm"
-                 android:background="@drawable/bg_button_add_photo"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:text="@string/bt_add_Photo_foundItemForm"
+                android:background="@drawable/bg_button_add_photo"/>
 
+            <LinearLayout
+                android:id="@+id/ll_3_foundItemForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bg_button_glogin"
+                    android:text="@string/txt_lost_item_form_cancel_btn"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/semibold"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="40dp"
+                    android:background="@drawable/bg_button_login"
+                    android:text="@string/txt_lost_item_form_submit_btn"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/semibold"/>
+
+            </LinearLayout>
 
         </LinearLayout>
+
+
 
     </ScrollView>
 
