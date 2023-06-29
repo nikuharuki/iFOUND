@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ifound.databinding.FragmentHomeBinding
+import com.google.firebase.auth.FirebaseAuth
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,12 +30,24 @@ class homeFragment : Fragment() {
     private lateinit var lostItemAdapter: LostItemAdapter
     private val lostItemList = ArrayList<LostItemData>()
 
+    private lateinit var firebaseAuth : FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+        // need to figure out how to use the currentUser's info (name, etc.) para sa display like "Hello, currentUser's name"
+
+//        firebaseAuth = FirebaseAuth.getInstance()
+//
+//        val user = firebaseAuth.currentUser?.let {
+//            val name = it.displayName.toString()
+//        }
+//
+//        binding.tvHelloUser.text = "Hello, $user"
     }
 
     override fun onCreateView(

@@ -29,10 +29,17 @@ class SignupActivity : AppCompatActivity() {
                 if (arePasswordsTheSame(password, rePassword)) {
                     firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                         if (it.isSuccessful) {
+                            firebaseAuth.currentUser?.sendEmailVerification()?.addOnSuccessListener {
+                                Toast.makeText(this, "Please verify your email", Toast.LENGTH_SHORT).show()
+                            }
+
+                            ?.addOnFailureListener {
+                                Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+                            }
+
                             val intent = Intent(this, LoginActivity::class.java)
-                            // add putExtra para mapasa yung info ni user?
-                            // or mangyayari na ba yon through database?
                             startActivity(intent)
+                            finish()
                         } else {
                             Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
                         }
