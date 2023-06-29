@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.ifound.databinding.ActivityLostItemFormBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import java.util.UUID
 
 class LostItemFormActivity : AppCompatActivity() {
 
@@ -17,6 +19,7 @@ class LostItemFormActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLostItemFormBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         database = Firebase.database.reference
 
@@ -26,9 +29,17 @@ class LostItemFormActivity : AppCompatActivity() {
             val date = binding.etItemDate.text.toString()
             val description = binding.etItemSpecifics.text.toString()
 
-            database = FirebaseDatabase.getInstance().getReference("Lost Items")
-            val LostItemData = LostItemData(name, location, date, description)
-            database.child(name).setValue(LostItemData).addOnSuccessListener {
+            val user = FirebaseAuth.getInstance().currentUser
+            val submittedBy = user?.displayName ?: "" // Replace with the appropriate user information
+
+
+            database = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Lost Items")
+
+
+            val itemId = UUID.randomUUID().toString()
+            val itemRef = database.child("Lost Items").child(itemId ?: "")
+            val lostItemData = LostItemData(name, location, date, description, submittedBy)
+            itemRef.setValue(lostItemData).addOnSuccessListener{
                 binding.etItemName.setText("")
                 binding.etItemLocation.setText("")
                 binding.etItemDate.setText("")
