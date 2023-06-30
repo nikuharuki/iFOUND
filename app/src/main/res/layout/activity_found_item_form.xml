@@ -274,7 +274,8 @@
                     android:background="@drawable/bg_button_glogin"
                     android:text="@string/txt_lost_item_form_cancel_btn"
                     android:textColor="@color/white"
-                    android:fontFamily="@font/semibold"/>
+                    android:fontFamily="@font/semibold" />
+
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_submit"
