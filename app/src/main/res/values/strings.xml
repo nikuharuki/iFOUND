@@ -15,6 +15,7 @@
     <string name="HintEmail">Email Address</string>
     <string name="HintPass">Password</string>
     <string name="cEmail">Email</string>
+    <string name="btn_forgot_password">Forgot Password?</string>
 
 
     <string name="txt_lost_item_form_q_1">What have you lost?</string>
@@ -86,13 +87,6 @@
     <string name="tv_rewards_3">7 points- \nLarge Fries</string>
     <string name="tv_rewards_4">10 points- \nFree Regular Drink</string>
     <string name="btn_claim_reward">Claim reward</string>
-
-
-
-
-
-
-
 
 
     <string name="test_two">Test Commit></string>
