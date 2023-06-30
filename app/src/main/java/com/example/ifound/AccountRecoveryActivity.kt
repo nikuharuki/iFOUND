@@ -3,9 +3,9 @@ package com.example.ifound
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class PasswordRecoveryActivity : AppCompatActivity() {
+class AccountRecoveryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_password_recovery)
+        setContentView(R.layout.activity_account_recovery)
     }
 }
