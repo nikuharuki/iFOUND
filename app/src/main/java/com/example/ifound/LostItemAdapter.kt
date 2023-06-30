@@ -1,6 +1,7 @@
 package com.example.ifound
 
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,6 +36,10 @@ class LostItemAdapter(private val context: Context, private val lostItemList : A
 //            binding.profileIv.setImageDrawable(context.getDrawable(R.drawable.baseline_account_circle_24))
             binding.titleTv.text = lostItem.name
             binding.tags.text = lostItem.description
+
+            val bytes = android.util.Base64.decode(lostItem.image, android.util.Base64.DEFAULT)
+            val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+            binding.imageView.setImageBitmap(bitmap)
         }
     }
 }
