@@ -75,14 +75,14 @@ class homeFragment : Fragment() {
         binding.lostitemsrecycler.adapter = lostItemAdapter
 
 
-        getUserName(binding)
+        getUserName()
         lostItemList = arrayListOf<LostItemData>()
         getUserData()
 
         return binding.root
     }
 
-    private fun getUserName(binding : FragmentHomeBinding) {
+    private fun getUserName() {
         firebaseAuth = FirebaseAuth.getInstance()
         val userId = firebaseAuth.currentUser?.uid
         val databaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").reference
