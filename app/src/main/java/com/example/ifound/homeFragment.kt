@@ -8,6 +8,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ifound.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.snapshots
+import com.google.firebase.ktx.Firebase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,12 +38,14 @@ class homeFragment : Fragment() {
     private val lostItemList = ArrayList<LostItemData>()
 
     private lateinit var firebaseAuth : FirebaseAuth
+    private lateinit var database : DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+
         }
 
         // need to figure out how to use the currentUser's info (name, etc.) para sa display like "Hello, currentUser's name"
@@ -61,7 +70,38 @@ class homeFragment : Fragment() {
         lostItemAdapter = LostItemAdapter(requireContext(), lostItemList)
         binding.lostitemsrecycler.adapter = lostItemAdapter
 
+        getUserNameForUser()
+
         return binding.root
+    }
+
+    private fun getUserNameForUser() {
+        firebaseAuth = FirebaseAuth.getInstance()
+        val user = firebaseAuth.currentUser
+
+        if (user != null) {
+            val userId = user.uid
+
+            database = FirebaseDatabase.getInstance().reference
+            val usernameRef = database.child("Users Info").child("users").child(userId).child("username")
+
+            usernameRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            val username = snapshot.value as String
+
+                            binding.tvHelloUser.text = "Hello $username"
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+
+                })
+
+        }
+
     }
 
     companion object {
