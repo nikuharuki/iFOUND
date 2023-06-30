@@ -77,6 +77,19 @@
     <string name="bt_my_reports_fragmentProfile">My Reports</string>
     <string name="bt_my_found_items_fragmentProfile">My Found items</string>
 
+    <string name="tv_current_stars">You currently \nhave 0 stars</string>
+    <string name="tv_claim_reward">Claim your reward!</string>
+    <string name="tv_claim_instruction">you must have enough \nstars to claim the reward that you want</string>
+    <string name="tv_select">Select Reward:</string>
+    <string name="tv_rewards_1">3 points-Id Lanyard</string>
+    <string name="tv_rewards_2">5 points- \nJimini mini Pizza</string>
+    <string name="tv_rewards_3">7 points- \nLarge Fries</string>
+    <string name="tv_rewards_4">10 points- \nFree Regular Drink</string>
+    <string name="btn_claim_reward">Claim reward</string>
+
+
+
+
 
 
 
