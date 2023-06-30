@@ -8,11 +8,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifound.databinding.FragmentHomeBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.snapshots
+import com.google.firebase.ktx.Firebase
+import kotlin.math.log
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,16 +36,24 @@ class homeFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit  var binding: FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
     private lateinit var lostItemAdapter: LostItemAdapter
+
+    private val lostItemList = ArrayList<LostItemData>()
+
+    private lateinit var firebaseAuth : FirebaseAuth
+    private lateinit var usernameReference : DatabaseReference
+
     private lateinit var databaseReference: DatabaseReference
     private var lostItemList = ArrayList<LostItemData>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+
         }
 
 
@@ -61,11 +74,26 @@ class homeFragment : Fragment() {
         lostItemAdapter = LostItemAdapter(requireContext(), lostItemList)
         binding.lostitemsrecycler.adapter = lostItemAdapter
 
+
+        getUserName()
         lostItemList = arrayListOf<LostItemData>()
         getUserData()
 
         return binding.root
     }
+
+    private fun getUserName() {
+        firebaseAuth = FirebaseAuth.getInstance()
+        val userId = firebaseAuth.currentUser?.uid
+        val databaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").reference
+        usernameReference = databaseReference.child("Users Info").child("users").child(userId!!)
+
+        usernameReference.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val username = snapshot.getValue(String::class.java)
+
+                    binding.tvHelloUser.text = "Hello $username"
 
     private fun getUserData() {
         databaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Lost Items")
