@@ -15,6 +15,9 @@
     <string name="HintEmail">Email Address</string>
     <string name="HintPass">Password</string>
     <string name="cEmail">Email</string>
+    <string name="btn_forgot_password">Forgot Password?</string>
+
+
 
 
     <string name="txt_lost_item_form_q_1">What have you lost?</string>
