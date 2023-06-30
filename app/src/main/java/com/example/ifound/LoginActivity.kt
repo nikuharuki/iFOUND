@@ -3,71 +3,63 @@ package com.example.ifound
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import com.example.ifound.databinding.ActivityLoginBinding
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
+
 
 class   LoginActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityLoginBinding
-
-    private lateinit var gso : GoogleSignInOptions
-    private lateinit var gsc : GoogleSignInClient
+    private lateinit var firebaseAuth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).requestEmail().build()
-        gsc = GoogleSignIn.getClient(this, gso)
+        firebaseAuth = FirebaseAuth.getInstance()
 
-        binding.btLoginWG.setOnClickListener {
-            logInViaGoogle()
+        binding.tvSignUpLogin.setOnClickListener {
+            val intent = Intent(this, SignupActivity::class.java)
+            startActivity(intent)
         }
-    }
 
-    private fun logInViaGoogle() {
-        val intent = gsc.signInIntent
-        startActivityForResult(intent, 1004)
-    }
+        binding.btLogin.setOnClickListener {
+            val email = binding.etEmailLogin.text.toString()
+            val password = binding.etPwLogin.text.toString()
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+            if (areFieldsNotEmpty(email, password)) {
+                firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
+                    if (it.isSuccessful) {
+                        val isVerified = firebaseAuth.currentUser?.isEmailVerified
 
-        if (requestCode == 1004) {
+                        if (isVerified == true) {
+                            // might need to use intent
+                            val user = firebaseAuth.currentUser
 
-//          val task : Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
-
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-
-            val task : Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
-
-            try {
-                task.getResult(ApiException::class.java)
-                navigateToMainActivity()
-            } catch (e : ApiException) {
-                Log.e("Google Sign-In", "Sign-In failed", e)
-//              Toast.makeText(this, "Google Sign In Failed", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this, MainActivity::class.java)
+                            intent.putExtra("user", user)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            Toast.makeText(this, "Please verify your Email", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } else {
+                Toast.makeText(this, "Empty fields are not allowed", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-                        // is MainActivity the next Activity?
-    private fun navigateToMainActivity() {
-        finish()
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-    }
+    private fun areFieldsNotEmpty(email : String, password : String) : Boolean{
+        if (email.isNotEmpty() && password.isNotEmpty()) {
+            return true
+        }
 
-    private fun handleLogInResult(completedTask: Task<GoogleSignInAccount>) {
-
+        return false
     }
 }
