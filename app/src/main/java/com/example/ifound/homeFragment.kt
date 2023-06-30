@@ -66,7 +66,6 @@ class homeFragment : Fragment() {
 
     ): View {
         // Inflate the layout for this fragment
-
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         binding.lostitemsrecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -93,7 +92,7 @@ class homeFragment : Fragment() {
                 if (snapshot.exists()) {
                     val username = snapshot.getValue(String::class.java)
 
-
+                    binding.tvHelloUser.text = "Hello $username"
                 }
             }
 
