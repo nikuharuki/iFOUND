@@ -30,9 +30,9 @@ class FoundItemFormActivity : AppCompatActivity() {
             val phoneNo = binding.etPhoneFoundItemForm.text.toString()
             val email = binding.etEmailFoundItemForm.toString()
 
-            databaseReference = FirebaseDatabase.getInstance().getReference("Phone Directory")
+            databaseReference = FirebaseDatabase.getInstance().getReference("Found Items")
             val foundItemData = FoundItemData(item, addInfo, whereFound, whatRoom, name, phoneNo, email)
-            databaseReference.child(phoneNo).setValue(foundItemData).addOnSuccessListener {
+            databaseReference.child(item).setValue(foundItemData).addOnSuccessListener {
                 binding.etWhatHaveYouFoundFoundItemForm.text.clear()
                 binding.etAnyAdditionalInfoFoundItemForm.text.clear()
                 binding.etILostMyLostForm.text.clear()
