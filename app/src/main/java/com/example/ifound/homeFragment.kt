@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.ifound.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -16,6 +17,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.snapshots
 import com.google.firebase.ktx.Firebase
 import kotlin.math.log
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,10 +38,15 @@ class homeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var lostItemAdapter: LostItemAdapter
+
     private val lostItemList = ArrayList<LostItemData>()
 
     private lateinit var firebaseAuth : FirebaseAuth
     private lateinit var usernameReference : DatabaseReference
+
+    private lateinit var databaseReference: DatabaseReference
+    private var lostItemList = ArrayList<LostItemData>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,29 +56,28 @@ class homeFragment : Fragment() {
 
         }
 
-        // need to figure out how to use the currentUser's info (name, etc.) para sa display like "Hello, currentUser's name"
 
-//        firebaseAuth = FirebaseAuth.getInstance()
-//
-//        val user = firebaseAuth.currentUser?.let {
-//            val name = it.displayName.toString()
-//        }
-//
-//        binding.tvHelloUser.text = "Hello, $user"
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View {
         // Inflate the layout for this fragment
+
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        binding.lostitemsrecycler.layoutManager = LinearLayoutManager(requireContext())
+        binding.lostitemsrecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.lostitemsrecycler.setHasFixedSize(true)
         lostItemAdapter = LostItemAdapter(requireContext(), lostItemList)
         binding.lostitemsrecycler.adapter = lostItemAdapter
 
+
         getUserName()
+        lostItemList = arrayListOf<LostItemData>()
+        getUserData()
 
         return binding.root
     }
@@ -88,6 +94,17 @@ class homeFragment : Fragment() {
                     val username = snapshot.getValue(String::class.java)
 
                     binding.tvHelloUser.text = "Hello $username"
+
+    private fun getUserData() {
+        databaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Lost Items")
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (itemSnapshot in snapshot.children) {
+                        val lostItem = itemSnapshot.getValue(LostItemData::class.java)
+                        lostItemList.add(lostItem!!)
+                    }
+                    binding.lostitemsrecycler.adapter = LostItemAdapter(requireContext(),lostItemList)
                 }
             }
 
