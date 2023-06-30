@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    tools:context=".PasswordRecoveryActivity">
+    tools:context=".AccountRecoveryActivity">
 
     <ImageView
         android:id="@+id/iv_ifound_logo_pw_recovery"
@@ -31,9 +31,10 @@
             android:id="@+id/iv_title_recover_pass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="20dp"
             android:contentDescription="@string/contentDecription_iv1_foundItemForm"
-            android:src="@drawable/recoverpassword" />
+            android:src="@drawable/recover_acc" />
 
         <ImageView
             android:id="@+id/iv_password"
