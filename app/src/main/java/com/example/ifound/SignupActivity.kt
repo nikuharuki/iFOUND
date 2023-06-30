@@ -44,12 +44,9 @@ class SignupActivity : AppCompatActivity() {
                                 val user = firebaseAuth.currentUser
                                 if (user != null) {
                                     val userId = user.uid
-                                    val userName = hashMapOf(
-                                        "username" to name
-                                    )
 
                                     database.child("users").child(userId)
-                                        .setValue(userName)
+                                        .setValue(name)
                                 }
                             }
 
