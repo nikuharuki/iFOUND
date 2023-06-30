@@ -1,5 +1,6 @@
 package com.example.ifound
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ifound.databinding.ActivityMainBinding
@@ -20,6 +21,11 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavView = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
         bottomNavView.menu.getItem(1).isEnabled = false
+
+        binding.floatingActionButton.setOnClickListener {
+            val intent = Intent(this@MainActivity, LostItemFormActivity::class.java)
+            startActivity(intent)
+        }
 
 
         //Corner radius
