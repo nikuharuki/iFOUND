@@ -89,6 +89,9 @@
     <string name="btn_claim_reward">Claim reward</string>
     <string name="btn_back_to_login">back to login</string>
 
+    <string name="tv_email_pw_recovery">Please enter your email to recover your account</string>
+
+
 
     <string name="test_two">Test Commit></string>
 </resources>
