@@ -1,225 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    tools:context=".homeFragment"
->
+    tools:context=".homeFragment">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:paddingHorizontal="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:maxHeight="200dp"
-            android:src="@drawable/profile_picture" />
-
+        android:paddingBottom="100dp">
         <LinearLayout
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
-            android:layout_marginStart="12dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_hello_user"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/bold"
-                android:text="Hello, Name"
-                android:textSize="24sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="202101352" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_margin="8dp"
-
-            android:src="@drawable/outline_notifications_24" />
-
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/star"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-16dp"
-        android:paddingHorizontal="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-        <androidx.cardview.widget.CardView
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="85dp"
-            android:layout_gravity="center"
-            android:layout_margin="8dp"
-            app:cardBackgroundColor="#427DE4"
-            app:cardCornerRadius="14dp"
-            app:cardElevation="6dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingHorizontal="16dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:maxHeight="200dp"
+                android:src="@drawable/profile_picture" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:layout_marginStart="12dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="40dp"
-                    android:fontFamily="@font/black"
-                    android:text="You have \n0 stars"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/bold"
+                    android:text="Hello, Name"
+                    android:textSize="24sp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="202101352" />
 
             </LinearLayout>
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
-        </androidx.cardview.widget.CardView>
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="8dp"
 
-        <ImageView
-            android:layout_width="155dp"
-            android:layout_height="155dp"
-            android:layout_gravity="end"
-            android:layout_marginEnd="25dp"
-            android:elevation="8dp"
-            android:src="@drawable/star_3" />
-    </FrameLayout>
+                android:src="@drawable/outline_notifications_24" />
 
-    <View
-        android:id="@+id/foundheading"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:background="@drawable/foldertop"
-        android:backgroundTint="#FBA21C"
-        app:layout_constraintBottom_toTopOf="@+id/founditems"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/bold"
-        android:text="Found Items"
-        android:textColor="#2B4563"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/foundheading"
-        app:layout_constraintEnd_toEndOf="@+id/foundheading"
-        app:layout_constraintHorizontal_bias="0.39"
-        app:layout_constraintStart_toStartOf="@+id/foundheading"
-        app:layout_constraintTop_toTopOf="@+id/foundheading"
-        app:layout_constraintVertical_bias="0.777" />
+        </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/founditems"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="175dp"
-        android:background="@drawable/folder1"
-        android:backgroundTint="#F4C890"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/founditemsrecycler"
-            android:padding="25dp"
+        <FrameLayout
+            android:id="@+id/star"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-16dp"
+            android:paddingHorizontal="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-    <View
-        android:id="@+id/lostheading"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:background="@drawable/foldertop_inverted"
-        android:backgroundTint="#E8D82965"
-        app:layout_constraintBottom_toTopOf="@+id/lostitems"
-        app:layout_constraintEnd_toEndOf="parent"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                app:cardBackgroundColor="#427DE4"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="6dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:fontFamily="@font/bold"
-        android:text="Lost Items"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/lostheading"
-        app:layout_constraintStart_toStartOf="@+id/lostheading"
-        app:layout_constraintTop_toTopOf="@+id/lostheading"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-    <LinearLayout
-        android:id="@+id/lostitems"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="68dp"
-        android:background="@drawable/folder2"
-        android:backgroundTint="#F18392"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/founditems"
-        tools:layout_editor_absoluteX="0dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="50dp"
+                        android:fontFamily="@font/black"
+                        android:text="You have \n0 stars"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/lostitemsrecycler"
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="40dp"
+                android:elevation="8dp"
+                android:src="@drawable/star_3" />
+        </FrameLayout>
+
+        <View
+            android:id="@+id/foundheading"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:background="@drawable/foldertop"
+            android:backgroundTint="#FBA21C"
+            app:layout_constraintBottom_toTopOf="@+id/founditems"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bold"
+            android:text="Found Items"
+            android:textColor="#2B4563"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/foundheading"
+            app:layout_constraintEnd_toEndOf="@+id/foundheading"
+            app:layout_constraintHorizontal_bias="0.39"
+            app:layout_constraintStart_toStartOf="@+id/foundheading"
+            app:layout_constraintTop_toTopOf="@+id/foundheading"
+            app:layout_constraintVertical_bias="0.777" />
+
+        <LinearLayout
+            android:id="@+id/founditems"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="25dp" />
+            android:layout_height="255dp"
+            android:layout_marginTop="140dp"
+            android:background="@drawable/folder1"
+            android:backgroundTint="#F3CD9D"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-    </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/founditemsrecycler"
+                android:padding="25dp"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
 
-    <!--    <com.google.android.material.card.MaterialCardView-->
+        <View
+            android:id="@+id/lostheading"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:background="@drawable/foldertop_inverted"
+            android:backgroundTint="#E8D82965"
+            app:layout_constraintBottom_toTopOf="@+id/lostitems"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:cardCornerRadius="16dp"-->
-<!--        app:cardElevation="4dp"-->
-<!--        app:cardUseCompatPadding="true"-->
-<!--        android:layout_marginHorizontal="22dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/star"-->
-<!--        app:layout_constraintStart_toStartOf="parent">-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:fontFamily="@font/bold"
+            android:text="Lost Items"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/lostheading"
+            app:layout_constraintStart_toStartOf="@+id/lostheading"
+            app:layout_constraintTop_toTopOf="@+id/lostheading"/>
 
-<!--        <androidx.appcompat.widget.SearchView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:queryHint="Search a lost/found item"-->
-<!--            app:iconifiedByDefault="false"-->
-<!--            app:queryBackground="@android:color/transparent"/>-->
+        <LinearLayout
+            android:id="@+id/lostitems"
+            android:layout_width="match_parent"
+            android:layout_height="255dp"
+            android:layout_marginTop="40dp"
 
-<!--    </com.google.android.material.card.MaterialCardView>-->
+            android:background="@drawable/folder2"
+            android:backgroundTint="#F39FAB"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/founditems"
+            tools:layout_editor_absoluteX="0dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/lostitemsrecycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                tools:itemCount="1"
+                tools:listitem="@layout/each_item" />
+
+        </LinearLayout>
+
+        <!--    <com.google.android.material.card.MaterialCardView-->
+
+        <!--        android:layout_width="0dp"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        app:cardCornerRadius="16dp"-->
+        <!--        app:cardElevation="4dp"-->
+        <!--        app:cardUseCompatPadding="true"-->
+        <!--        android:layout_marginHorizontal="22dp"-->
+        <!--        app:layout_constraintEnd_toEndOf="parent"-->
+        <!--        app:layout_constraintTop_toBottomOf="@id/star"-->
+        <!--        app:layout_constraintStart_toStartOf="parent">-->
+
+        <!--        <androidx.appcompat.widget.SearchView-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:queryHint="Search a lost/found item"-->
+        <!--            app:iconifiedByDefault="false"-->
+        <!--            app:queryBackground="@android:color/transparent"/>-->
+
+        <!--    </com.google.android.material.card.MaterialCardView>-->
 
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
