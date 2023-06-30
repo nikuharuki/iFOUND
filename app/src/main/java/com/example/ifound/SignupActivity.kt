@@ -6,11 +6,16 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.ifound.databinding.ActivitySignupBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class SignupActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivitySignupBinding
     private lateinit var firebaseAuth : FirebaseAuth
+    private lateinit var database : DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +23,7 @@ class SignupActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
+        database = Firebase.database.reference
 
         binding.btSignup.setOnClickListener {
             val name = binding.etName.text.toString()
@@ -31,6 +37,17 @@ class SignupActivity : AppCompatActivity() {
                         if (it.isSuccessful) {
                             firebaseAuth.currentUser?.sendEmailVerification()?.addOnSuccessListener {
                                 Toast.makeText(this, "Please verify your email", Toast.LENGTH_SHORT).show()
+
+                                database = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users Info")
+
+                                // Storing user name to the database
+                                val user = firebaseAuth.currentUser
+                                if (user != null) {
+                                    val userId = user.uid
+
+                                    database.child("users").child(userId)
+                                        .setValue(name)
+                                }
                             }
 
                             ?.addOnFailureListener {
