@@ -39,7 +39,7 @@ class homeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var lostItemAdapter: LostItemAdapter
 
-    private val lostItemList = ArrayList<LostItemData>()
+//    private val lostItemList = ArrayList<LostItemData>()
 
     private lateinit var firebaseAuth : FirebaseAuth
     private lateinit var usernameReference : DatabaseReference
@@ -66,7 +66,6 @@ class homeFragment : Fragment() {
 
     ): View {
         // Inflate the layout for this fragment
-
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         binding.lostitemsrecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -94,7 +93,15 @@ class homeFragment : Fragment() {
                     val username = snapshot.getValue(String::class.java)
 
                     binding.tvHelloUser.text = "Hello $username"
+                }
+            }
 
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
     private fun getUserData() {
         databaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Lost Items")
         databaseReference.addValueEventListener(object : ValueEventListener {
