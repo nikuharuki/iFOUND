@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
+    android:padding="10dp"
     android:layout_height="match_parent"
     tools:context=".LostItemFormActivity">
 
@@ -47,6 +49,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:inputType="text"
+            android:textColor="#080808"
+
             android:background="@drawable/bg_edit_text"
             android:layout_marginBottom="5dp"/>
 
@@ -100,6 +104,7 @@
             android:layout_marginBottom="15dp"/>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_addphoto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_edit_text"
@@ -120,7 +125,7 @@
         android:weightSum="2">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="btn_cancel"
+            android:id="@+id/btn_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
