@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.snapshots
 import com.google.firebase.ktx.Firebase
+import kotlin.math.log
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,6 +40,8 @@ class homeFragment : Fragment() {
 
     private lateinit var firebaseAuth : FirebaseAuth
     private lateinit var database : DatabaseReference
+
+    private lateinit var listener : ValueEventListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,37 +73,42 @@ class homeFragment : Fragment() {
         lostItemAdapter = LostItemAdapter(requireContext(), lostItemList)
         binding.lostitemsrecycler.adapter = lostItemAdapter
 
-        getUserNameForUser()
+        // Setting up database reference
+        firebaseAuth = FirebaseAuth.getInstance()
+
+        val userId = firebaseAuth.currentUser?.uid
+        database = FirebaseDatabase.getInstance().reference
+        database = database.child("Users Info").child("users").child(userId.toString()).child("username")
 
         return binding.root
     }
 
-    private fun getUserNameForUser() {
-        firebaseAuth = FirebaseAuth.getInstance()
-        val user = firebaseAuth.currentUser
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        if (user != null) {
-            val userId = user.uid
+        val listener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val username = snapshot.value as String
 
-            database = FirebaseDatabase.getInstance().reference
-            val usernameRef = database.child("Users Info").child("users").child(userId).child("username")
+                binding.tvHelloUser.text = "Hello $username"
+            }
 
-            usernameRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        if (snapshot.exists()) {
-                            val username = snapshot.value as String
-
-                            binding.tvHelloUser.text = "Hello $username"
-                        }
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        TODO("Not yet implemented")
-                    }
-
-                })
-
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
         }
+
+        database.addValueEventListener(listener)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // Remove the value event listener
+        database.removeEventListener(listener)
+    }
+
+    private fun getUserNameForUser() {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
 
     }
 
