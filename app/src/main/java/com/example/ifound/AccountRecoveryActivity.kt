@@ -23,13 +23,11 @@ class AccountRecoveryActivity : AppCompatActivity() {
             Firebase.auth.sendPasswordResetEmail(email)
                 .addOnCompleteListener{ task ->
                     if (task.isSuccessful) {
-                        setContentView(R.layout.email_verification_message)
+                        setContentView(R.layout.password_recovery_message)
 
-                        val button = findViewById<Button>(R.id.btn_back_to_login_email_verification)
+                        val button = findViewById<Button>(R.id.btn_back_to_login_pw_recovery)
 
                         button.setOnClickListener {
-                            val intent = Intent(this, LoginActivity::class.java)
-                            startActivity(intent)
                             finish()
                         }
                     }
