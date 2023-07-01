@@ -1,5 +1,6 @@
 package com.example.ifound
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.snapshots
 import com.google.firebase.ktx.Firebase
 import kotlin.math.log
+import androidx.navigation.fragment.findNavController
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -72,6 +74,14 @@ class homeFragment : Fragment() {
         binding.lostitemsrecycler.setHasFixedSize(true)
         lostItemAdapter = LostItemAdapter(requireContext(), lostItemList)
         binding.lostitemsrecycler.adapter = lostItemAdapter
+
+        binding.tvTest.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+
+            val intent = Intent(this@homeFragment.requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
+        }
 
 
         getUserName()

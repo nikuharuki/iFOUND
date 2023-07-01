@@ -5,6 +5,7 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
@@ -94,8 +95,6 @@ class SignupActivity : AppCompatActivity() {
                     firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                         if (it.isSuccessful) {
                             firebaseAuth.currentUser?.sendEmailVerification()?.addOnSuccessListener {
-                                Toast.makeText(this, "Please verify your email", Toast.LENGTH_SHORT).show()
-
                                 database = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users Info")
 
                                 // Storing user name to the database
@@ -106,15 +105,17 @@ class SignupActivity : AppCompatActivity() {
                                     database.child("users").child(userId)
                                         .setValue(name)
                                 }
-                            }
 
+                                setContentView(R.layout.email_verification_message)
+                                val button = findViewById<Button>(R.id.btn_back_to_login_email_verification)
+                                button.setOnClickListener{
+                                    FirebaseAuth.getInstance().signOut()
+                                    finish()
+                                }
+                            }
                             ?.addOnFailureListener {
                                 Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
                             }
-
-                            val intent = Intent(this, LoginActivity::class.java)
-                            startActivity(intent)
-                            finish()
                         } else {
                             Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
                         }
