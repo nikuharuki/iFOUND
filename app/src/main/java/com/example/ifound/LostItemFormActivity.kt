@@ -155,7 +155,7 @@ class LostItemFormActivity : AppCompatActivity() {
         val month = cal.get(Calendar.MONTH)
         val day = cal.get(Calendar.DAY_OF_MONTH)
 
-        val style = R.style.Theme_Black
+        val style = R.style.Theme_Holo_Dialog
 
         datePickerDialog = DatePickerDialog(this, style, dateSetListener, year, month, day)    }
 
