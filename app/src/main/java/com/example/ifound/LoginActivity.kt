@@ -25,6 +25,11 @@ class   LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.btnForgotPassword.setOnClickListener {
+            val intent = Intent(this, AccountRecoveryActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.btLogin.setOnClickListener {
             val email = binding.etEmailLogin.text.toString()
             val password = binding.etPwLogin.text.toString()
