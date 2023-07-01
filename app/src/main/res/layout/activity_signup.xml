@@ -161,7 +161,7 @@
             android:layout_gravity="center"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bt_signup_w_G"
+            android:id="@+id/google_btn"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:layout_marginTop="24dp"
