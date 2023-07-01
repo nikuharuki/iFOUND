@@ -1,6 +1,7 @@
 package com.example.ifound
 
 import android.Manifest
+import android.R
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
@@ -154,7 +155,7 @@ class LostItemFormActivity : AppCompatActivity() {
         val month = cal.get(Calendar.MONTH)
         val day = cal.get(Calendar.DAY_OF_MONTH)
 
-        val style = android.R.style.Theme_DeviceDefault_Light
+        val style = R.style.Theme_Black
 
         datePickerDialog = DatePickerDialog(this, style, dateSetListener, year, month, day)    }
 
