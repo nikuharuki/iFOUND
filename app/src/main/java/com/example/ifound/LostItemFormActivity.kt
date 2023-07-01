@@ -64,9 +64,8 @@ class LostItemFormActivity : AppCompatActivity() {
 
         binding.btnDatePicker.setOnClickListener {
             initDatePicker()
-            dateButton = findViewById(R.id.btn_date_picker)
-            dateButton.text = getTodaysDate()
-
+            binding.btnDatePicker.text = getTodaysDate()
+            datePickerDialog.show()
         }
 
         binding.btnAddphoto.setOnClickListener {
@@ -147,7 +146,7 @@ class LostItemFormActivity : AppCompatActivity() {
     private fun initDatePicker() {
         val dateSetListener = DatePickerDialog.OnDateSetListener { datePicker: DatePicker, year: Int, month: Int, day: Int ->
             val formattedDate = makeDateString(day, month + 1, year)
-            dateButton.text = formattedDate
+            binding.btnDatePicker.text = formattedDate
         }
 
         val cal = Calendar.getInstance()
