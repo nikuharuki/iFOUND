@@ -96,12 +96,12 @@
 
            <androidx.appcompat.widget.AppCompatButton
                android:id="@+id/btn_date_picker"
-               android:layout_width="250dp"
+               android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:text="@string/btn_date_picker"
-               android:layout_marginStart="20dp"
                android:layout_marginBottom="5dp"
                android:gravity="center"
+               android:background="@drawable/bg_datepicker"
                android:fontFamily="@font/semibold"
                android:textAllCaps="true"
                style="?android:spinnerStyle"
