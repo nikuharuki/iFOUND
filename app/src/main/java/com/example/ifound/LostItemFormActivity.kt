@@ -90,7 +90,7 @@ class LostItemFormActivity : AppCompatActivity() {
         binding.btnSubmit.setOnClickListener {
             val name = binding.etItemName.text.toString()
             val location = binding.etItemLocation.text.toString()
-            val date = binding.etItemDate.text.toString()
+            val date = binding.btnDatePicker.text.toString()
             val description = binding.etItemSpecifics.text.toString()
 
             val user = FirebaseAuth.getInstance().currentUser
@@ -103,7 +103,7 @@ class LostItemFormActivity : AppCompatActivity() {
             database.child(name).setValue(lostItemData).addOnSuccessListener{
                 binding.etItemName.setText("")
                 binding.etItemLocation.setText("")
-                binding.etItemDate.setText("")
+                binding.btnDatePicker.setText("")
                 binding.etItemSpecifics.setText("")
                 sImage = ""
 
