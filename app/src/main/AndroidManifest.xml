@@ -6,8 +6,7 @@
         android:name="android.hardware.camera"
         android:required="false" />
 
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!-- Google Sign-in implementations -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- Google Sign-in implementations -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -20,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IFOUND"
         tools:targetApi="31">
+        <activity
+            android:name=".AccountRecoveryActivity"
+            android:exported="false" />
         <activity
             android:name=".FoundItemPageActivity"
             android:exported="false" />
@@ -49,14 +51,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- Google Sign In Implementation -->
-
-        <activity android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+        </activity> <!-- Google Sign In Implementation -->
+        <activity
+            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
             android:excludeFromRecents="true"
             android:exported="false"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name="com.google.android.gms.common.api.GoogleApiActivity"
+        <activity
+            android:name="com.google.android.gms.common.api.GoogleApiActivity"
             android:exported="false" />
 
         <meta-data
@@ -65,4 +67,3 @@
     </application>
 
 </manifest>
-

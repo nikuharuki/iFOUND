@@ -15,6 +15,7 @@
     <string name="HintEmail">Email Address</string>
     <string name="HintPass">Password</string>
     <string name="cEmail">Email</string>
+    <string name="btn_forgot_password">Forgot Password?</string>
 
 
     <string name="txt_lost_item_form_q_1">What have you lost?</string>
@@ -77,8 +78,21 @@
     <string name="bt_my_reports_fragmentProfile">My Reports</string>
     <string name="bt_my_found_items_fragmentProfile">My Found items</string>
 
+    <string name="tv_current_stars">You currently \nhave 0 stars</string>
+    <string name="tv_claim_reward">Claim your reward!</string>
+    <string name="tv_claim_instruction">you must have enough \nstars to claim the reward that you want</string>
+    <string name="tv_select">Select Reward:</string>
+    <string name="tv_rewards_1">3 points-Id Lanyard</string>
+    <string name="tv_rewards_2">5 points- \nJimini mini Pizza</string>
+    <string name="tv_rewards_3">7 points- \nLarge Fries</string>
+    <string name="tv_rewards_4">10 points- \nFree Regular Drink</string>
+    <string name="btn_claim_reward">Claim reward</string>
+    <string name="btn_back_to_login">back to login</string>
+
+    <string name="btn_date_picker">mm/dd/yyyy</string>
 
 
+    <string name="tv_email_pw_recovery">Please enter your email to recover your account</string>
 
 
 
