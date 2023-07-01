@@ -104,7 +104,9 @@
                android:gravity="center"
                android:fontFamily="@font/semibold"
                android:textAllCaps="true"
-               style="?android:spinnerStyle"/>
+               style="?android:spinnerStyle"
+               android:spinnerMode="dialog"
+               />
 
             <TextView
                 android:layout_width="match_parent"

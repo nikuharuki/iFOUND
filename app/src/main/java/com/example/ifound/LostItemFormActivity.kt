@@ -144,8 +144,8 @@ class LostItemFormActivity : AppCompatActivity() {
     }
 
     private fun initDatePicker() {
-        val dateSetListener = DatePickerDialog.OnDateSetListener { datePicker: DatePicker, year: Int, month: Int, day: Int ->
-            val formattedDate = makeDateString(day, month + 1, year)
+        val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+            val formattedDate = makeDateString(dayOfMonth, monthOfYear + 1, year)
             binding.btnDatePicker.text = formattedDate
         }
 
@@ -156,9 +156,7 @@ class LostItemFormActivity : AppCompatActivity() {
 
         val style = android.R.style.Theme_DeviceDefault_Light
 
-        datePickerDialog = DatePickerDialog(this, style, dateSetListener, year, month, day)
-        //datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
-    }
+        datePickerDialog = DatePickerDialog(this, style, dateSetListener, year, month, day)    }
 
     private fun makeDateString(day: Int, month: Int, year: Int): String {
         return getMonthFormat(month) + " " + day + " " + year
