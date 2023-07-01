@@ -22,11 +22,6 @@
         android:orientation="horizontal"
         android:weightSum="2">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_cancel"
-            android:background="@color/white"
-             android:padding="10dp"
-             android:layout_height="match_parent" >
 
         <ImageView
             android:id="@+id/iv_header_title"
@@ -99,14 +94,18 @@
                 android:textColor="@color/black"
                 android:layout_marginBottom="5dp"/>
 
-            <EditText
-                android:id="@+id/et_itemDate"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:inputType="text"
-                android:paddingStart="15dp"
-                android:background="@drawable/bg_edit_text"
-                android:layout_marginBottom="5dp"/>
+           <androidx.appcompat.widget.AppCompatButton
+               android:id="@+id/btn_date_picker"
+               android:layout_width="180dp"
+               android:layout_height="wrap_content"
+               android:background="@drawable/bg_datepicker"
+               android:text="@string/btn_date_picker"
+               android:layout_marginStart="50dp"
+               android:layout_marginBottom="5dp"
+               android:gravity="center"
+               android:fontFamily="@font/semibold"
+               android:textAllCaps="true"
+               style="?android:spinnerStyle" />
 
             <TextView
                 android:layout_width="match_parent"

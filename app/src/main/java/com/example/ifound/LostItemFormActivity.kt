@@ -2,6 +2,7 @@ package com.example.ifound
 
 import android.Manifest
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -26,11 +27,18 @@ import java.util.UUID
 import androidx.core.content.ContextCompat.checkSelfPermission
 import java.io.ByteArrayOutputStream
 import android.util.Base64
+import android.view.View
+import android.widget.Button
+import android.widget.DatePicker
+import androidx.appcompat.app.AlertDialog
+import java.util.Calendar
 
 class LostItemFormActivity : AppCompatActivity() {
     var sImage : String = ""
     private lateinit var binding : ActivityLostItemFormBinding
     private lateinit var database: DatabaseReference
+    private lateinit var datePickerDialog: DatePickerDialog
+    private lateinit var dateButton: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLostItemFormBinding.inflate(layoutInflater)
@@ -53,6 +61,13 @@ class LostItemFormActivity : AppCompatActivity() {
                 binding.ivPhoto.setImageBitmap(photo)
             }
         })
+
+        binding.btnDatePicker.setOnClickListener {
+            initDatePicker()
+            dateButton = findViewById(R.id.btn_date_picker)
+            dateButton.text = getTodaysDate()
+
+        }
 
         binding.btnAddphoto.setOnClickListener {
             val permissions = arrayOf(Manifest.permission.CAMERA)
@@ -120,5 +135,55 @@ class LostItemFormActivity : AppCompatActivity() {
                 Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
             }
         }
+    }
+    private fun getTodaysDate(): String {
+        val cal = Calendar.getInstance()
+        val year = cal.get(Calendar.YEAR)
+        val month = cal.get(Calendar.MONTH) + 1
+        val day = cal.get(Calendar.DAY_OF_MONTH)
+        return makeDateString(day, month, year)
+    }
+
+    private fun initDatePicker() {
+        val dateSetListener = DatePickerDialog.OnDateSetListener { datePicker: DatePicker, year: Int, month: Int, day: Int ->
+            val formattedDate = makeDateString(day, month + 1, year)
+            dateButton.text = formattedDate
+        }
+
+        val cal = Calendar.getInstance()
+        val year = cal.get(Calendar.YEAR)
+        val month = cal.get(Calendar.MONTH)
+        val day = cal.get(Calendar.DAY_OF_MONTH)
+
+        val style = android.R.style.Theme_DeviceDefault_Light
+
+        datePickerDialog = DatePickerDialog(this, style, dateSetListener, year, month, day)
+        //datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
+    }
+
+    private fun makeDateString(day: Int, month: Int, year: Int): String {
+        return getMonthFormat(month) + " " + day + " " + year
+    }
+
+    private fun getMonthFormat(month: Int): String {
+        return when (month) {
+            1 -> "JAN"
+            2 -> "FEB"
+            3 -> "MAR"
+            4 -> "APR"
+            5 -> "MAY"
+            6 -> "JUN"
+            7 -> "JUL"
+            8 -> "AUG"
+            9 -> "SEP"
+            10 -> "OCT"
+            11 -> "NOV"
+            12 -> "DEC"
+            else -> "JAN"
+        }
+    }
+
+    fun openDatePicker(view: View) {
+        datePickerDialog.show()
     }
 }
