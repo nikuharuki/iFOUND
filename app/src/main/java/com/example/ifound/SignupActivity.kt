@@ -1,19 +1,34 @@
 package com.example.ifound
 
+import android.app.Activity
+import android.content.ContentValues.TAG
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.IntentSenderRequest
+import androidx.activity.result.contract.ActivityResultContracts.StartIntentSenderForResult
+import androidx.appcompat.app.AppCompatActivity
 import com.example.ifound.databinding.ActivitySignupBinding
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.gms.auth.api.identity.SignInClient
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
+
 class SignupActivity : AppCompatActivity() {
 
+    private lateinit var oneTapClient: SignInClient
+    private lateinit var signUpRequest: BeginSignInRequest
     private lateinit var binding : ActivitySignupBinding
+
     private lateinit var firebaseAuth : FirebaseAuth
     private lateinit var database : DatabaseReference
 
@@ -21,6 +36,49 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //One Tap Google Sign In
+        oneTapClient = Identity.getSignInClient(this)
+        signUpRequest = BeginSignInRequest.builder()
+            .setGoogleIdTokenRequestOptions(
+                BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+                    .setSupported(true)
+                    // Your server's client ID, not your Android client ID.
+                    .setServerClientId(getString(R.string.web_client_id))
+                    // Show all accounts on the device.
+                    .setFilterByAuthorizedAccounts(false)
+                    .build())
+            .build()
+
+        val activityResultLauncher: ActivityResultLauncher<IntentSenderRequest> = registerForActivityResult(
+            StartIntentSenderForResult()
+        ) { result: ActivityResult ->
+            if(result.resultCode == Activity.RESULT_OK){
+                try {
+                    val credential = oneTapClient.getSignInCredentialFromIntent(result.data)
+                    val idToken = credential.googleIdToken
+                    if (idToken != null) {
+                        val email: String = credential.id
+                        Toast.makeText(applicationContext,"Email: "+email, Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: ApiException) {
+                    e.printStackTrace()
+                }
+            }
+        }
+
+
+        binding.googleBtn.setOnClickListener {
+            oneTapClient.beginSignIn(signUpRequest)
+                .addOnSuccessListener(this) { result ->
+                    val intentSenderRequest = IntentSenderRequest.Builder(result.pendingIntent.intentSender).build()
+                    activityResultLauncher.launch(intentSenderRequest)
+                }
+                .addOnFailureListener(this) { e ->
+                    // No Google Accounts found. Just continue presenting the signed-out UI.
+                    Log.d(TAG, e.localizedMessage as String)
+                }
+        }
 
         firebaseAuth = FirebaseAuth.getInstance()
         database = Firebase.database.reference
@@ -83,4 +141,6 @@ class SignupActivity : AppCompatActivity() {
 
         return false
     }
+
+
 }
