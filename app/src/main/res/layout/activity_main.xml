@@ -63,7 +63,33 @@
             app:layout_anchor="@+id/cardView"
             app:layout_anchorGravity="center"
             app:maxImageSize="42dp" />
+       <com.google.android.material.floatingactionbutton.FloatingActionButton
+           android:id="@+id/fab_lost_form"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           app:backgroundTint="@color/bt_button_myFoundItems"
+           android:layout_marginBottom="100dp"
+           android:layout_marginStart="90dp"
+           android:src="@drawable/lost"
+           app:elevation="64dp"
+           app:fabCustomSize="92dp"
+           android:visibility="invisible"
+           app:layout_anchor="@+id/cardView"
+           app:maxImageSize="42dp"/>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_found_form"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/bt_button_myReports"
+            android:layout_marginBottom="100dp"
+            android:layout_marginStart="230dp"
+            android:src="@drawable/found"
+            app:elevation="64dp"
+            android:visibility="invisible"
+            app:fabCustomSize="92dp"
+            app:layout_anchor="@+id/cardView"
+            app:maxImageSize="42dp"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
