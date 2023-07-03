@@ -6,4 +6,5 @@ data class FoundItemData(val item: String? = null,
                         val whatRoom: String? = null,
                         val name: String? = null,
                          val phoneNo: String? = null,
-                         val email: String? = null)
+                         val email: String? = null,
+                          val image: String? = "")
