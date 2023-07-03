@@ -31,9 +31,8 @@ class LostItemAdapter(private val context: Context, private val lostItemList : A
 
     class LostItemViewHolder(private val binding: EachItemBinding, private val context: Context):
         RecyclerView.ViewHolder(binding.root) {
-
         fun bind(lostItem: LostItemData, position: Int){
-//            binding.profileIv.setImageDrawable(context.getDrawable(R.drawable.baseline_account_circle_24))
+//
             binding.titleTv.text = lostItem.name
             binding.tags.text = lostItem.description
 
