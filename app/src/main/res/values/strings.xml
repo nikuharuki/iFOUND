@@ -43,7 +43,7 @@
     <string name="txt_found_page_item_name">Item Name</string>
     <string name="txt_found_page_found_by_header">Found by:</string>
     <string name="txt_found_page_found_by_body">Insert Text Here</string>
-    <string name="txt_found_page_contact_info_header">Found by:</string>
+    <string name="txt_found_page_contact_info_header">Contact Information:</string>
     <string name="txt_found_page_contact_info_body">Insert Text Here</string>
     <string name="txt_found_page_contact_info_number">xx-xxx-xxx</string>
     <string name="txt_found_page_contact_info_email">Insert Text Here</string>
@@ -95,7 +95,13 @@
 
     <string name="tv_email_pw_recovery">Please enter your email to recover your account</string>
 
+    <string name="tv_lost_item">Lost Item</string>
+    <string name="btn_iFound_this_item">iFOUND THIS ITEM</string>
 
+    <string name="btn_delete">delete</string>
+
+    <string name="tv_found_item">Found Item</string>
+    <string name="btn_claim_item">Claim Item</string>
 
     <string name="test_two">Test Commit></string>
 </resources>

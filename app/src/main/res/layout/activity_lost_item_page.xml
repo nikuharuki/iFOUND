@@ -22,66 +22,91 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="106dp" />
-    
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="@id/horizontal_guideline_13"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_found_item"
+        android:layout_width="380dp"
+        android:layout_height="600dp"
+        app:cardElevation="25dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/bg_curved_white">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="44dp"
+        android:backgroundTint="@color/bg_lost_items_per_page">
 
-        <ImageView
-            android:id="@+id/iv_lost_item"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tv_lost_item"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/img_lost_item_text"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"/>
+            android:src="@drawable/img_found_item_text"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="@string/tv_lost_item"
+            android:fontFamily="@font/extrabold"
+            android:textColor="@color/txt_color_title_found"
+            android:textSize="50sp" />
 
         <ImageView
             android:id="@+id/iv_item_img"
             android:layout_width="350dp"
             android:layout_height="250dp"
+            android:layout_marginStart="15dp"
             android:src="@drawable/img_temp_vector"
-            app:layout_constraintTop_toBottomOf="@id/iv_lost_item"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="80dp"/>
 
         <LinearLayout
-            android:id="@+id/ll"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/iv_item_img"
-            android:layout_marginTop="20dp"
-            android:paddingStart="30dp"
+            android:layout_marginTop="320dp"
+            android:paddingStart="20dp"
             android:paddingEnd="30dp"
+            android:layout_marginStart="15dp"
             android:orientation="vertical"
             android:weightSum="10">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_gravity="center">
 
             <TextView
+                android:id="@+id/tv_item_name_lost_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginBottom="15dp"
                 android:textSize="25sp"
+                android:gravity="center"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:text="@string/txt_found_page_item_name"
                 android:fontFamily="@font/bold"/>
+            <ImageButton
+                android:id="@+id/ibtn_edit_button_lost_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/edit_vector_button"
+                android:background="@color/transparent"
+                android:layout_marginStart="10dp"
+                android:tint="@color/light_white" />
+
+        </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_last_seen_lost_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="15sp"
+                android:textSize="20sp"
                 android:textColor="@color/black"
                 android:text="@string/txt_lost_item_page_last_seen_header"
-                android:fontFamily="@font/bold"/>
+                android:fontFamily="@font/bold"
+                android:layout_marginTop="20dp"/>
 
             <TextView
+                android:id="@+id/tv_where_lost_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -90,15 +115,17 @@
                 android:fontFamily="@font/regular"/>
 
             <TextView
+                android:id="@+id/tv_room_no_or_floor_lost_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="15sp"
+                android:textSize="20sp"
                 android:textColor="@color/black"
                 android:text="@string/txt_lost_item_page_floor_num_header"
                 android:fontFamily="@font/bold"/>
 
             <TextView
+                android:id="@+id/tv_room_num_or_floor_lost_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -107,15 +134,17 @@
                 android:fontFamily="@font/regular"/>
 
             <TextView
+                android:id="@+id/tv_lost_by_lost_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="15sp"
+                android:textSize="20sp"
                 android:textColor="@color/black"
                 android:text="@string/txt_lost_item_page_lost_by_header"
                 android:fontFamily="@font/bold"/>
 
             <TextView
+                android:id="@+id/tv_name_lost_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -124,22 +153,25 @@
                 android:fontFamily="@font/regular"/>
 
             <TextView
+                android:id="@+id/tv_con_info_lost_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="15sp"
+                android:textSize="20sp"
                 android:textColor="@color/black"
                 android:text="@string/txt_lost_item_page_contact_info_header"
                 android:fontFamily="@font/bold"/>
             <TextView
+                android:id="@+id/tv_phone_lost_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="15sp"
+                android:textSize="20sp"
                 android:text="@string/txt_lost_item_page_contact_info_number"
                 android:fontFamily="@font/regular"/>
 
             <TextView
+                android:id="@+id/tv_email_lost_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -147,7 +179,40 @@
                 android:text="@string/txt_lost_item_page_contact_info_email"
                 android:fontFamily="@font/regular"/>
         </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/ll_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:weightSum="2"
+        app:layout_constraintTop_toBottomOf="@id/cv_found_item"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_iFound_this_item"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/btn_iFound_this_item"
+            android:textAllCaps="false"
+            android:background="@drawable/bg_button_add_photo"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_delete_lost_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:text="@string/btn_delete"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/semibold"
+            android:textColor="@color/light_white"/>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
