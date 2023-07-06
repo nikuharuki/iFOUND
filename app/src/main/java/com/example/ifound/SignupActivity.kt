@@ -108,8 +108,8 @@ class SignupActivity : AppCompatActivity() {
 
                                 setContentView(R.layout.email_verification_message)
                                 val button = findViewById<Button>(R.id.btn_back_to_login_email_verification)
+                                FirebaseAuth.getInstance().signOut()
                                 button.setOnClickListener{
-                                    FirebaseAuth.getInstance().signOut()
                                     finish()
                                 }
                             }
