@@ -102,7 +102,7 @@ class homeFragment : Fragment() {
                 if (snapshot.exists()) {
                     val username = snapshot.getValue(String::class.java)
 
-                    binding.tvHelloUser.text = "Hello $username"
+                    binding.tvHelloUser.text = "Hello, $username"
                 }
             }
 
