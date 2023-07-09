@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:clickable="true">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
@@ -19,6 +20,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:focusable="false"
+            android:clickable="false"
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

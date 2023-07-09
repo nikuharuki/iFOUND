@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         }
         binding.fabLostForm.setOnClickListener {
             val intent = Intent(this@MainActivity, LostItemFormActivity::class.java)
+            intent.putExtra("PageMode", LostItemFormActivity.PageMode.CREATE)
             startActivity(intent)
 
         }

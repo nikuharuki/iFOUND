@@ -2,6 +2,7 @@ package com.example.ifound
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +19,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.snapshots
 import com.google.firebase.ktx.Firebase
 import kotlin.math.log
-import androidx.navigation.fragment.findNavController
+
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -40,6 +41,7 @@ class homeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var lostItemAdapter: LostItemAdapter
+    private lateinit var recyclerView: RecyclerView
 
 //    private val lostItemList = ArrayList<LostItemData>()
 
@@ -47,7 +49,7 @@ class homeFragment : Fragment() {
     private lateinit var usernameReference : DatabaseReference
 
     private lateinit var databaseReference: DatabaseReference
-    private var lostItemList = ArrayList<LostItemData>()
+    private val lostItemList = ArrayList<LostItemData>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,25 +70,38 @@ class homeFragment : Fragment() {
 
     ): View {
         // Inflate the layout for this fragment
+
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        binding.lostitemsrecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.lostitemsrecycler.setHasFixedSize(true)
+        recyclerView = binding.lostitemsrecycler
+
+
+        recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.setHasFixedSize(true)
         lostItemAdapter = LostItemAdapter(requireContext(), lostItemList)
-        binding.lostitemsrecycler.adapter = lostItemAdapter
+        recyclerView.adapter = lostItemAdapter
+        getUserData()
+
+//        recyclerView.adapter = lostItemAdapter
+
+        lostItemAdapter.onItemClick = {
+            Log.d("TAG", "Item clicked")
+            val intent = Intent(requireContext(), LostItemPageActivity::class.java)
+            intent.putExtra("LostItemData", it)
+            startActivity(intent)
+        }
 
         binding.tvTest.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
 
             val intent = Intent(this@homeFragment.requireContext(), LoginActivity::class.java)
             startActivity(intent)
-            requireActivity().finish()
+            requireActivity().finish() //requireActivity?? so main ang mafifinish
         }
 
 
         getUserName()
-        lostItemList = arrayListOf<LostItemData>()
-        getUserData()
+
 
         return binding.root
     }
@@ -120,9 +135,12 @@ class homeFragment : Fragment() {
                     for (itemSnapshot in snapshot.children) {
                         val lostItem = itemSnapshot.getValue(LostItemData::class.java)
                         lostItemList.add(lostItem!!)
+                        lostItem.name?.let { Log.d("lostItemList get name", it) }
                     }
                     binding.lostitemsrecycler.adapter = LostItemAdapter(requireContext(),lostItemList)
+                    binding.lostitemsrecycler.adapter = lostItemAdapter
                 }
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -152,4 +170,14 @@ class homeFragment : Fragment() {
                 }
             }
     }
+
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//        updateItemList()
+//        Log.d("TAG", "Resumed")
+//    }
+//
+//    private fun updateItemList() {
+//        lostItemAdapter.notifyDataSetChanged()
+//    }
 }
