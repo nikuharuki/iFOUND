@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.ifound.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -15,10 +14,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.snapshots
-import com.google.firebase.ktx.Firebase
-import kotlin.math.log
-import androidx.navigation.fragment.findNavController
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -28,12 +23,12 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [homeFragment.newInstance] factory method to
+ * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
 
 
-class homeFragment : Fragment() {
+class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -78,7 +73,7 @@ class homeFragment : Fragment() {
         binding.tvTest.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
 
-            val intent = Intent(this@homeFragment.requireContext(), LoginActivity::class.java)
+            val intent = Intent(this@HomeFragment.requireContext(), LoginActivity::class.java)
             startActivity(intent)
             requireActivity().finish()
         }
@@ -116,12 +111,21 @@ class homeFragment : Fragment() {
         databaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Lost Items")
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (itemSnapshot in snapshot.children) {
-                        val lostItem = itemSnapshot.getValue(LostItemData::class.java)
-                        lostItemList.add(lostItem!!)
+                if (isAdded) {
+                    if (snapshot.exists()) {
+                        for (itemSnapshot in snapshot.children) {
+//                          val lostItem = itemSnapshot.getValue(LostItemData::class.java)
+//                          lostItemList.add(lostItem!!)
+
+                            val updatedLostItemList = mutableListOf<LostItemData>()
+
+                            val lostItem = itemSnapshot.getValue(LostItemData::class.java)
+                            lostItem?.let {
+                                updatedLostItemList.add(it)
+                            }
+                        }
+                        binding.lostitemsrecycler.adapter = LostItemAdapter(requireContext(),lostItemList)
                     }
-                    binding.lostitemsrecycler.adapter = LostItemAdapter(requireContext(),lostItemList)
                 }
             }
 
@@ -140,12 +144,12 @@ class homeFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment homeFragment.
+         * @return A new instance of fragment HomeFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            homeFragment().apply {
+            HomeFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
