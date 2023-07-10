@@ -95,15 +95,15 @@ class SignupActivity : AppCompatActivity() {
                     firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                         if (it.isSuccessful) {
                             firebaseAuth.currentUser?.sendEmailVerification()?.addOnSuccessListener {
-                                database = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users Info")
+                                database = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users")
 
                                 // Storing user name to the database
                                 val user = firebaseAuth.currentUser
                                 if (user != null) {
                                     val userId = user.uid
 
-                                    database.child("users").child(userId)
-                                        .setValue(name)
+                                    database.child(userId).child("Name").setValue(name)
+                                    database.child(userId).child("Email").setValue(email)
                                 }
 
                                 setContentView(R.layout.email_verification_message)

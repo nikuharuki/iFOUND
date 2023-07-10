@@ -131,16 +131,22 @@ class homeFragment : Fragment() {
         databaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Lost Items")
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (itemSnapshot in snapshot.children) {
-                        val lostItem = itemSnapshot.getValue(LostItemData::class.java)
-                        lostItemList.add(lostItem!!)
-                        lostItem.name?.let { Log.d("lostItemList get name", it) }
-                    }
-                    binding.lostitemsrecycler.adapter = LostItemAdapter(requireContext(),lostItemList)
-                    binding.lostitemsrecycler.adapter = lostItemAdapter
-                }
+                if (isAdded) {
+                    if (snapshot.exists()) {
+                        for (itemSnapshot in snapshot.children) {
+//                          val lostItem = itemSnapshot.getValue(LostItemData::class.java)
+//                          lostItemList.add(lostItem!!)
 
+                            val updatedLostItemList = mutableListOf<LostItemData>()
+
+                            val lostItem = itemSnapshot.getValue(LostItemData::class.java)
+                            lostItem?.let {
+                                updatedLostItemList.add(it)
+                            }
+                        }
+                        binding.lostitemsrecycler.adapter = LostItemAdapter(requireContext(),lostItemList)
+                    }
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
