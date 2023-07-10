@@ -84,27 +84,79 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/medium"
                 android:labelFor="@id/et_any_additional_info_foundItemForm"
-                android:text="@string/tv_additionalInfo_foundItemForm"
+                android:text="@string/txt_lost_item_form_q_4"
                 android:textColor="#000"
                 android:textSize="18sp" />
 
-            <EditText
-                android:id="@+id/et_any_additional_info_foundItemForm"
+            <LinearLayout
+                android:padding="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="124dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_edit_text"
-                android:ems="10"
-                android:hint="@string/et_hint2_additionalInfo_foundItemForm"
-                android:includeFontPadding="true"
-                android:inputType="text"
-                android:paddingStart="10dp"
-                android:paddingEnd="0dp"
-                android:paddingBottom="70dp"
-                android:textColor="#000"
-                tools:ignore="LabelFor"
-                android:importantForAutofill="no" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioGroup
+                    android:id="@+id/rg_specifics"
+                    android:layout_width="wrap_content"
+                    android:layout_height="43dp"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbtn_electronics"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="Electronics"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:fontFamily="@font/semibold"
+                        android:textSize="12dp"
+                        android:textColor="@drawable/radio_text_selector"
+                        android:background="@drawable/radio_selector"
+                        android:button="@drawable/radio_null_button"
+                        android:layout_marginEnd="5dp"/>
+                    <RadioButton
+                        android:id="@+id/rbtn_clothing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Clothing"
+                        android:padding="10dp"
+                        android:fontFamily="@font/semibold"
+                        android:textSize="12dp"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:textColor="@drawable/radio_text_selector"
+                        android:background="@drawable/radio_selector"
+                        android:button="@drawable/radio_null_button"
+                        android:layout_marginEnd="5dp"/>
+                    <RadioButton
+                        android:id="@+id/rbtn_documents"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Documents"
+                        android:padding="10dp"
+                        android:fontFamily="@font/semibold"
+                        android:textSize="12dp"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:textColor="@drawable/radio_text_selector"
+                        android:background="@drawable/radio_selector"
+                        android:button="@drawable/radio_null_button"
+                        android:layout_marginEnd="5dp"/>
+                    <RadioButton
+                        android:id="@+id/rbtn_others"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Others... "
+                        android:textSize="12dp"
+                        android:padding="10dp"
+                        android:fontFamily="@font/semibold"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:textColor="@drawable/radio_text_selector"
+                        android:background="@drawable/radio_selector"
+                        android:button="@drawable/radio_null_button"/>
+
+                </RadioGroup>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_where_foundItemForm"
