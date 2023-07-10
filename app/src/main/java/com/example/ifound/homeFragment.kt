@@ -82,7 +82,7 @@ class homeFragment : Fragment() {
         recyclerView.adapter = lostItemAdapter
         getUserData()
 
-//        recyclerView.adapter = lostItemAdapter
+//      recyclerView.adapter = lostItemAdapter
 
         lostItemAdapter.onItemClick = {
             Log.d("TAG", "Item clicked")
@@ -134,14 +134,9 @@ class homeFragment : Fragment() {
                 if (isAdded) {
                     if (snapshot.exists()) {
                         for (itemSnapshot in snapshot.children) {
-//                          val lostItem = itemSnapshot.getValue(LostItemData::class.java)
-//                          lostItemList.add(lostItem!!)
-
-                            val updatedLostItemList = mutableListOf<LostItemData>()
-
                             val lostItem = itemSnapshot.getValue(LostItemData::class.java)
                             lostItem?.let {
-                                updatedLostItemList.add(it)
+                                lostItemList.add(it)
                             }
                         }
                         binding.lostitemsrecycler.adapter = LostItemAdapter(requireContext(),lostItemList)
