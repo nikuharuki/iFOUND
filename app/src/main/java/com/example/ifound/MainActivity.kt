@@ -32,6 +32,35 @@ class MainActivity : AppCompatActivity() {
         val bottomNavView = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
         bottomNavView.menu.getItem(1).isEnabled = false
 
+        val homeFragment = HomeFragment()
+        val profileFragment = ProfileFragment()
+
+        // Set default fragment to homeFragment
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fragment_container, homeFragment)
+            commit()
+        }
+
+        bottomNavView.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.home_nav -> {
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(R.id.fragment_container, homeFragment)
+                        commit()
+                    }
+                    true
+                }
+                R.id.profile_nav -> {
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(R.id.fragment_container, profileFragment)
+                        commit()
+                    }
+                    true
+                }
+                else -> false
+            }
+        }
+
         binding.floatingActionButton.setOnClickListener {
 
             onAddButtonClicked()
@@ -61,6 +90,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
     private fun onAddButtonClicked(){
         setVisibility(clicked)
         setAnimation(clicked)

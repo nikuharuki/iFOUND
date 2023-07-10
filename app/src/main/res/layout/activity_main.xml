@@ -15,8 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:name="com.example.ifound.homeFragment"
-        tools:layout="@layout/fragment_home" />
+        android:name="com.example.ifound.HomeFragment"/>
+        <!-- tools:layout="@layout/fragment_home" -->
         <!-- may need ichange    -->
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
