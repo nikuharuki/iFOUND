@@ -24,6 +24,7 @@ import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.RadioButton
 import com.bumptech.glide.Glide
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
@@ -144,12 +145,13 @@ class LostItemFormActivity() : AppCompatActivity() {
         }
     }
 
+
     private fun editLostItem(childUid: String?, imageUrl: String?) {
         val name = binding.etItemName.text.toString()
         val location = binding.etItemLocation.text.toString()
         val date = binding.btnDatePicker.text.toString()
-        val description = binding.etItemSpecifics.text.toString()
-
+        val radioGroup = binding.rgSpecifics
+        val description = radioGroup.findViewById<RadioButton>(radioGroup.checkedRadioButtonId).text.toString()
 
         Log.d("LostItemFormActivity", "ImageURL: $imageUrl")
 //        Log.d("LostItemFormActivity", "newPhotoURL: ${newPhotoUri.toString()}")
@@ -204,7 +206,15 @@ class LostItemFormActivity() : AppCompatActivity() {
         val name = binding.etItemName.text.toString()
         val location = binding.etItemLocation.text.toString()
         val date = binding.btnDatePicker.text.toString()
-        val description = binding.etItemSpecifics.text.toString()
+
+        val radioGroup = binding.rgSpecifics
+
+
+        // Get the selected radio button text and store it in description
+        val description = radioGroup.findViewById<RadioButton>(radioGroup.checkedRadioButtonId).text.toString()
+
+
+
 
         val user = FirebaseAuth.getInstance().currentUser
 
@@ -231,8 +241,7 @@ class LostItemFormActivity() : AppCompatActivity() {
                         binding.etItemName.setText("")
                         binding.etItemLocation.setText("")
                         binding.btnDatePicker.setText("")
-                        binding.etItemSpecifics.setText("")
-                        sImage = ""
+//                        binding.rgSpecifics.clearCheck()
 
                         Toast.makeText(this, "Submitted", Toast.LENGTH_SHORT).show()
                         // might need to modify this to be just finish()
@@ -345,7 +354,7 @@ class LostItemFormActivity() : AppCompatActivity() {
             binding.etItemName.setText("")
             binding.etItemLocation.setText("")
             binding.btnDatePicker.setText("")
-            binding.etItemSpecifics.setText("")
+//            binding.rgSpecifics.clearCheck()
 
             Toast.makeText(this, "Updated", Toast.LENGTH_SHORT).show()
             val intent = Intent(this@LostItemFormActivity, MainActivity::class.java)
@@ -360,7 +369,16 @@ class LostItemFormActivity() : AppCompatActivity() {
         binding.etItemName.setText(name)
         binding.etItemLocation.setText(location)
         binding.btnDatePicker.setText(date)
-        binding.etItemSpecifics.setText(description)
+        binding.rgSpecifics.check(when (description) {
+            "Electronics" -> binding.rgSpecifics.findViewById<RadioButton>(binding.rbtnElectronics.id).id
+            "Clothing" -> binding.rgSpecifics.findViewById<RadioButton>(binding.rbtnClothing.id).id
+            "Documents" -> binding.rgSpecifics.findViewById<RadioButton>(binding.rbtnDocuments.id).id
+            "Others" -> binding.rgSpecifics.findViewById<RadioButton>(binding.rbtnOthers.id).id
+            else -> binding.rbtnOthers.id
+        })
+
+
+
         Glide.with(this).load(imageUrl).into(binding.ivPhoto)
 
         binding.btnSubmit.setOnClickListener {

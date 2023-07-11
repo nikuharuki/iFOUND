@@ -31,10 +31,10 @@ class LostItemPageActivity() : AppCompatActivity() {
 
         if (lostItem != null) {
             binding.tvItemNameLostItem.text = lostItem.name
-            binding.tvWhereLostItem.text = lostItem.date
-            binding.tvRoomNumOrFloorLostItem.text = lostItem.location
+            binding.tvWhereLostItem.text = lostItem.date + lostItem.location
             binding.tvNameLostItem.text = lostItem.submittedBy
             binding.tvEmailLostItem.text = lostItem.contact
+            binding.tvSpecifics.text = lostItem.description
 
             Glide.with(this)
                 .load(lostItem.image)
