@@ -16,10 +16,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.snapshots
-import com.google.firebase.ktx.Firebase
-import kotlin.math.log
-
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -29,12 +25,12 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [homeFragment.newInstance] factory method to
+ * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
 
 
-class homeFragment : Fragment() {
+class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -96,7 +92,7 @@ class homeFragment : Fragment() {
         binding.tvTest.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
 
-            val intent = Intent(this@homeFragment.requireContext(), LoginActivity::class.java)
+            val intent = Intent(this@HomeFragment.requireContext(), LoginActivity::class.java)
             startActivity(intent)
             requireActivity().finish() //requireActivity?? so main ang mafifinish
         }
@@ -167,7 +163,7 @@ class homeFragment : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            homeFragment().apply {
+            HomeFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

@@ -5,13 +5,9 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ifound.databinding.ActivityMainBinding
-import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.shape.CornerFamily
-import com.google.android.material.shape.MaterialShapeDrawable
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,8 +28,8 @@ class MainActivity : AppCompatActivity() {
         val bottomNavView = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
         bottomNavView.menu.getItem(1).isEnabled = false
 
-        val homeFragment = homeFragment()
-        val profileFragment = fragment_profile()
+        val homeFragment = HomeFragment()
+        val profileFragment = ProfileFragment()
 
         // Set default fragment to homeFragment
         supportFragmentManager.beginTransaction().apply {
