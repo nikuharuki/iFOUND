@@ -108,14 +108,14 @@ class HomeFragment : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
         val userId = firebaseAuth.currentUser?.uid
         val databaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").reference
-        usernameReference = databaseReference.child("Users Info").child("users").child(userId!!)
+        usernameReference = databaseReference.child("Users").child(userId!!).child("Name")
 
         usernameReference.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val username = snapshot.getValue(String::class.java)
 
-                    binding.tvHelloUser.text = "Hello $username"
+                    binding.tvHelloUser.text = "Hello, $username"
                 }
             }
 
@@ -129,6 +129,7 @@ class HomeFragment : Fragment() {
         databaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Lost Items")
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                lostItemList.clear()
                 if (isAdded) {
                     if (snapshot.exists()) {
                         for (itemSnapshot in snapshot.children) {
