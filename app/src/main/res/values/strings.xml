@@ -103,5 +103,8 @@
     <string name="tv_found_item">Found Item</string>
     <string name="btn_claim_item">Claim Item</string>
 
+    <string name="specifics">Aliquam tincidunt mauris eu risus.\nVestibulum auctor dapibus neque.
+    \nNunc dignissim risus id metus.</string>
+
     <string name="test_two">Test Commit></string>
 </resources>

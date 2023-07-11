@@ -29,6 +29,10 @@
     <color name="bg_found_items_per_page">#FBF7E7</color>
     <color name="bg_lost_items_per_page">#FEECED</color>
 
+    <color name="bg_tags_lost">#B0F15C63</color>
+    <color name="bg_tags_found">#EADC63</color>
+
+
 
 
 
