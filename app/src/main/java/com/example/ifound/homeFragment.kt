@@ -80,6 +80,8 @@ class homeFragment : Fragment() {
         recyclerView.setHasFixedSize(true)
         lostItemAdapter = LostItemAdapter(requireContext(), lostItemList)
         recyclerView.adapter = lostItemAdapter
+
+        lostItemList.clear()
         getUserData()
 
 //      recyclerView.adapter = lostItemAdapter
@@ -140,6 +142,7 @@ class homeFragment : Fragment() {
                             }
                         }
                         binding.lostitemsrecycler.adapter = LostItemAdapter(requireContext(),lostItemList)
+                        binding.lostitemsrecycler.adapter = lostItemAdapter
                     }
                 }
             }

@@ -123,6 +123,11 @@ class LostItemFormActivity() : AppCompatActivity() {
 
 
         }
+        if (::uri.isInitialized) {
+            Log.d("LostItemFormActivity", "uri is initialized")
+        } else {
+            Log.d("LostItemFormActivity", "uri is not initialized")
+        }
 
         binding.btnCancel.setOnClickListener {
             finish()
@@ -144,10 +149,14 @@ class LostItemFormActivity() : AppCompatActivity() {
         val location = binding.etItemLocation.text.toString()
         val date = binding.btnDatePicker.text.toString()
         val description = binding.etItemSpecifics.text.toString()
-        val newPhotoUri = uri
 
-        if (childUid != null && imageUrl != null) {
-            if (imageUrl != newPhotoUri.toString()){
+
+        Log.d("LostItemFormActivity", "ImageURL: $imageUrl")
+//        Log.d("LostItemFormActivity", "newPhotoURL: ${newPhotoUri.toString()}")
+
+        if (::uri.isInitialized) {
+            val newPhotoUri = uri
+            if (childUid != null && imageUrl != null) {
                 val currentPhotoRef = storageRef.getReferenceFromUrl(imageUrl)
                 currentPhotoRef.delete().addOnSuccessListener {
                     // Current photo deleted successfully, now upload the new photo and update the data
@@ -162,11 +171,32 @@ class LostItemFormActivity() : AppCompatActivity() {
                     // Handle any errors that occur during photo deletion
                     Toast.makeText(this, "Failed to delete current photo: ${exception.message}", Toast.LENGTH_SHORT).show()
                 }
-            } else{
-                UpdateData(name, location, description, date, imageUrl, childUid)
             }
-
+        } else {
+            UpdateData(name, location, description, date, imageUrl.toString(), childUid.toString())
         }
+
+
+//        if (childUid != null && imageUrl != null) {
+//            if (imageUrl != newPhotoUri.toString()){
+//                val currentPhotoRef = storageRef.getReferenceFromUrl(imageUrl)
+//                currentPhotoRef.delete().addOnSuccessListener {
+//                    // Current photo deleted successfully, now upload the new photo and update the data
+//                    storageRef.getReference("Lost Items").child(System.currentTimeMillis().toString())
+//                        .putFile(newPhotoUri)
+//                        .addOnSuccessListener { task ->
+//                            task.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
+//                                UpdateData(name, location, description, date, it.toString(), childUid)
+//                            }
+//                        }
+//                }.addOnFailureListener { exception ->
+//                    // Handle any errors that occur during photo deletion
+//                    Toast.makeText(this, "Failed to delete current photo: ${exception.message}", Toast.LENGTH_SHORT).show()
+//                }
+//            } else{
+//                UpdateData(name, location, description, date, imageUrl, childUid)
+//            }
+//        }
     }
 
     private fun createLostItem() {
