@@ -208,7 +208,9 @@ class LostItemFormActivity() : AppCompatActivity() {
 
         val user = FirebaseAuth.getInstance().currentUser
 
-        val submittedBy = user?.displayName
+//      val submittedBy = user?.displayName
+//      submittedBy uid instead of displayName
+        val submittedBy = user?.uid
         val contact = user?.email
 
         storageRef.getReference("Lost Items").child(System.currentTimeMillis().toString())
@@ -233,8 +235,9 @@ class LostItemFormActivity() : AppCompatActivity() {
                         sImage = ""
 
                         Toast.makeText(this, "Submitted", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@LostItemFormActivity, MainActivity::class.java)
-                        startActivity(intent)
+                        // might need to modify this to be just finish()
+                        // val intent = Intent(this@LostItemFormActivity, MainActivity::class.java)
+                        // startActivity(intent)
                         finish()
 
                     }.addOnFailureListener {
