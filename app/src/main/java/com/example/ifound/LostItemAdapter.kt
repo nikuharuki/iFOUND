@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.ifound.databinding.EachItemBinding
 
 class LostItemAdapter(private val context: Context, private val lostItemList : ArrayList<LostItemData>):
@@ -20,8 +21,11 @@ class LostItemAdapter(private val context: Context, private val lostItemList : A
     }
 
     override fun onBindViewHolder(holder: LostItemAdapter.LostItemViewHolder, position: Int) {
-        lostItemList[position].let {
-            holder.bind(it, position)
+        val lostItem = lostItemList[position]
+        holder.bind(lostItem, position)
+
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(lostItem)
         }
     }
 
@@ -36,9 +40,9 @@ class LostItemAdapter(private val context: Context, private val lostItemList : A
             binding.titleTv.text = lostItem.name
             binding.tags.text = lostItem.description
 
-            val bytes = android.util.Base64.decode(lostItem.image, android.util.Base64.DEFAULT)
-            val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-            binding.imageView.setImageBitmap(bitmap)
+            Glide.with(itemView.context)
+                .load(lostItem.image)
+                .into(binding.imageView)
         }
     }
 }
