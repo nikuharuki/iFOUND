@@ -83,7 +83,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/medium"
-                android:labelFor="@id/et_any_additional_info_foundItemForm"
                 android:text="@string/txt_lost_item_form_q_4"
                 android:textColor="#000"
                 android:textSize="18sp" />
