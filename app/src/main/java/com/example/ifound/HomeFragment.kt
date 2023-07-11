@@ -2,11 +2,13 @@ package com.example.ifound
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.ifound.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -35,6 +37,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var lostItemAdapter: LostItemAdapter
+    private lateinit var recyclerView: RecyclerView
 
 //    private val lostItemList = ArrayList<LostItemData>()
 
@@ -42,7 +45,7 @@ class HomeFragment : Fragment() {
     private lateinit var usernameReference : DatabaseReference
 
     private lateinit var databaseReference: DatabaseReference
-    private var lostItemList = ArrayList<LostItemData>()
+    private val lostItemList = ArrayList<LostItemData>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,25 +66,40 @@ class HomeFragment : Fragment() {
 
     ): View {
         // Inflate the layout for this fragment
+
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        binding.lostitemsrecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.lostitemsrecycler.setHasFixedSize(true)
+        recyclerView = binding.lostitemsrecycler
+
+
+        recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.setHasFixedSize(true)
         lostItemAdapter = LostItemAdapter(requireContext(), lostItemList)
-        binding.lostitemsrecycler.adapter = lostItemAdapter
+        recyclerView.adapter = lostItemAdapter
+
+        lostItemList.clear()
+        getUserData()
+
+//      recyclerView.adapter = lostItemAdapter
+
+        lostItemAdapter.onItemClick = {
+            Log.d("TAG", "Item clicked")
+            val intent = Intent(requireContext(), LostItemPageActivity::class.java)
+            intent.putExtra("LostItemData", it)
+            startActivity(intent)
+        }
 
         binding.tvTest.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
 
             val intent = Intent(this@HomeFragment.requireContext(), LoginActivity::class.java)
             startActivity(intent)
-            requireActivity().finish()
+            requireActivity().finish() //requireActivity?? so main ang mafifinish
         }
 
 
         getUserName()
-        lostItemList = arrayListOf<LostItemData>()
-        getUserData()
+
 
         return binding.root
     }
@@ -97,7 +115,7 @@ class HomeFragment : Fragment() {
                 if (snapshot.exists()) {
                     val username = snapshot.getValue(String::class.java)
 
-                    binding.tvHelloUser.text = "Hello, $username"
+                    binding.tvHelloUser.text = "Hello $username"
                 }
             }
 
@@ -114,17 +132,13 @@ class HomeFragment : Fragment() {
                 if (isAdded) {
                     if (snapshot.exists()) {
                         for (itemSnapshot in snapshot.children) {
-//                          val lostItem = itemSnapshot.getValue(LostItemData::class.java)
-//                          lostItemList.add(lostItem!!)
-
-                            val updatedLostItemList = mutableListOf<LostItemData>()
-
                             val lostItem = itemSnapshot.getValue(LostItemData::class.java)
                             lostItem?.let {
-                                updatedLostItemList.add(it)
+                                lostItemList.add(it)
                             }
                         }
                         binding.lostitemsrecycler.adapter = LostItemAdapter(requireContext(),lostItemList)
+                        binding.lostitemsrecycler.adapter = lostItemAdapter
                     }
                 }
             }
@@ -144,7 +158,7 @@ class HomeFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
+         * @return A new instance of fragment homeFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
@@ -156,4 +170,14 @@ class HomeFragment : Fragment() {
                 }
             }
     }
+
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//        updateItemList()
+//        Log.d("TAG", "Resumed")
+//    }
+//
+//    private fun updateItemList() {
+//        lostItemAdapter.notifyDataSetChanged()
+//    }
 }

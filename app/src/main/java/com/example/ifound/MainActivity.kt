@@ -5,13 +5,9 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ifound.databinding.ActivityMainBinding
-import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.shape.CornerFamily
-import com.google.android.material.shape.MaterialShapeDrawable
 
 
 class MainActivity : AppCompatActivity() {
@@ -67,6 +63,7 @@ class MainActivity : AppCompatActivity() {
         }
         binding.fabLostForm.setOnClickListener {
             val intent = Intent(this@MainActivity, LostItemFormActivity::class.java)
+            intent.putExtra("PageMode", LostItemFormActivity.PageMode.CREATE)
             startActivity(intent)
 
         }
@@ -96,6 +93,7 @@ class MainActivity : AppCompatActivity() {
         setAnimation(clicked)
         clicked = !clicked
     }
+
     private fun setVisibility(clicked: Boolean){
         if (!clicked){
             binding.fabLostForm.visibility = View.VISIBLE
