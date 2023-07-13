@@ -50,17 +50,17 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_what_have_you_found_foundItemForm"
+                android:id="@+id/tv_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/medium"
-                android:labelFor="@id/et_what_have_you_found_foundItemForm"
+                android:labelFor="@id/et_foundItem"
                 android:text="@string/tv_whatHaveYouFound_foundItemForm"
                 android:textColor="#000"
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/et_what_have_you_found_foundItemForm"
+                android:id="@+id/et_foundItem"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_gravity="center"
@@ -78,12 +78,12 @@
                 android:importantForAutofill="no" />
 
             <TextView
-                android:id="@+id/tv_any_additional_info_foundItemForm"
+                android:id="@+id/tv_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/medium"
-                android:text="@string/txt_lost_item_form_q_4"
+                android:text="Item Type"
                 android:textColor="#000"
                 android:textSize="18sp" />
 
@@ -156,9 +156,37 @@
 
                 </RadioGroup>
             </LinearLayout>
+            <TextView
+                android:id="@+id/tv_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/medium"
+                android:labelFor="@id/tv_I_Found_foundItemForm"
+                android:text="Any Specifics?"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/et_anySpecifics"
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_edit_text"
+                android:ems="10"
+                android:hint="ex: purple aquaflask with a penguin sticker..."
+                android:includeFontPadding="true"
+                android:inputType="text"
+                android:paddingBottom="50dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="0dp"
+                android:textColor="#000"
+                tools:ignore="LabelFor"
+                android:importantForAutofill="no" />
 
             <TextView
-                android:id="@+id/tv_where_foundItemForm"
+                android:id="@+id/tv_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -169,7 +197,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/et_i_lost_my_LostForm"
+                android:id="@+id/et_foundItemLocation"
                 android:layout_width="match_parent"
                 android:layout_height="95dp"
                 android:layout_gravity="center"
@@ -179,60 +207,33 @@
                 android:hint="@string/et_hint3_where_foundItemForm"
                 android:includeFontPadding="true"
                 android:inputType="text"
-                android:paddingBottom="50dp"
+                android:paddingBottom="35dp"
                 android:paddingStart="10dp"
                 android:paddingEnd="0dp"
                 android:textColor="#000"
                 tools:ignore="LabelFor"
                 android:importantForAutofill="no" />
-            <TextView
-                android:id="@+id/tv_room_foundItemForm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/medium"
-                android:labelFor="@id/tv_I_Found_foundItemForm"
-                android:text="@string/tv_room_foundItemForm"
-                android:textColor="#000"
-                android:textSize="18sp" />
 
-            <EditText
-                android:id="@+id/et_room_foundItemForm"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_edit_text"
-                android:ems="10"
-                android:hint="@string/et_hint4_room_foundItemForm"
-                android:includeFontPadding="true"
-                android:inputType="text"
-                android:paddingStart="10dp"
-                android:paddingEnd="0dp"
-                android:singleLine="true"
-                android:textColor="#000"
-                tools:ignore="LabelFor"
-                android:importantForAutofill="no" />
             <TextView
-                android:id="@+id/tv_name_foundItemForm"
+                android:id="@+id/tv_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/medium"
-                android:labelFor="@id/et_name_foundItemForm"
+                android:labelFor="@id/et_finderName"
                 android:text="@string/tv_name_foundItemForm"
                 android:textColor="#000"
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/et_name_foundItemForm"
+                android:id="@+id/et_finderName"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/bg_edit_text"
                 android:ems="10"
-                android:hint="@string/et_hint5_name_foundItemForm"
+                android:hint= "@string/et_hint5_name_foundItemForm"
                 android:includeFontPadding="true"
                 android:inputType="text"
                 android:paddingStart="10dp"
@@ -243,7 +244,7 @@
                 android:importantForAutofill="no" />
 
             <TextView
-                android:id="@+id/tv_phone_foundItemForm"
+                android:id="@+id/tv_6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -254,7 +255,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/et_phone_foundItemForm"
+                android:id="@+id/et_phoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_gravity="center"
@@ -271,18 +272,18 @@
                 tools:ignore="LabelFor"
                 android:importantForAutofill="no" />
             <TextView
-                android:id="@+id/tv_email_foundItemForm"
+                android:id="@+id/tv_7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/medium"
-                android:labelFor="@id/et_email_foundItemForm"
+                android:labelFor="@id/et_finderEmail"
                 android:text="@string/tv_email_foundItemForm"
                 android:textColor="#000"
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/et_email_foundItemForm"
+                android:id="@+id/et_finderEmail"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_gravity="center"

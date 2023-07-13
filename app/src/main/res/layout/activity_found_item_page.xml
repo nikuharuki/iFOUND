@@ -29,7 +29,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_found_item"
         android:layout_width="380dp"
-        android:layout_height="575dp"
+        android:layout_height="510dp"
         app:cardElevation="25dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/img_found_item_text"
            android:gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="25dp"
             android:text="@string/tv_found_item"
             android:fontFamily="@font/extrabold"
             android:textColor="@color/txt_color_title_found"
@@ -57,13 +57,13 @@
             android:layout_height="250dp"
             android:layout_marginStart="15dp"
             android:src="@drawable/img_temp_vector"
-            android:layout_marginTop="100dp"/>
+            android:layout_marginTop="90dp"/>
 
         <LinearLayout
             android:id="@+id/ll"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="350dp"
+            android:layout_marginTop="340dp"
             android:paddingStart="20dp"
             android:paddingEnd="30dp"
             android:layout_marginStart="15dp"
@@ -90,6 +90,7 @@
                     android:fontFamily="@font/bold"/>
 
                 <ImageButton
+                    android:id="@+id/btn_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/edit_vector_button"
@@ -99,69 +100,40 @@
 
             </LinearLayout>
 
-
             <TextView
-                android:id="@+id/tv_found_by_found_item"
+                android:id="@+id/tv_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="20sp"
                 android:textColor="@color/black"
-                android:text="@string/txt_found_page_found_by_header"
+                android:text="Date Found:"
                 android:fontFamily="@font/bold"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="10dp"/>
 
             <TextView
-                android:id="@+id/tv_name_found_item"
+                android:id="@+id/tv_dateFound"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="15sp"
-                android:text="@string/txt_found_page_found_by_body"
+                android:text="MM/DD/YYYY"
                 android:fontFamily="@font/semibold"/>
 
             <TextView
-                android:id="@+id/tv_con_info_item"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:text="@string/txt_found_page_contact_info_header"
-                android:fontFamily="@font/bold"/>
-
-            <TextView
-                android:id="@+id/tv_phone_found_item"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="15sp"
-                android:text="@string/txt_found_page_contact_info_number"
-                android:fontFamily="@font/regular"/>
-
-            <TextView
-                android:id="@+id/tv_email_found_item"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="15sp"
-                android:text="@string/txt_found_page_contact_info_email"
-                android:fontFamily="@font/semibold"/>
-            <TextView
+                android:id="@+id/tv_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/bold"
-                android:text="Specifics:"
+                android:text="Item Type:"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_itemType"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -173,8 +145,6 @@
                     android:text="item type"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
-
-            </LinearLayout>
         </LinearLayout>
 
 
@@ -203,10 +173,12 @@
             android:text="@string/btn_claim_item"
             android:background="@drawable/bg_button_add_photo"/>
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/transparent"
             android:text="@string/btn_delete"
+            android:gravity="center"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/semibold"
             android:textColor="@color/light_white"/>

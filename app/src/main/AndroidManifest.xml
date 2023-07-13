@@ -20,6 +20,9 @@
         android:theme="@style/Theme.IFOUND"
         tools:targetApi="31">
         <activity
+            android:name=".LostAndFoundItemFeed"
+            android:exported="false" />
+        <activity
             android:name=".AccountRecoveryActivity"
             android:exported="false" />
         <activity
