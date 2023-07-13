@@ -258,26 +258,26 @@ class LostItemFormActivity() : AppCompatActivity() {
 
     }
 
-    private val ActivityResultLauncher = registerForActivityResult<Intent, ActivityResult>(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result: ActivityResult ->
-        if (result.resultCode == RESULT_OK) {
-            val uri = result.data!!.data
-            try {
-                val inputStream = contentResolver.openInputStream(uri!!)
-                val bitmap = BitmapFactory.decodeStream(inputStream)
-                val stream = ByteArrayOutputStream()
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-                val bytes = stream.toByteArray()
-                sImage = Base64.encodeToString(bytes, Base64.DEFAULT)
-                binding.ivPhoto.setImageBitmap(bitmap)
-                inputStream!!.close()
-
-            } catch (e: Exception) {
-                Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
+//    private val ActivityResultLauncher = registerForActivityResult<Intent, ActivityResult>(
+//        ActivityResultContracts.StartActivityForResult()
+//    ) { result: ActivityResult ->
+//        if (result.resultCode == RESULT_OK) {
+//            val uri = result.data!!.data
+//            try {
+//                val inputStream = contentResolver.openInputStream(uri!!)
+//                val bitmap = BitmapFactory.decodeStream(inputStream)
+//                val stream = ByteArrayOutputStream()
+//                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+//                val bytes = stream.toByteArray()
+//                sImage = Base64.encodeToString(bytes, Base64.DEFAULT)
+//                binding.ivPhoto.setImageBitmap(bitmap)
+//                inputStream!!.close()
+//
+//            } catch (e: Exception) {
+//                Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+//            }
+//        }
+//    }
 
     private fun getTodaysDate(): String {
         val cal = Calendar.getInstance()
