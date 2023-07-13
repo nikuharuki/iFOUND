@@ -1,7 +1,9 @@
 package com.example.ifound
 
 import android.Manifest
+import android.R
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -9,6 +11,7 @@ import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
+import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -21,16 +24,35 @@ import com.example.ifound.databinding.ActivityFoundItemFormBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.io.ByteArrayOutputStream
+import java.util.Calendar
 
 class FoundItemFormActivity : AppCompatActivity() {
     var sImage: String = ""
     private lateinit var binding: ActivityFoundItemFormBinding
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var datePickerDialog: DatePickerDialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityFoundItemFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.btnDatePicker.setOnClickListener {
+            initDatePicker()
+            binding.btnDatePicker.text = getTodaysDate()
+            datePickerDialog.show()
+        }
+
+        val galleryImage = registerForActivityResult(
+            ActivityResultContracts.GetContent(),
+            ActivityResultCallback {
+                binding.ivPhoto.setImageURI(it)
+                if (it != null) {
+              //      uri = it
+                }
+            }
+        )
 
 //        val cameraIntentLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), ActivityResultCallback {
 //            if(it.resultCode == RESULT_OK){
@@ -113,4 +135,57 @@ class FoundItemFormActivity : AppCompatActivity() {
 //        }
 //    }
     }
+
+
+    private fun getTodaysDate(): String {
+        val cal = Calendar.getInstance()
+        val year = cal.get(Calendar.YEAR)
+        val month = cal.get(Calendar.MONTH) + 1
+        val day = cal.get(Calendar.DAY_OF_MONTH)
+        return makeDateString(day, month, year)
+    }
+
+    private fun initDatePicker() {
+        val dateSetListener =
+            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+                val formattedDate = makeDateString(dayOfMonth, monthOfYear + 1, year)
+                binding.btnDatePicker.text = formattedDate
+            }
+
+        val cal = Calendar.getInstance()
+        val year = cal.get(Calendar.YEAR)
+        val month = cal.get(Calendar.MONTH)
+        val day = cal.get(Calendar.DAY_OF_MONTH)
+
+        val style = R.style.Theme_Holo_Light_Dialog
+
+        datePickerDialog = DatePickerDialog(this, style, dateSetListener, year, month, day)
+    }
+
+    private fun makeDateString(day: Int, month: Int, year: Int): String {
+        return getMonthFormat(month) + " " + day + " " + year
+    }
+
+    private fun getMonthFormat(month: Int): String {
+        return when (month) {
+            1 -> "JAN"
+            2 -> "FEB"
+            3 -> "MAR"
+            4 -> "APR"
+            5 -> "MAY"
+            6 -> "JUN"
+            7 -> "JUL"
+            8 -> "AUG"
+            9 -> "SEP"
+            10 -> "OCT"
+            11 -> "NOV"
+            12 -> "DEC"
+            else -> "JAN"
+        }
+    }
+
+    fun openDatePicker(view: View) {
+        datePickerDialog.show()
+    }
+
 }

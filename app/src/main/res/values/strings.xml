@@ -106,5 +106,7 @@
     <string name="specifics">Aliquam tincidunt mauris eu risus.\nVestibulum auctor dapibus neque.
     \nNunc dignissim risus id metus.</string>
 
+    <string name="et_hintFeatures"><i>including any unique identifying features...</i></string>
+
     <string name="test_two">Test Commit></string>
 </resources>

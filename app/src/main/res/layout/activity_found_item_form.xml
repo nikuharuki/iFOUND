@@ -213,7 +213,29 @@
                 android:textColor="#000"
                 tools:ignore="LabelFor"
                 android:importantForAutofill="no" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/medium"
+                android:layout_marginTop="10dp"
+                android:text="@string/txt_lost_item_form_q_3"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_date_picker"
+                style="?android:spinnerStyle"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_datepicker"
+                android:fontFamily="@font/semibold"
+                android:gravity="center"
+                android:spinnerMode="dialog"
+                android:text="@string/btn_date_picker"
+                android:textAllCaps="true" />
             <TextView
                 android:id="@+id/tv_5"
                 android:layout_width="wrap_content"
@@ -249,7 +271,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/medium"
-                android:labelFor="@id/tv_phone_foundItemForm"
                 android:text="@string/tv_phone_foundItemForm"
                 android:textColor="#000"
                 android:textSize="18sp" />
