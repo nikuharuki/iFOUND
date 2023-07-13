@@ -97,6 +97,18 @@ class HomeFragment : Fragment() {
             requireActivity().finish() //requireActivity?? so main ang mafifinish
         }
 
+        binding.tvLostItemsClickable.setOnClickListener {
+            val intent = Intent(this@HomeFragment.requireContext(), LostAndFoundItemFeed::class.java)
+            intent.putExtra("PageMode", LostAndFoundItemFeed.PageMode.LOST)
+            startActivity(intent)
+        }
+
+        binding.tvFoundItemsClickable.setOnClickListener {
+            val intent = Intent(this@HomeFragment.requireContext(), LostAndFoundItemFeed::class.java)
+            intent.putExtra("PageMode", LostAndFoundItemFeed.PageMode.FOUND)
+            startActivity(intent)
+        }
+
 
         getUserName()
 
