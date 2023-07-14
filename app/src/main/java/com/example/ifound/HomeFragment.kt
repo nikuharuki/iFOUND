@@ -93,6 +93,9 @@ class HomeFragment : Fragment() {
         foundItemList.clear()
         getUserData()
 
+
+
+
 //      recyclerView.adapter = lostItemAdapter
 
         lostItemAdapter.onItemClick = {
@@ -107,6 +110,14 @@ class HomeFragment : Fragment() {
             val intent = Intent(requireContext(), FoundItemPageActivity::class.java)
             intent.putExtra("FoundItemData", it)
             startActivity(intent)
+        }
+
+        binding.tvTest.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+
+            val intent = Intent(this@HomeFragment.requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish() //requireActivity?? so main ang mafifinish
         }
 
         binding.tvLostItemsClickable.setOnClickListener {
