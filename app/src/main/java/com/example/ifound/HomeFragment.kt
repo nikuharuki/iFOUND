@@ -78,7 +78,6 @@ class HomeFragment : Fragment() {
 
         getUserName()
 
-        recyclerView = binding.lostitemsrecycler
 
         lostItemRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         lostItemRv.setHasFixedSize(true)
