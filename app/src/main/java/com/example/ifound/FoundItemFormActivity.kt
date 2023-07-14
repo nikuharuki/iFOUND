@@ -1,42 +1,65 @@
 package com.example.ifound
 
-import android.Manifest
 import android.R
-import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Base64
+import android.util.Log
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.RadioButton
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import com.example.ifound.databinding.ActivityFoundItemFormBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import java.io.ByteArrayOutputStream
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 import java.util.Calendar
+import java.util.UUID
 
 class FoundItemFormActivity : AppCompatActivity() {
-    var sImage: String = ""
+
+    enum class PageMode {
+        CREATE,
+        EDIT
+    }
+
     private lateinit var binding: ActivityFoundItemFormBinding
-    private lateinit var databaseReference: DatabaseReference
+    private lateinit var database: DatabaseReference
     private lateinit var datePickerDialog: DatePickerDialog
+    private var storageRef = Firebase.storage
+    private lateinit var uri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityFoundItemFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        database = Firebase.database.reference
+        storageRef = FirebaseStorage.getInstance()
+
+        val foundItem = intent.getParcelableExtra("FoundItemData") as FoundItemData?
+        val pageMode = intent.getSerializableExtra("PageMode") as FoundItemFormActivity.PageMode
+
+        foundItem?.let {
+            setFoundItemDetails(
+                it.name.toString(),
+                it.location.toString(),
+                it.date.toString(),
+                it.description.toString(),
+                it.category.toString(),
+                it.image.toString()
+            )
+//            oldName = it.name.toString()
+        }
 
         binding.btnDatePicker.setOnClickListener {
             initDatePicker()
@@ -49,91 +72,111 @@ class FoundItemFormActivity : AppCompatActivity() {
             ActivityResultCallback {
                 binding.ivPhoto.setImageURI(it)
                 if (it != null) {
-              //      uri = it
+                    uri = it
                 }
             }
         )
 
-//        val cameraIntentLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), ActivityResultCallback {
-//            if(it.resultCode == RESULT_OK){
-//                val photo : Bitmap = it.data?.extras?.get("data") as Bitmap
-//                binding.ivPhoto.setImageBitmap(photo)
-//            }
-//        })
-//
-//        val galleryIntentLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), ActivityResultCallback {
-//            if(it.resultCode == Activity.RESULT_OK){
-//                val imageUri = it.data?.data
-//                val imageStream = imageUri?.let { it1 -> contentResolver.openInputStream(it1) }
-//                val photo = BitmapFactory.decodeStream(imageStream)
-//                binding.ivPhoto.setImageBitmap(photo)
-//            }
-//        })
-//
-//        binding.btnAddPhoto.setOnClickListener {
-//                val permissions = arrayOf(Manifest.permission.CAMERA)
-//                if (ContextCompat.checkSelfPermission(this@FoundItemFormActivity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-//                    ActivityCompat.requestPermissions(this@FoundItemFormActivity, permissions, 1)
-//                }else{
-////                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-////                cameraIntentLauncher.launch(intent)
-//
-//                    val intent = Intent(Intent.ACTION_GET_CONTENT)
-//                    intent.type = "image/*"
-//                    ActivityResultLauncher.launch(intent)
-//                }
-//        }
-//
-//        binding.btnSubmit.setOnClickListener {
-//            val item = binding.etWhatHaveYouFoundFoundItemForm.text.toString()
-//            val addInfo = binding.etAnyAdditionalInfoFoundItemForm.toString()
-//            val whereFound = binding.etILostMyLostForm.toString()
-//            val whatRoom = binding.etRoomFoundItemForm.toString()
-//            val name = binding.etNameFoundItemForm.toString()
-//            val phoneNo = binding.etPhoneFoundItemForm.text.toString()
-//            val email = binding.etEmailFoundItemForm.toString()
-//
-//            databaseReference = FirebaseDatabase.getInstance().getReference("Found Items")
-//            val foundItemData = FoundItemData(item, addInfo, whereFound, whatRoom, name, phoneNo, email, sImage)
-//            databaseReference.child(item).setValue(foundItemData).addOnSuccessListener {
-//                binding.etWhatHaveYouFoundFoundItemForm.text.clear()
-//                binding.etAnyAdditionalInfoFoundItemForm.text.clear()
-//                binding.etILostMyLostForm.text.clear()
-//                binding.etRoomFoundItemForm.text.clear()
-//                binding.etNameFoundItemForm.text.clear()
-//                binding.etPhoneFoundItemForm.text.clear()
-//                binding.etEmailFoundItemForm.text.clear()
-//                sImage = ""
-//
-//                Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show()
-//
-//                val intent = Intent(this@FoundItemFormActivity,MainActivity::class.java )
-//                startActivity(intent)
-//                finish()
-//            }.addOnFailureListener{
-//                Toast.makeText(this,"Failed", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//    }
-//    private val ActivityResultLauncher = registerForActivityResult<Intent, ActivityResult>(
-//        ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-//        if (result.resultCode == RESULT_OK) {
-//            val uri = result.data!!.data
-//            try {
-//                val inputStream = contentResolver.openInputStream(uri!!)
-//                val bitmap = BitmapFactory.decodeStream(inputStream)
-//                val stream = ByteArrayOutputStream()
-//                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-//                val bytes = stream.toByteArray()
-//                sImage = Base64.encodeToString(bytes, Base64.DEFAULT)
-//                binding.ivPhoto.setImageBitmap(bitmap)
-//                inputStream!!.close()
-//
-//            } catch (e: Exception) {
-//                Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//    }
+        binding.btnAddPhoto.setOnClickListener {
+            galleryImage.launch("image/*")
+        }
+
+        binding.btnCancel.setOnClickListener {
+            finish()
+        }
+        binding.btnSubmit.setOnClickListener {
+            if (pageMode == FoundItemFormActivity.PageMode.CREATE){
+                Log.d("FoundItemFormActivity", "createFoundItem")
+                createFoundItem()
+            } else {
+                Log.d("FoundItemFormActivity", "editFoundItem")
+                editFoundItem(foundItem?.childUid, foundItem?.image)
+            }
+        }
+    }
+
+    private fun editFoundItem(childUid: String?, imageUrl: String?) {
+        val name = binding.etFoundItem.text.toString()
+        val location = binding.etFoundItemLocation.text.toString()
+        val date = binding.btnDatePicker.text.toString()
+        val description = binding.etAnySpecifics.text.toString()
+        val radioGroup = binding.rgSpecifics
+        val category = radioGroup.findViewById<RadioButton>(radioGroup.checkedRadioButtonId).text.toString()
+
+        Log.d("FoundItemFormActivity", "ImageURL: $imageUrl")
+//        Log.d("FoundItemFormActivity", "newPhotoURL: ${newPhotoUri.toString()}")
+
+        if (::uri.isInitialized) {
+            val newPhotoUri = uri
+            if (childUid != null && imageUrl != null) {
+                val currentPhotoRef = storageRef.getReferenceFromUrl(imageUrl)
+                currentPhotoRef.delete().addOnSuccessListener {
+                    // Current photo deleted successfully, now upload the new photo and update the data
+                    storageRef.getReference("Found Items").child(System.currentTimeMillis().toString())
+                        .putFile(newPhotoUri)
+                        .addOnSuccessListener { task ->
+                            task.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
+                                UpdateData(name, location, date, description, category, it.toString(), childUid)
+                            }
+                        }
+                }.addOnFailureListener { exception ->
+                    // Handle any errors that occur during photo deletion
+                    Toast.makeText(this, "Failed to delete current photo: ${exception.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        } else {
+            UpdateData(name, location, date, description, category, imageUrl.toString(), childUid.toString())
+        }
+    }
+
+    private fun createFoundItem() {
+        val childUid = UUID.randomUUID().toString()
+        val name = binding.etFoundItem.text.toString()
+        val location = binding.etFoundItemLocation.text.toString()
+        val date = binding.btnDatePicker.text.toString()
+        val description = binding.etAnySpecifics.text.toString()
+
+        val radioGroup = binding.rgSpecifics
+
+        // Get the selected radio button text and store it in description
+        val category = radioGroup.findViewById<RadioButton>(radioGroup.checkedRadioButtonId).text.toString()
+
+        val user = FirebaseAuth.getInstance().currentUser
+        val submittedBy = user?.uid
+        val contact = user?.email
+
+        storageRef.getReference("Found Items").child(System.currentTimeMillis().toString())
+            .putFile(uri)
+            .addOnSuccessListener { task ->
+                task.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
+                    val mapImage = mapOf(
+                        "url" to it.toString()
+                    )
+
+
+                    database =
+                        FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                            .getReference("Found Items")
+
+                    val foundItemData = FoundItemData(name, category, description, location, date, submittedBy, mapImage["url"], childUid)
+                    database.child(childUid).setValue(foundItemData).addOnSuccessListener {
+                        binding.etFoundItem.setText("")
+                        binding.etAnySpecifics.setText("")
+                        binding.etFoundItemLocation.setText("")
+                        binding.btnDatePicker.setText("")
+//                      binding.rgSpecifics.clearCheck()
+
+                        Toast.makeText(this, "Submitted", Toast.LENGTH_SHORT).show()
+                        // might need to modify this to be just finish()
+                        // val intent = Intent(this@FoundItemFormActivity, MainActivity::class.java)
+                        // startActivity(intent)
+                        finish()
+
+                    }.addOnFailureListener {
+                        Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
     }
 
 
@@ -186,6 +229,67 @@ class FoundItemFormActivity : AppCompatActivity() {
 
     fun openDatePicker(view: View) {
         datePickerDialog.show()
+    }
+
+    private fun UpdateData(
+        name: String,
+        location: String,
+        date: String,
+        description: String,
+        category: String,
+        image: String,
+        childUid: String
+    ) {
+        database = FirebaseDatabase.getInstance(
+            "https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/"
+        ).getReference("Found Items")
+
+        val user = mapOf(
+            "name" to name,
+            "location" to location,
+            "date" to date,
+            "description" to description,
+            "category" to category,
+            "image" to image
+        )
+
+        database.child(childUid).updateChildren(user).addOnSuccessListener {
+            binding.etFoundItem.setText("")
+            binding.etAnySpecifics.setText("")
+            binding.etFoundItemLocation.setText("")
+            binding.btnDatePicker.setText("")
+//          binding.rgSpecifics.clearCheck()
+
+            Toast.makeText(this, "Updated", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this@FoundItemFormActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }.addOnFailureListener {
+            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun setFoundItemDetails(name: String, location: String, date: String, description: String, category: String, imageUrl: String) {
+        binding.btnSubmit.text = "Save"
+        binding.etFoundItem.setText(name)
+        binding.etFoundItemLocation.setText(location)
+        binding.btnDatePicker.setText(date)
+        binding.etAnySpecifics.setText(description)
+        binding.rgSpecifics.check(when (category) {
+            "Electronics" -> binding.rgSpecifics.findViewById<RadioButton>(binding.rbtnElectronics.id).id
+            "Clothing" -> binding.rgSpecifics.findViewById<RadioButton>(binding.rbtnClothing.id).id
+            "Documents" -> binding.rgSpecifics.findViewById<RadioButton>(binding.rbtnDocuments.id).id
+            "Others" -> binding.rgSpecifics.findViewById<RadioButton>(binding.rbtnOthers.id).id
+            else -> binding.rbtnOthers.id
+        })
+
+
+
+        Glide.with(this).load(imageUrl).into(binding.ivPhoto)
+
+        binding.btnSubmit.setOnClickListener {
+            Log.d("FoundItemFormActivity", "EditBtn clicked")
+        }
     }
 
 }
