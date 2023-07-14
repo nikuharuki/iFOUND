@@ -42,7 +42,20 @@ class LogsAdminActivity : AppCompatActivity() {
 
         if (pageMode == PageMode.LOGS) {
             readFromLogsDatabase()
+        } else if (pageMode == PageMode.CLAIM) {
+            initClaimRecyclerView()
+            claim()
         }
+    }
+
+    private fun initClaimRecyclerView() {
+        claimRecyclerView = binding.rvLogs
+
+
+        claimRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        claimRecyclerView.setHasFixedSize(true)
+        claimRequestAdapter = ClaimRequestAdapter(this, claimRequestList)
+        claimRecyclerView.adapter = claimRequestAdapter
     }
 
     private fun readFromLogsDatabase() {

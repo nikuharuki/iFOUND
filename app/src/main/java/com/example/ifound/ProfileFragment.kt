@@ -87,12 +87,7 @@ class ProfileFragment : Fragment() {
         if (currentUser?.email == "202101382@iacademy.edu.ph") {
             return true
         }
-
         return false
-
-        
-
-
     }
 
     companion object {
