@@ -89,14 +89,6 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
-        binding.tvTest.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-
-            val intent = Intent(this@HomeFragment.requireContext(), LoginActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish() //requireActivity?? so main ang mafifinish
-        }
-
         binding.tvLostItemsClickable.setOnClickListener {
             val intent = Intent(this@HomeFragment.requireContext(), LostAndFoundItemFeed::class.java)
             intent.putExtra("PageMode", LostAndFoundItemFeed.PageMode.LOST)
