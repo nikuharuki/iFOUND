@@ -16,12 +16,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import android.view.*
 import android.widget.PopupMenu
-import android.widget.Toast
-import androidx.fragment.app.Fragment
-import com.example.ifound.databinding.ActivityChangeEmailBinding
-import com.example.ifound.databinding.ActivityChangePasswordBinding
-import com.example.ifound.databinding.ActivityChangeUsernameBinding
-import com.example.ifound.databinding.FragmentProfileBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,7 +32,7 @@ class ProfileFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var binding : FragmentProfileBinding
+    private lateinit var binding: FragmentProfileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +65,8 @@ class ProfileFragment : Fragment() {
 
 
         binding.btnLogsAdmin.setOnClickListener {
-            val intent = Intent(this@ProfileFragment.requireContext(), LogsAdminActivity::class.java)
+            val intent =
+                Intent(this@ProfileFragment.requireContext(), LogsAdminActivity::class.java)
             intent.putExtra("PageMode", LogsAdminActivity.PageMode.LOGS)
             startActivity(intent)
         }
@@ -90,9 +85,11 @@ class ProfileFragment : Fragment() {
     private fun getUserName() {
         val firebaseAuth = FirebaseAuth.getInstance()
         val userId = firebaseAuth.currentUser?.uid
-        val databaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users").child(userId!!)
+        val databaseReference =
+            FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("Users").child(userId!!)
 
-        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener{
+        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val userName = snapshot.child("Name").getValue(String::class.java)
@@ -110,7 +107,7 @@ class ProfileFragment : Fragment() {
         })
     }
 
-    private fun isUserAnAdmin() : Boolean{
+    private fun isUserAnAdmin(): Boolean {
         val firebaseAuth = FirebaseAuth.getInstance()
         val currentUser = firebaseAuth.currentUser
 
@@ -128,22 +125,29 @@ class ProfileFragment : Fragment() {
                 startActivity(intent)
                 true
             }
+
             R.id.i_email -> {
                 val intent = Intent(requireContext(), ChangeEmailActivity::class.java)
                 startActivity(intent)
                 true
             }
+
             R.id.i_password -> {
                 val intent = Intent(requireContext(), ChangePasswordActivity::class.java)
                 startActivity(intent)
                 true
             }
+
             else -> false
         }
     }
 
 
-    override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenu.ContextMenuInfo?) {
+    override fun onCreateContextMenu(
+        menu: ContextMenu,
+        v: View,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
         super.onCreateContextMenu(menu, v, menuInfo)
         requireActivity().menuInflater.inflate(R.menu.settings_menu, menu)
     }
@@ -151,8 +155,8 @@ class ProfileFragment : Fragment() {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return handleMenuItemClick(item)
     }
-    
-     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         registerForContextMenu(binding.ibtnSettings) // Register the ImageButton for the context menu
 
@@ -168,4 +172,5 @@ class ProfileFragment : Fragment() {
             handleMenuItemClick(item)
         }
         popupMenu.show()
+    }
 }
