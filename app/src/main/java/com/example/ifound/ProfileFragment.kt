@@ -1,10 +1,15 @@
 package com.example.ifound
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.ifound.databinding.ActivityLogsAdminBinding
+import com.example.ifound.databinding.FragmentProfileBinding
+import com.google.firebase.auth.FirebaseAuth
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +26,8 @@ class ProfileFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var binding : FragmentProfileBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -32,9 +39,49 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
+
+        val isUserAnAdmin = isUserAnAdmin()
+        if (isUserAnAdmin) {
+            binding.btnLogsAdmin.visibility = View.VISIBLE
+            binding.btnClaimRequest.visibility = View.VISIBLE
+            binding.btnApproval.visibility = View.VISIBLE
+        } else {
+            binding.btnLogsAdmin.visibility = View.GONE
+            binding.btnClaimRequest.visibility = View.GONE
+            binding.btnApproval.visibility = View.GONE
+        }
+
+        binding.btnLogsAdmin.setOnClickListener {
+            val intent = Intent(this@ProfileFragment.requireContext(), LogsAdminActivity::class.java)
+            intent.putExtra("PageMode", LogsAdminActivity.PageMode.LOGS)
+            startActivity(intent)
+        }
+
+        binding.btnSignOut.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+
+            val intent = Intent(this@ProfileFragment.requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish() //requireActivity?? so main ang mafifinish
+        }
+
+        return binding.root
+    }
+
+    private fun isUserAnAdmin() : Boolean{
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val currentUser = firebaseAuth.currentUser
+
+        if (currentUser?.email == "202101382@iacademy.edu.ph") {
+            return true
+        }
+
+        return false
     }
 
     companion object {

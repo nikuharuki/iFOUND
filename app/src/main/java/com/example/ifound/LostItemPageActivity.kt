@@ -1,5 +1,6 @@
 package com.example.ifound
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -14,6 +15,9 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.UUID
 
 // FoundItemPage =/= FoundItemFeed
 
@@ -61,9 +65,47 @@ class LostItemPageActivity() : AppCompatActivity() {
         }
 
         binding.btnDelete.setOnClickListener {
+            submitDeleteLostItemLog()
             deleteItem(lostItem!!)
             finish()
         }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun submitDeleteLostItemLog() {
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val currentUserId = firebaseAuth.currentUser?.uid
+
+        // Database to WRITE to
+        val logDatabaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Logs")
+
+        // Information to be stored as LOG
+        var userName : String?
+        val childUid = UUID.randomUUID().toString()
+        val message = " deleted a Lost Item "
+
+        // Gets the current timestamp/date
+        val dateFormat = SimpleDateFormat("yy-MM-dd HH:mm:ss")
+        val currentDateTime : String = dateFormat.format(Date())
+
+        // Gets the name of the current user
+        val usersDatabaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").reference
+        val usernameReference = usersDatabaseReference.child("Users").child(currentUserId!!).child("Name")
+
+        usernameReference.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                userName = snapshot.getValue(String::class.java)
+
+                // Adds current LOG to the Logs Database
+                val log = "LOG: $userName $message | $currentDateTime"
+                logDatabaseReference.child(childUid).child("Log Message").setValue(log)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
     private fun isItemSubmittedByCurrentUser(lostItem : LostItemData) : Boolean {
