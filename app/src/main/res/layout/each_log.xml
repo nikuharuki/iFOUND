@@ -7,7 +7,7 @@
     android:background="@drawable/bg_tv_outline">
 
     <TextView
-        android:id="@+id/ContactName"
+        android:id="@+id/tv_userLog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"
