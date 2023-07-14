@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.ifound.databinding.EachItemBinding
 
 class FoundItemAdapter(private val context: Context, private val foundItemList : ArrayList<FoundItemData>):
@@ -20,8 +21,11 @@ class FoundItemAdapter(private val context: Context, private val foundItemList :
     }
 
     override fun onBindViewHolder(holder: FoundItemAdapter.FoundItemViewHolder, position: Int) {
-        foundItemList[position].let {
-            holder.bind(it, position)
+        val foundItem = foundItemList[position]
+        holder.bind(foundItem, position)
+
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(foundItem)
         }
     }
 
@@ -33,12 +37,12 @@ class FoundItemAdapter(private val context: Context, private val foundItemList :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(foundItem: FoundItemData, position: Int){
 //
-            binding.titleTv.text = foundItem.item
-            binding.tags.text = foundItem.addInfo
+            binding.titleTv.text = foundItem.name
+            binding.tags.text = foundItem.category
 
-            val bytes = android.util.Base64.decode(foundItem.image, android.util.Base64.DEFAULT)
-            val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-            binding.imageView.setImageBitmap(bitmap)
+            Glide.with(itemView.context)
+                .load(foundItem.image)
+                .into(binding.imageView)
         }
     }
 }

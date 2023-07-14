@@ -11,9 +11,13 @@ data class ClaimRequestData(
     val description: String? = null,
     val foundItemId: String? = null,
     val foundItemSubmitter: String? = null,
-    val foundItemImage: String? = null): Parcelable {
+    val foundItemImage: String? = null,
+    val timestamp: String? = null
+): Parcelable {
+
 
     constructor(parcel: Parcel) : this(
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -34,6 +38,7 @@ data class ClaimRequestData(
         parcel.writeString(foundItemId)
         parcel.writeString(foundItemSubmitter)
         parcel.writeString(foundItemImage)
+        parcel.writeString(timestamp)
     }
 
     override fun describeContents(): Int {

@@ -24,6 +24,7 @@ class LostItemAdapter(private val context: Context, private val lostItemList : A
         val lostItem = lostItemList[position]
         holder.bind(lostItem, position)
 
+
         holder.itemView.setOnClickListener {
             onItemClick?.invoke(lostItem)
         }

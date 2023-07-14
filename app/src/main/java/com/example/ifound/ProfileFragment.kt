@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.ifound.databinding.ActivityLogsAdminBinding
+import androidx.recyclerview.widget.RecyclerView
+import com.example.ifound.databinding.FragmentHomeBinding
 import com.example.ifound.databinding.FragmentProfileBinding
+import com.example.ifound.databinding.ActivityLogsAdminBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -45,7 +47,6 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false)
@@ -68,6 +69,12 @@ class ProfileFragment : Fragment() {
             val intent =
                 Intent(this@ProfileFragment.requireContext(), LogsAdminActivity::class.java)
             intent.putExtra("PageMode", LogsAdminActivity.PageMode.LOGS)
+            startActivity(intent)
+        }
+
+        binding.btnClaimRequest.setOnClickListener {
+            val intent = Intent(this@ProfileFragment.requireContext(), LogsAdminActivity::class.java)
+            intent.putExtra("PageMode", LogsAdminActivity.PageMode.CLAIM)
             startActivity(intent)
         }
 
@@ -114,7 +121,6 @@ class ProfileFragment : Fragment() {
         if (currentUser?.email == "202101382@iacademy.edu.ph") {
             return true
         }
-
         return false
     }
 

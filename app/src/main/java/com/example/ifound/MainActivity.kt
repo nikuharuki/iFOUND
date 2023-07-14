@@ -69,6 +69,7 @@ class MainActivity : AppCompatActivity() {
         }
         binding.fabFoundForm.setOnClickListener {
             val intent = Intent(this@MainActivity, FoundItemFormActivity::class.java)
+            intent.putExtra("PageMode", FoundItemFormActivity.PageMode.CREATE)
             startActivity(intent)
 
         }

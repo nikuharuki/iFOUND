@@ -159,10 +159,11 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/founditemsrecycler"
-                android:padding="25dp"
-                android:layout_margin="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                tools:itemCount="1"
+                tools:listitem="@layout/each_item" />
         </LinearLayout>
 
         <View

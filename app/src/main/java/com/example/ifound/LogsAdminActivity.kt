@@ -2,15 +2,15 @@ package com.example.ifound
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifound.databinding.ActivityLogsAdminBinding
 import com.google.firebase.database.DataSnapshot
+import android.util.Log
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlin.math.log
 
 class LogsAdminActivity : AppCompatActivity() {
 
@@ -23,6 +23,11 @@ class LogsAdminActivity : AppCompatActivity() {
     private lateinit var binding : ActivityLogsAdminBinding
 
     private lateinit var recyclerView: RecyclerView
+    private lateinit var claimRecyclerView: RecyclerView
+    private lateinit var claimRequestAdapter: ClaimRequestAdapter
+    private var claimRequestList = ArrayList<ClaimRequestData>()
+    private lateinit var claimRequestRef: DatabaseReference
+
     private lateinit var logAdapter : LogAdapter
     private val logsList = ArrayList<LogModel>()
 
@@ -37,7 +42,20 @@ class LogsAdminActivity : AppCompatActivity() {
 
         if (pageMode == PageMode.LOGS) {
             readFromLogsDatabase()
+        } else if (pageMode == PageMode.CLAIM) {
+            initClaimRecyclerView()
+            claim()
         }
+    }
+
+    private fun initClaimRecyclerView() {
+        claimRecyclerView = binding.rvLogs
+
+
+        claimRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        claimRecyclerView.setHasFixedSize(true)
+        claimRequestAdapter = ClaimRequestAdapter(this, claimRequestList)
+        claimRecyclerView.adapter = claimRequestAdapter
     }
 
     private fun readFromLogsDatabase() {
@@ -62,6 +80,31 @@ class LogsAdminActivity : AppCompatActivity() {
         })
     }
 
+    private fun claim() {
+        claimRequestRef = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Claim Requests")
+
+        claimRequestRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                claimRequestList.clear() //bat dalawa toh
+                if (snapshot.exists()) {
+                    for (itemSnapshot in snapshot.children) {
+                        val claimRequest = itemSnapshot.getValue(ClaimRequestData::class.java)
+                        claimRequest?.let {
+                            claimRequestList.add(it)
+                        }
+                    }
+                    binding.rvLogs.adapter = ClaimRequestAdapter(this@LogsAdminActivity,claimRequestList)
+                    binding.rvLogs.adapter = claimRequestAdapter
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
     private fun initLogsRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(this@LogsAdminActivity, LinearLayoutManager.VERTICAL, false)
         recyclerView.setHasFixedSize(true)
@@ -69,5 +112,3 @@ class LogsAdminActivity : AppCompatActivity() {
         recyclerView.adapter = logAdapter
     }
 }
-
-
