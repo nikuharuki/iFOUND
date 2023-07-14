@@ -47,7 +47,7 @@ class FoundItemFormActivity : AppCompatActivity() {
         storageRef = FirebaseStorage.getInstance()
 
         val foundItem = intent.getParcelableExtra("FoundItemData") as FoundItemData?
-        val pageMode = intent.getSerializableExtra("PageMode") as FoundItemFormActivity.PageMode
+        val pageMode = intent.getSerializableExtra("PageMode") as PageMode
 
         foundItem?.let {
             setFoundItemDetails(
@@ -85,7 +85,7 @@ class FoundItemFormActivity : AppCompatActivity() {
             finish()
         }
         binding.btnSubmit.setOnClickListener {
-            if (pageMode == FoundItemFormActivity.PageMode.CREATE){
+            if (pageMode == PageMode.CREATE){
                 Log.d("FoundItemFormActivity", "createFoundItem")
                 createFoundItem()
             } else {

@@ -52,7 +52,7 @@ class LogsAdminActivity : AppCompatActivity() {
         claimRecyclerView = binding.rvLogs
 
 
-        claimRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        claimRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
         claimRecyclerView.setHasFixedSize(true)
         claimRequestAdapter = ClaimRequestAdapter(this, claimRequestList)
         claimRecyclerView.adapter = claimRequestAdapter
@@ -106,7 +106,7 @@ class LogsAdminActivity : AppCompatActivity() {
     }
 
     private fun initLogsRecyclerView() {
-        recyclerView.layoutManager = LinearLayoutManager(this@LogsAdminActivity, LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager = LinearLayoutManager(this@LogsAdminActivity, LinearLayoutManager.VERTICAL, true)
         recyclerView.setHasFixedSize(true)
         logAdapter = LogAdapter(this@LogsAdminActivity, logsList)
         recyclerView.adapter = logAdapter

@@ -78,8 +78,6 @@ class HomeFragment : Fragment() {
 
         getUserName()
 
-        recyclerView = binding.lostitemsrecycler
-
         lostItemRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         lostItemRv.setHasFixedSize(true)
         lostItemAdapter = LostItemAdapter(requireContext(), lostItemList)
@@ -90,6 +88,8 @@ class HomeFragment : Fragment() {
 
         foundItemRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         foundItemRv.setHasFixedSize(true)
+
+
         foundItemAdapter = FoundItemAdapter(requireContext(), foundItemList)
         foundItemRv.adapter = foundItemAdapter
 
