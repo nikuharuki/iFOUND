@@ -66,11 +66,11 @@ class HomeFragment : Fragment() {
 
     ): View {
         // Inflate the layout for this fragment
-
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        recyclerView = binding.lostitemsrecycler
+        getUserName()
 
+        recyclerView = binding.lostitemsrecycler
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView.setHasFixedSize(true)
@@ -89,14 +89,6 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
-        binding.tvTest.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-
-            val intent = Intent(this@HomeFragment.requireContext(), LoginActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish() //requireActivity?? so main ang mafifinish
-        }
-
         binding.tvLostItemsClickable.setOnClickListener {
             val intent = Intent(this@HomeFragment.requireContext(), LostAndFoundItemFeed::class.java)
             intent.putExtra("PageMode", LostAndFoundItemFeed.PageMode.LOST)
@@ -108,10 +100,6 @@ class HomeFragment : Fragment() {
             intent.putExtra("PageMode", LostAndFoundItemFeed.PageMode.FOUND)
             startActivity(intent)
         }
-
-
-        getUserName()
-
 
         return binding.root
     }

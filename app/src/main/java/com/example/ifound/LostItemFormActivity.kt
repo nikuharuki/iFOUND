@@ -1,6 +1,7 @@
 package com.example.ifound
 
 import android.R
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
@@ -10,7 +11,6 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.ifound.databinding.ActivityLostItemFormBinding
@@ -19,16 +19,20 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import java.io.ByteArrayOutputStream
-import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.RadioButton
 import com.bumptech.glide.Glide
+import com.bumptech.glide.disklrucache.DiskLruCache.Value
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.UUID
 
 class LostItemFormActivity() : AppCompatActivity() {
@@ -138,9 +142,11 @@ class LostItemFormActivity() : AppCompatActivity() {
             if (pageMode == PageMode.CREATE){
                 Log.d("LostItemFormActivity", "createLostItem")
                 createLostItem()
+                submitCreateLostItemLog()
             } else {
                 Log.d("LostItemFormActivity", "editLostItem")
                 editLostItem(lostitem?.childUid, lostitem?.image)
+                submitEditLostItemLog()
             }
         }
     }
@@ -199,6 +205,80 @@ class LostItemFormActivity() : AppCompatActivity() {
 //                UpdateData(name, location, description, date, imageUrl, childUid)
 //            }
 //        }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun submitCreateLostItemLog() {
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val currentUserId = firebaseAuth.currentUser?.uid
+
+        // Database to WRITE to
+        val logDatabaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Logs")
+
+        // Information to be stored as LOG
+        var userName : String?
+        val childUid = UUID.randomUUID().toString()
+        val message = " submitted a Lost Item Report - "
+
+        // Gets the current timestamp/date
+        val dateFormat = SimpleDateFormat("yy-MM-dd HH:mm:ss")
+        val currentDateTime : String = dateFormat.format(Date())
+
+        // Gets the name of the current user
+        val usersDatabaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").reference
+        val usernameReference = usersDatabaseReference.child("Users").child(currentUserId!!).child("Name")
+
+        usernameReference.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                    userName = snapshot.getValue(String::class.java)
+
+                    // Adds current LOG to the Logs Database
+                    val log = "LOG: $userName $message | $currentDateTime"
+                    logDatabaseReference.child(childUid).child("Log Message").setValue(log)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun submitEditLostItemLog() {
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val currentUserId = firebaseAuth.currentUser?.uid
+
+        // Database to WRITE to
+        val logDatabaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Logs")
+
+        // Information to be stored as LOG
+        var userName : String?
+        val childUid = UUID.randomUUID().toString()
+        val message = " edited a Lost Item "
+
+        // Gets the current timestamp/date
+        val dateFormat = SimpleDateFormat("yy-MM-dd HH:mm:ss")
+        val currentDateTime : String = dateFormat.format(Date())
+
+        // Gets the name of the current user
+        val usersDatabaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").reference
+        val usernameReference = usersDatabaseReference.child("Users").child(currentUserId!!).child("Name")
+
+        usernameReference.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                userName = snapshot.getValue(String::class.java)
+
+                // Adds current LOG to the Logs Database
+                val log = "LOG: $userName $message | $currentDateTime"
+                logDatabaseReference.child(childUid).child("Log Message").setValue(log)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
     private fun createLostItem() {
