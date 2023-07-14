@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:paddingEnd="30dp"
+            android:layout_height="wrap_content"
+            android:background="@color/blue_LostForm_Title"
+            android:layout_alignParentTop="true"
+            app:titleTextColor="@color/black">
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:src="@drawable/starssss"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_gravity="end"
+                android:textColor="@color/white"
+                android:fontFamily="@font/bold"
+                android:text="Title"/>
+
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+</merge>
