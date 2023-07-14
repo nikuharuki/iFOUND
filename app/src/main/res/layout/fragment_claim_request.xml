@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="20dp"
+    android:layout_height="match_parent"
+    tools:context=".VerificationFormActivity">
+
+    <ScrollView
+        android:id="@+id/ns_FoundItemForm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/contentDecription_nested_foundItemForm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/ll_1_foundItemForm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:id="@+id/iv_claimVerification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/claimverification"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/medium"
+                android:layout_marginTop="12dp"
+                android:text="When did you lose the item?"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_date_picker"
+                style="?android:spinnerStyle"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_datepicker"
+                android:fontFamily="@font/semibold"
+                android:gravity="center"
+                android:spinnerMode="dialog"
+                android:text="@string/btn_date_picker"
+                android:textAllCaps="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/medium"
+                android:layout_marginTop="10dp"
+                android:text="Where did you lose the item?"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/et_itemLocation"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_edit_text"
+                android:ems="10"
+                android:hint="ex: Cafeteria, 5th floor near Jimini"
+                android:importantForAutofill="no"
+                android:includeFontPadding="true"
+                android:inputType="text"
+                android:paddingStart="10dp"
+                android:paddingEnd="0dp"
+                android:singleLine="true"
+                android:textColor="#000"
+                tools:ignore="LabelFor" />
+
+            <TextView
+                android:id="@+id/tv_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/medium"
+                android:labelFor="@id/tv_I_Found_foundItemForm"
+                android:text="Provide a detailed description"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/et_anySpecifics"
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_edit_text"
+                android:ems="10"
+                android:hint="@string/et_hintFeatures"
+                android:includeFontPadding="true"
+                android:inputType="text"
+                android:paddingBottom="50dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="0dp"
+                android:textColor="#000"
+                tools:ignore="LabelFor"
+                android:importantForAutofill="no" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_submit"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                android:text="SUBMIT"
+                android:textColor="@color/blue_LostForm_Title"
+                android:background="@drawable/bg_button_verification_submit"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
