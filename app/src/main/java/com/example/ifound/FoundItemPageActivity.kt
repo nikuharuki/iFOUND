@@ -1,5 +1,6 @@
 package com.example.ifound
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
@@ -24,6 +25,14 @@ class FoundItemPageActivity : AppCompatActivity() {
                 .load(foundItem.image)
                 .into(binding.ivItemImg)
         }
+
+        binding.btnEdit.setOnClickListener {
+            val intent = Intent(this, FoundItemFormActivity::class.java)
+            intent.putExtra("FoundItemData", foundItem)
+            intent.putExtra("PageMode", FoundItemFormActivity.PageMode.EDIT)
+            startActivity(intent)
+        }
+
 
         binding.btnAddPhoto.setOnClickListener {
         ClaimRequestFragment(this, foundItem).show(supportFragmentManager, "ClaimingVerification")
