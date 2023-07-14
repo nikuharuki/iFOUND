@@ -30,6 +30,7 @@ class ClaimRequestFragment(private val context: Context,
             val where = binding.etItemLocation.text.toString()
             val date = binding.btnDatePicker.text.toString()
             val description = binding.etAnySpecifics.text.toString()
+            val timestamp = System.currentTimeMillis().toString()
 
             val foundItemId = foundItemData?.childUid.toString() //child uid ng item sa database na found items
             val foundItemSubmitter = foundItemData?.submittedBy.toString()
@@ -47,7 +48,9 @@ class ClaimRequestFragment(private val context: Context,
                 description,
                 foundItemId,
                 foundItemSubmitter,
-                foundItemImage)
+                foundItemImage,
+                timestamp
+            )
 
             database.child(claimId).setValue(claimRequest).addOnSuccessListener {
                 binding.etItemLocation.text.clear()

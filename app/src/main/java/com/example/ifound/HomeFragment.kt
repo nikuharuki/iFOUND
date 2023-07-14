@@ -37,15 +37,19 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var lostItemAdapter: LostItemAdapter
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var foundItemAdapter: FoundItemAdapter
+    private lateinit var lostItemRv: RecyclerView
+    private lateinit var foundItemRv: RecyclerView
 
 //    private val lostItemList = ArrayList<LostItemData>()
 
     private lateinit var firebaseAuth : FirebaseAuth
     private lateinit var usernameReference : DatabaseReference
 
-    private lateinit var databaseReference: DatabaseReference
+    private lateinit var lostItemRef: DatabaseReference
+    private lateinit var foundItemRef: DatabaseReference
     private val lostItemList = ArrayList<LostItemData>()
+    private val foundItemList = ArrayList<FoundItemData>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,16 +73,28 @@ class HomeFragment : Fragment() {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        recyclerView = binding.lostitemsrecycler
+        lostItemRv = binding.lostitemsrecycler
+        foundItemRv = binding.founditemsrecycler
 
 
-        recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.setHasFixedSize(true)
+        lostItemRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        lostItemRv.setHasFixedSize(true)
         lostItemAdapter = LostItemAdapter(requireContext(), lostItemList)
-        recyclerView.adapter = lostItemAdapter
+        lostItemRv.adapter = lostItemAdapter
 
         lostItemList.clear()
+
+
+        foundItemRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        foundItemRv.setHasFixedSize(true)
+        foundItemAdapter = FoundItemAdapter(requireContext(), foundItemList)
+        foundItemRv.adapter = foundItemAdapter
+
+        foundItemList.clear()
         getUserData()
+
+
+
 
 //      recyclerView.adapter = lostItemAdapter
 
@@ -86,6 +102,13 @@ class HomeFragment : Fragment() {
             Log.d("TAG", "Item clicked")
             val intent = Intent(requireContext(), LostItemPageActivity::class.java)
             intent.putExtra("LostItemData", it)
+            startActivity(intent)
+        }
+
+        foundItemAdapter.onItemClick = {
+            Log.d("TAG", "Item clicked")
+            val intent = Intent(requireContext(), FoundItemPageActivity::class.java)
+            intent.putExtra("FoundItemData", it)
             startActivity(intent)
         }
 
@@ -138,10 +161,12 @@ class HomeFragment : Fragment() {
         })
     }
     private fun getUserData() {
-        databaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Lost Items")
-        databaseReference.addValueEventListener(object : ValueEventListener {
+        lostItemRef = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Lost Items")
+        foundItemRef = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Found Items")
+
+        lostItemRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                lostItemList.clear()
+                lostItemList.clear() //bat dalawa toh
                 if (isAdded) {
                     if (snapshot.exists()) {
                         for (itemSnapshot in snapshot.children) {
@@ -152,6 +177,29 @@ class HomeFragment : Fragment() {
                         }
                         binding.lostitemsrecycler.adapter = LostItemAdapter(requireContext(),lostItemList)
                         binding.lostitemsrecycler.adapter = lostItemAdapter
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+        //found
+        foundItemRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                foundItemList.clear() //bat dalawa toh
+                if (isAdded) {
+                    if (snapshot.exists()) {
+                        for (itemSnapshot in snapshot.children) {
+                            val foundItem = itemSnapshot.getValue(FoundItemData::class.java)
+                            foundItem?.let {
+                                foundItemList.add(it)
+                            }
+                        }
+                        binding.founditemsrecycler.adapter = FoundItemAdapter(requireContext(),foundItemList)
+                        binding.founditemsrecycler.adapter = foundItemAdapter
                     }
                 }
             }
