@@ -31,9 +31,10 @@ class LostItemPageActivity() : AppCompatActivity() {
 
         if (lostItem != null) {
             binding.tvItemNameLostItem.text = lostItem.name
-            binding.tvWhereLostItem.text = lostItem.date + lostItem.location
-            binding.tvNameLostItem.text = lostItem.submittedBy
-            binding.tvEmailLostItem.text = lostItem.contact
+            binding.tvLocation.text = lostItem.location
+            binding.tvLastSeen.text = lostItem.date
+            binding.tvLostBy.text = lostItem.submittedBy
+            binding.tvEmailContactInfo.text = lostItem.contact
             binding.tvSpecifics.text = lostItem.description
 
             Glide.with(this)
@@ -44,10 +45,10 @@ class LostItemPageActivity() : AppCompatActivity() {
             val isItemSubmittedByCurrentUser = isItemSubmittedByCurrentUser(lostItem)
             if (isItemSubmittedByCurrentUser) {
                 binding.btnEditButtonLostItem.visibility = View.VISIBLE
-                binding.btnDeleteLostItem.visibility = View.VISIBLE
+                binding.btnDelete.visibility = View.VISIBLE
             } else {
                 binding.btnEditButtonLostItem.visibility = View.GONE
-                binding.btnDeleteLostItem.visibility = View.GONE
+                binding.btnDelete.visibility = View.GONE
             }
         }
 
@@ -59,7 +60,7 @@ class LostItemPageActivity() : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.btnDeleteLostItem.setOnClickListener {
+        binding.btnDelete.setOnClickListener {
             deleteItem(lostItem!!)
             finish()
         }
