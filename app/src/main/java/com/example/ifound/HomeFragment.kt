@@ -70,12 +70,15 @@ class HomeFragment : Fragment() {
 
     ): View {
         // Inflate the layout for this fragment
-
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+
 
         lostItemRv = binding.lostitemsrecycler
         foundItemRv = binding.founditemsrecycler
 
+        getUserName()
+
+        recyclerView = binding.lostitemsrecycler
 
         lostItemRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         lostItemRv.setHasFixedSize(true)
@@ -131,10 +134,6 @@ class HomeFragment : Fragment() {
             intent.putExtra("PageMode", LostAndFoundItemFeed.PageMode.FOUND)
             startActivity(intent)
         }
-
-
-        getUserName()
-
 
         return binding.root
     }

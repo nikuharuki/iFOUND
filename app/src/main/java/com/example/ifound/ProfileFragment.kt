@@ -12,6 +12,12 @@ import com.example.ifound.databinding.FragmentHomeBinding
 import com.example.ifound.databinding.FragmentProfileBinding
 import com.example.ifound.databinding.ActivityLogsAdminBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import android.view.*
+import android.widget.PopupMenu
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -43,8 +49,9 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
         binding = FragmentProfileBinding.inflate(inflater, container, false)
+
+        getUserName()
 
         val isUserAnAdmin = isUserAnAdmin()
         if (isUserAnAdmin) {
@@ -57,8 +64,10 @@ class ProfileFragment : Fragment() {
             binding.btnApproval.visibility = View.GONE
         }
 
+
         binding.btnLogsAdmin.setOnClickListener {
-            val intent = Intent(this@ProfileFragment.requireContext(), LogsAdminActivity::class.java)
+            val intent =
+                Intent(this@ProfileFragment.requireContext(), LogsAdminActivity::class.java)
             intent.putExtra("PageMode", LogsAdminActivity.PageMode.LOGS)
             startActivity(intent)
         }
@@ -80,7 +89,32 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
-    private fun isUserAnAdmin() : Boolean{
+    private fun getUserName() {
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val userId = firebaseAuth.currentUser?.uid
+        val databaseReference =
+            FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("Users").child(userId!!)
+
+        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val userName = snapshot.child("Name").getValue(String::class.java)
+                    val email = snapshot.child("Email").getValue(String::class.java)
+
+                    binding.tvUsername.text = userName
+                    binding.tvEmailUser.text = email
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    private fun isUserAnAdmin(): Boolean {
         val firebaseAuth = FirebaseAuth.getInstance()
         val currentUser = firebaseAuth.currentUser
 
@@ -90,23 +124,59 @@ class ProfileFragment : Fragment() {
         return false
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment fragment_profile.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun handleMenuItemClick(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.i_username -> {
+                val intent = Intent(requireContext(), ChangeUsernameActivity::class.java)
+                startActivity(intent)
+                true
             }
+
+            R.id.i_email -> {
+                val intent = Intent(requireContext(), ChangeEmailActivity::class.java)
+                startActivity(intent)
+                true
+            }
+
+            R.id.i_password -> {
+                val intent = Intent(requireContext(), ChangePasswordActivity::class.java)
+                startActivity(intent)
+                true
+            }
+
+            else -> false
+        }
+    }
+
+
+    override fun onCreateContextMenu(
+        menu: ContextMenu,
+        v: View,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        requireActivity().menuInflater.inflate(R.menu.settings_menu, menu)
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        return handleMenuItemClick(item)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        registerForContextMenu(binding.ibtnSettings) // Register the ImageButton for the context menu
+
+        binding.ibtnSettings.setOnClickListener {
+            showPopupMenu(it)
+        }
+    }
+
+    private fun showPopupMenu(view: View) {
+        val popupMenu = PopupMenu(requireContext(), view)
+        popupMenu.menuInflater.inflate(R.menu.settings_menu, popupMenu.menu)
+        popupMenu.setOnMenuItemClickListener { item ->
+            handleMenuItemClick(item)
+        }
+        popupMenu.show()
     }
 }
