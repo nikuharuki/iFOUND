@@ -8,8 +8,19 @@
     tools:context=".ProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <ImageButton
+        android:id="@+id/btn_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/transparent"
+        android:src="@drawable/vector_settings"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/linear_layout"
+        />
     <LinearLayout
-        android:id="@+id/ll_fragmentProfile"
+        android:id="@+id/linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -19,19 +30,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
         <androidx.cardview.widget.CardView
+            android:id="@+id/cv_img_shape"
             android:layout_width="200dp"
             android:layout_height="200dp"
             app:cardCornerRadius="350dp"
             app:cardBackgroundColor="@color/blue_LostForm_Title">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cv_img_outline"
             android:layout_width="190dp"
             android:layout_height="190dp"
             app:cardCornerRadius="350dp"
             android:layout_gravity="center">
 
             <ImageView
-                android:id="@+id/iv_user_image_fragmentProfile"
+                android:id="@+id/iv_user_image"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:scaleType="fitCenter"
@@ -46,7 +59,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_user_fragmentProfile"
+        android:id="@+id/tv_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tv_user_name_fragmentProfile"
@@ -55,9 +68,9 @@
         android:fontFamily="@font/bold"
         android:textColor="@color/blue_LostForm_Title"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/ll_fragmentProfile"/>
+        app:layout_constraintTop_toBottomOf="@id/linear_layout"/>
     <TextView
-        android:id="@+id/tv_user_email_fragmentProfile"
+        android:id="@+id/tv_email_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tv_user_email_fragmentProfile"
@@ -65,48 +78,74 @@
         android:gravity="center"
         android:fontFamily="@font/semibold"
         android:textColor="@color/blue_LostForm_Title"
-        app:layout_constraintTop_toBottomOf="@id/tv_user_fragmentProfile"/>
-
-    <LinearLayout
-        android:id="@+id/ll2_fragmentProfile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/tv_user_email_fragmentProfile"
-        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_username"/>
+    
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_myReports"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_button_add_photo"
+        android:elevation="4dp"
+        android:text="my reports"
+        android:textColor="@color/blue_LostForm_Title"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/tv_email_user"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_button_my_reports"
-            android:text="@string/bt_my_reports_fragmentProfile"
-            android:textColor="@color/white"
-            android:fontFamily="@font/bold"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_logsAdmin"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_button_verification_submit"
+        android:elevation="4dp"
+        android:text="Logs"
+        android:textColor="@color/blue_LostForm_Title"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/btn_myReports"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_claimRequest"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_button_verification_submit"
+        android:elevation="4dp"
+        android:text="Request For Claim"
+        android:textColor="@color/blue_LostForm_Title"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/btn_logsAdmin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_approval"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_button_verification_submit"
+        android:elevation="4dp"
+        android:text="Resolve Approvals"
+        android:textColor="@color/blue_LostForm_Title"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/btn_claimRequest"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_button_my_found_items"
-            android:text="@string/bt_my_found_items_fragmentProfile"
-            android:fontFamily="@font/bold"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:text="sign out"
+        android:fontFamily="@font/semibold"
+        android:textColor="@color/light_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/ll3_fragmentProfile"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/ll2_fragmentProfile">
-        <androidx.fragment.app.FragmentContainerView
-            android:name="com.example.ifound.fragment_MyReports"
-            android:id="@+id/fragment_container_fragmentProfile"
-            android:layout_width="360dp"
-            android:layout_height="match_parent"
-            tools:layout="@layout/fragment_my_reports"/>
-    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

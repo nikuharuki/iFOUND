@@ -6,12 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".LostAndFoundItemFeed">
     <ImageButton
-        android:id="@+id/btn_popup_menu"
+        android:id="@+id/btn_filter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/transparent"
         android:src="@drawable/filter"
-        android:text="Popup Menu"
         app:layout_constraintTop_toTopOf="@id/ll_1"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="15dp"/>
