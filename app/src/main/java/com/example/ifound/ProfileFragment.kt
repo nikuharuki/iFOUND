@@ -10,6 +10,10 @@ import android.view.ViewGroup
 import com.example.ifound.databinding.ActivityLogsAdminBinding
 import com.example.ifound.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,8 +46,9 @@ class ProfileFragment : Fragment() {
 
     ): View? {
         // Inflate the layout for this fragment
-
         binding = FragmentProfileBinding.inflate(inflater, container, false)
+
+        getUserName()
 
         val isUserAnAdmin = isUserAnAdmin()
         if (isUserAnAdmin) {
@@ -55,6 +60,7 @@ class ProfileFragment : Fragment() {
             binding.btnClaimRequest.visibility = View.GONE
             binding.btnApproval.visibility = View.GONE
         }
+
 
         binding.btnLogsAdmin.setOnClickListener {
             val intent = Intent(this@ProfileFragment.requireContext(), LogsAdminActivity::class.java)
@@ -71,6 +77,29 @@ class ProfileFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun getUserName() {
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val userId = firebaseAuth.currentUser?.uid
+        val databaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users").child(userId!!)
+
+        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val userName = snapshot.child("Name").getValue(String::class.java)
+                    val email = snapshot.child("Email").getValue(String::class.java)
+
+                    binding.tvUsername.text = userName
+                    binding.tvEmailUser.text = email
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
     private fun isUserAnAdmin() : Boolean{
