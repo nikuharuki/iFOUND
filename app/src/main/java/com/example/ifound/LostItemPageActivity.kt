@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
+import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.example.ifound.databinding.ActivityLostItemPageBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -65,6 +67,14 @@ class LostItemPageActivity() : AppCompatActivity() {
             startActivity(intent)
         }
 
+//        binding.btnDelete.setOnClickListener {
+//            submitDeleteLostItemLog()
+//            deleteItem(lostItem!!)
+//            finish()
+//        }
+        binding.btnDelete.setOnClickListener {
+            showDeleteDialog()
+
         // TO DO - INSTEAD OF DELETING AGAIN, DIALOGUE MUNA BEFORE DELETING (LIPAT YUNG FUNCTIONS INSSIDE HERE SA DIALOGUE)
         binding.btnDelete.setOnClickListener {
             submitDeleteLostItemLog()
@@ -72,6 +82,32 @@ class LostItemPageActivity() : AppCompatActivity() {
             deleteItem(lostItem)
             finish()
         }
+
+
+    }
+
+    private fun showDeleteDialog() {
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
+        val inflater = this.layoutInflater
+        val dialogView = inflater.inflate(R.layout.delete_dialog, null)
+        dialogBuilder.setView(dialogView)
+
+        val alertDialog = dialogBuilder.create()
+        alertDialog.setCancelable(false)
+
+        val deleteButton = dialogView.findViewById<Button>(R.id.dialog_delete)
+        val cancelButton = dialogView.findViewById<Button>(R.id.dialog_cancel)
+
+        deleteButton.setOnClickListener {
+            // Perform delete operation here
+            alertDialog.dismiss()
+        }
+
+        cancelButton.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
     }
 
     @SuppressLint("SimpleDateFormat")

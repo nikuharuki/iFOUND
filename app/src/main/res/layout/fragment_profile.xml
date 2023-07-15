@@ -79,18 +79,72 @@
         android:fontFamily="@font/semibold"
         android:textColor="@color/blue_LostForm_Title"
         app:layout_constraintTop_toBottomOf="@id/tv_username"/>
-    
+
+    <FrameLayout
+        android:id="@+id/star"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_email_user">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_starPoints"
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="#427DE4"
+            android:clickable="true"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="50dp"
+                    android:fontFamily="@font/black"
+                    android:text="You have \n0 stars"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="40dp"
+            android:elevation="8dp"
+            android:src="@drawable/star_3" />
+    </FrameLayout>
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_myReports"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/bg_button_add_photo"
         android:elevation="4dp"
         android:text="my reports"
         android:textColor="@color/blue_LostForm_Title"
         android:layout_gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/tv_email_user"
+        app:layout_constraintTop_toBottomOf="@id/star"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
