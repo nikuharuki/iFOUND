@@ -60,10 +60,7 @@ class FoundItemPageActivity : AppCompatActivity() {
         }
 
         binding.btnDelete.setOnClickListener {
-            submitDeleteFoundItemLog()
-            archiveFoundItem(foundItem!!)
-            deleteItem(foundItem)
-            finish()
+            showDeleteDialog(foundItem!!)
         }
 
         binding.btnAddPhoto.setOnClickListener {
@@ -71,7 +68,7 @@ class FoundItemPageActivity : AppCompatActivity() {
         }
     }
 
-    private fun isThisItemBeingClaimedByUser(foundItem: FoundItemData) {
+    private fun isThisItemBeingClaimedByUser(foundItem : FoundItemData) {
         val firebaseAuth = FirebaseAuth.getInstance()
         val currentUserId = firebaseAuth.currentUser?.uid
         val currentItemId = foundItem.childUid
@@ -101,11 +98,11 @@ class FoundItemPageActivity : AppCompatActivity() {
 
 
         binding.btnDelete.setOnClickListener {
-            showDeleteDialog()
+            showDeleteDialog(foundItem)
         }
     }
 
-    private fun showDeleteDialog() {
+    private fun showDeleteDialog(foundItem : FoundItemData) {
         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
         val inflater = this.layoutInflater
         val dialogView = inflater.inflate(R.layout.delete_dialog, null)
@@ -118,7 +115,10 @@ class FoundItemPageActivity : AppCompatActivity() {
         val cancelButton = dialogView.findViewById<Button>(R.id.dialog_cancel)
 
         deleteButton.setOnClickListener {
-            // Perform delete operation here
+            submitDeleteFoundItemLog()
+            archiveFoundItem(foundItem!!)
+            deleteItem(foundItem)
+            finish()
             alertDialog.dismiss()
         }
 
