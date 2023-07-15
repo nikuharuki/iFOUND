@@ -58,6 +58,7 @@
                 android:layout_weight="1" />
 
             <ImageView
+                android:id="@+id/btnNotifications"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_margin="8dp"

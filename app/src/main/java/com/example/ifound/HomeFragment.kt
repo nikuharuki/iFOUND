@@ -116,6 +116,11 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.btnNotifications.setOnClickListener {
+            val intent = Intent(requireContext(), Notifications::class.java)
+            startActivity(intent)
+        }
+
         binding.tvTest.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
 
