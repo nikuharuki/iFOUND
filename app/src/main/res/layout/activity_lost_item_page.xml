@@ -33,7 +33,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_found_item"
-        android:layout_width="380dp"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         app:cardElevation="5dp"
         android:layout_marginTop="-20dp"
