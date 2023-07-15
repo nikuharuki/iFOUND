@@ -37,6 +37,7 @@ class ChangeEmailActivity : AppCompatActivity() {
                     user.updateEmail(binding.etNewEmail.text.toString()).addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             Toast.makeText(this, "Email changed", Toast.LENGTH_SHORT).show()
+                            modifyDatabase(email)
                             finish()
                         }
                     }
@@ -48,23 +49,12 @@ class ChangeEmailActivity : AppCompatActivity() {
     }
 
     // Change the registered email in the database
-    private fun modifyDatabase() {
+    private fun modifyDatabase(email : String) {
         val firebaseAuth = FirebaseAuth.getInstance()
         val user = firebaseAuth.currentUser
+        val userId = user?.uid.toString()
 
-        val database = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users")
-        val userReference = database.child(user!!.uid)
-
-        userReference.addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    snapshot.child("Email").s
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
+        val database = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").reference
+        database.child("Users").child(userId).child("Email").setValue(email)
     }
 }

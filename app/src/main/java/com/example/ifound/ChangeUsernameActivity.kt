@@ -31,13 +31,21 @@ class ChangeUsernameActivity : AppCompatActivity() {
 
             user.reauthenticate(credential).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val database = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users")
-                    database.child(user.uid).child("Name").setValue(newName)
+                    modifyDatabase(newName)
                     finish()
                 } else {
                     binding.etPw.error = "Check your credentials"
                 }
             }
         }
+    }
+
+    private fun modifyDatabase(newName : String) {
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val user = firebaseAuth.currentUser
+        val userId = user?.uid.toString()
+
+        val database = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").reference
+        database.child("Users").child(userId).child("Name").setValue(newName)
     }
 }
