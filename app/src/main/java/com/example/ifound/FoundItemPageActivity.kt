@@ -2,6 +2,8 @@ package com.example.ifound
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.PorterDuff
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -30,6 +32,8 @@ class FoundItemPageActivity : AppCompatActivity() {
             binding.tvItemNameFoundItem.text = foundItem.name
             binding.tvDateFound.text = foundItem.date
             binding.tvItemType.text = foundItem.category
+
+            isThisItemBeingClaimedByUser(foundItem)
 
             Glide.with(this)
                 .load(foundItem.image)
@@ -60,10 +64,39 @@ class FoundItemPageActivity : AppCompatActivity() {
             finish()
         }
 
-
         binding.btnAddPhoto.setOnClickListener {
         ClaimRequestFragment(this, foundItem).show(supportFragmentManager, "ClaimingVerification")
         }
+    }
+
+    private fun isThisItemBeingClaimedByUser(foundItem: FoundItemData) {
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val currentUserId = firebaseAuth.currentUser?.uid
+        val currentItemId = foundItem.childUid
+
+        val claimRequestDatabaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Claim Requests")
+        claimRequestDatabaseReference.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val claimExists = snapshot.children.any { claimSnapshot ->
+                    val claimerId = claimSnapshot.child("claimer").getValue(String::class.java)
+                    val itemId = claimSnapshot.child("foundItemId").getValue(String::class.java)
+
+                    claimerId == currentUserId && itemId == currentItemId
+                }
+
+                if (claimExists) {
+                    binding.btnAddPhoto.text = "For Approval"
+                    binding.btnAddPhoto.isClickable = false
+                } else {
+                    binding.btnAddPhoto.isClickable = true
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+
 
     }
 
