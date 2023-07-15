@@ -29,7 +29,8 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 
-
+public val lostItemList = ArrayList<LostItemData>()
+public val foundItemList = ArrayList<FoundItemData>()
 class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -48,8 +49,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var lostItemRef: DatabaseReference
     private lateinit var foundItemRef: DatabaseReference
-    private val lostItemList = ArrayList<LostItemData>()
-    private val foundItemList = ArrayList<FoundItemData>()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -95,6 +95,7 @@ class HomeFragment : Fragment() {
 
         foundItemList.clear()
         getUserData()
+
 
 
 
