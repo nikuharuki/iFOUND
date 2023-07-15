@@ -62,6 +62,8 @@ class ProfileFragment : Fragment() {
             binding.btnLogsAdmin.visibility = View.VISIBLE
             binding.btnClaimRequest.visibility = View.VISIBLE
             binding.btnApproval.visibility = View.VISIBLE
+            binding.btnMyReports.visibility = View.GONE
+            binding.star.visibility = View.GONE
         } else {
             binding.btnLogsAdmin.visibility = View.GONE
             binding.btnClaimRequest.visibility = View.GONE
