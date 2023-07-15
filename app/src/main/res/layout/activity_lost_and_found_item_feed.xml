@@ -41,15 +41,23 @@
             android:visibility="gone"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_lostItems"
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_foundItems"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"/>
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:scaleY="1.1"
+            android:scaleX="1.1"
+            android:layout_marginTop="50dp"
+            app:layout_constraintTop_toBottomOf="@id/ll_1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingHorizontal="20dp"
+            android:paddingEnd="20dp"
+            android:paddingStart="27dp"
+            tools:listitem="@layout/each_item" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
