@@ -47,9 +47,10 @@ class LostItemPageActivity() : AppCompatActivity() {
                 .load(lostItem.image)
                 .into(binding.ivItemImg)
 
-            // Checks if the current user is the same user who submitted the current item
+            // Checks if the current user is the same user who submitted the current item OR if the user is an admin
             val isItemSubmittedByCurrentUser = isItemSubmittedByCurrentUser(lostItem)
-            if (isItemSubmittedByCurrentUser) {
+            val isUserAnAdmin = isUserAnAdmin()
+            if (isItemSubmittedByCurrentUser || isUserAnAdmin) {
                 binding.btnEditButtonLostItem.visibility = View.VISIBLE
                 binding.btnDelete.visibility = View.VISIBLE
             } else {
@@ -73,6 +74,13 @@ class LostItemPageActivity() : AppCompatActivity() {
 //        }
         binding.btnDelete.setOnClickListener {
             showDeleteDialog()
+
+        // TO DO - INSTEAD OF DELETING AGAIN, DIALOGUE MUNA BEFORE DELETING (LIPAT YUNG FUNCTIONS INSSIDE HERE SA DIALOGUE)
+        binding.btnDelete.setOnClickListener {
+            submitDeleteLostItemLog()
+            archiveLostItem(lostItem!!)
+            deleteItem(lostItem)
+            finish()
         }
 
 
@@ -139,6 +147,16 @@ class LostItemPageActivity() : AppCompatActivity() {
         })
     }
 
+    private fun isUserAnAdmin() : Boolean {
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val currentUser = firebaseAuth.currentUser
+
+        if (currentUser?.email == "202101382@iacademy.edu.ph") {
+            return true
+        }
+        return false
+    }
+
     private fun isItemSubmittedByCurrentUser(lostItem : LostItemData) : Boolean {
         val firebaseAuth = FirebaseAuth.getInstance()
 
@@ -162,7 +180,12 @@ class LostItemPageActivity() : AppCompatActivity() {
             .addOnSuccessListener {
                 Log.d("Delete Data", "Data deleted successfully")
             }
+    }
 
-        finish()
+    private fun archiveLostItem(lostItem : LostItemData) {
+        val database = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                 .getReference("Lost Items - Archive")
+
+        database.child(lostItem.childUid.toString()).setValue(lostItem)
     }
 }
