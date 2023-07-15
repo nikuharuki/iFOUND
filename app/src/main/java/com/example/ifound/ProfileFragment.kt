@@ -1,5 +1,6 @@
 package com.example.ifound
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import android.view.*
 import android.widget.PopupMenu
+import androidx.cardview.widget.CardView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,8 +43,10 @@ class ProfileFragment : Fragment() {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+
         }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -85,9 +89,15 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
             requireActivity().finish() //requireActivity?? so main ang mafifinish
         }
+        binding.cvStarPoints.setOnClickListener {
+            val intent = Intent(this@ProfileFragment.requireActivity(), RewardsActivity::class.java)
+            startActivity(intent)
+        }
 
         return binding.root
+
     }
+
 
     private fun getUserName() {
         val firebaseAuth = FirebaseAuth.getInstance()

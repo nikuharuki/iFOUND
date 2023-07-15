@@ -244,13 +244,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="620dp"
             android:gravity="center">
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_edit_text"
-            android:fontFamily="@font/semibold"
-            android:contentDescription="@string/btn_claim_reward"
-            android:text="@string/btn_claim_reward"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/semibold"
+                android:contentDescription="@string/btn_claim_reward"
+                android:text="@string/btn_claim_reward"/>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
+import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.example.ifound.databinding.ActivityLostItemPageBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -45,9 +47,10 @@ class LostItemPageActivity() : AppCompatActivity() {
                 .load(lostItem.image)
                 .into(binding.ivItemImg)
 
-            // Checks if the current user is the same user who submitted the current item
+            // Checks if the current user is the same user who submitted the current item OR if the user is an admin
             val isItemSubmittedByCurrentUser = isItemSubmittedByCurrentUser(lostItem)
-            if (isItemSubmittedByCurrentUser) {
+            val isUserAnAdmin = isUserAnAdmin()
+            if (isItemSubmittedByCurrentUser || isUserAnAdmin) {
                 binding.btnEditButtonLostItem.visibility = View.VISIBLE
                 binding.btnDelete.visibility = View.VISIBLE
             } else {
@@ -64,11 +67,48 @@ class LostItemPageActivity() : AppCompatActivity() {
             startActivity(intent)
         }
 
+//        binding.btnDelete.setOnClickListener {
+//            submitDeleteLostItemLog()
+//            deleteItem(lostItem!!)
+//            finish()
+//        }
         binding.btnDelete.setOnClickListener {
-            submitDeleteLostItemLog()
-            deleteItem(lostItem!!)
-            finish()
+            showDeleteDialog()
+
+            // TO DO - INSTEAD OF DELETING AGAIN, DIALOGUE MUNA BEFORE DELETING (LIPAT YUNG FUNCTIONS INSSIDE HERE SA DIALOGUE)
+            binding.btnDelete.setOnClickListener {
+                submitDeleteLostItemLog()
+                archiveLostItem(lostItem!!)
+                deleteItem(lostItem)
+                finish()
+            }
+
+
         }
+    }
+
+    private fun showDeleteDialog() {
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
+        val inflater = this.layoutInflater
+        val dialogView = inflater.inflate(R.layout.delete_dialog, null)
+        dialogBuilder.setView(dialogView)
+
+        val alertDialog = dialogBuilder.create()
+        alertDialog.setCancelable(false)
+
+        val deleteButton = dialogView.findViewById<Button>(R.id.dialog_delete)
+        val cancelButton = dialogView.findViewById<Button>(R.id.dialog_cancel)
+
+        deleteButton.setOnClickListener {
+            // Perform delete operation here
+            alertDialog.dismiss()
+        }
+
+        cancelButton.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -108,6 +148,16 @@ class LostItemPageActivity() : AppCompatActivity() {
         })
     }
 
+    private fun isUserAnAdmin() : Boolean {
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val currentUser = firebaseAuth.currentUser
+
+        if (currentUser?.email == "202101382@iacademy.edu.ph") {
+            return true
+        }
+        return false
+    }
+
     private fun isItemSubmittedByCurrentUser(lostItem : LostItemData) : Boolean {
         val firebaseAuth = FirebaseAuth.getInstance()
 
@@ -131,7 +181,12 @@ class LostItemPageActivity() : AppCompatActivity() {
             .addOnSuccessListener {
                 Log.d("Delete Data", "Data deleted successfully")
             }
+    }
 
-        finish()
+    private fun archiveLostItem(lostItem : LostItemData) {
+        val database = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                 .getReference("Lost Items - Archive")
+
+        database.child(lostItem.childUid.toString()).setValue(lostItem)
     }
 }

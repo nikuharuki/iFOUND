@@ -22,6 +22,9 @@
         <activity
             android:name=".Notifications"
             android:exported="false" />
+       <activity
+            android:name=".RewardsActivity"
+            android:exported="false" />
         <activity
             android:name=".ChangeEmailActivity"
             android:exported="false" />
