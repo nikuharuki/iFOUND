@@ -25,19 +25,19 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/horizontal_guideline_13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="95dp" />
+            android:id="@+id/horizontal_guideline_13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="79dp" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_found_item"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         app:cardElevation="5dp"
-        android:layout_marginTop="-60dp"
-        app:layout_constraintTop_toTopOf="@id/horizontal_guideline_13"
+        android:layout_marginTop="-20dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
