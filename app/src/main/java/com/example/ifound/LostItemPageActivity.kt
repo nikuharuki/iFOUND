@@ -75,15 +75,16 @@ class LostItemPageActivity() : AppCompatActivity() {
         binding.btnDelete.setOnClickListener {
             showDeleteDialog()
 
-        // TO DO - INSTEAD OF DELETING AGAIN, DIALOGUE MUNA BEFORE DELETING (LIPAT YUNG FUNCTIONS INSSIDE HERE SA DIALOGUE)
-        binding.btnDelete.setOnClickListener {
-            submitDeleteLostItemLog()
-            archiveLostItem(lostItem!!)
-            deleteItem(lostItem)
-            finish()
+            // TO DO - INSTEAD OF DELETING AGAIN, DIALOGUE MUNA BEFORE DELETING (LIPAT YUNG FUNCTIONS INSSIDE HERE SA DIALOGUE)
+            binding.btnDelete.setOnClickListener {
+                submitDeleteLostItemLog()
+                archiveLostItem(lostItem!!)
+                deleteItem(lostItem)
+                finish()
+            }
+
+
         }
-
-
     }
 
     private fun showDeleteDialog() {
