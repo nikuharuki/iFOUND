@@ -56,6 +56,10 @@ class FoundItemPageActivity : AppCompatActivity() {
                 event.action == MotionEvent.ACTION_MOVE
             }
 
+            //if submitter is the current user
+            if (foundItem?.submittedBy == currentUser) {
+                binding.btnAddPhoto.visibility = View.GONE
+            }
 
             binding.cvFoundItem2.visibility = View.GONE
             binding.tv3.visibility = View.GONE
