@@ -22,6 +22,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/btn_profile"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:maxHeight="200dp"
