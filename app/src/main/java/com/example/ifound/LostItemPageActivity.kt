@@ -67,27 +67,12 @@ class LostItemPageActivity() : AppCompatActivity() {
             startActivity(intent)
         }
 
-//        binding.btnDelete.setOnClickListener {
-//            submitDeleteLostItemLog()
-//            deleteItem(lostItem!!)
-//            finish()
-//        }
         binding.btnDelete.setOnClickListener {
-            showDeleteDialog()
-
-            // TO DO - INSTEAD OF DELETING AGAIN, DIALOGUE MUNA BEFORE DELETING (LIPAT YUNG FUNCTIONS INSSIDE HERE SA DIALOGUE)
-            binding.btnDelete.setOnClickListener {
-                submitDeleteLostItemLog()
-                archiveLostItem(lostItem!!)
-                deleteItem(lostItem)
-                finish()
-            }
-
-
+            showDeleteDialog(lostItem!!)
         }
     }
 
-    private fun showDeleteDialog() {
+    private fun showDeleteDialog(lostItem : LostItemData) {
         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
         val inflater = this.layoutInflater
         val dialogView = inflater.inflate(R.layout.delete_dialog, null)
@@ -101,6 +86,10 @@ class LostItemPageActivity() : AppCompatActivity() {
 
         deleteButton.setOnClickListener {
             // Perform delete operation here
+            submitDeleteLostItemLog()
+            archiveLostItem(lostItem!!)
+            deleteItem(lostItem)
+            finish()
             alertDialog.dismiss()
         }
 
