@@ -27,20 +27,6 @@ class SplashActivity : AppCompatActivity() {
 
 
         Timer().schedule(3000) {
-            checkFirstLogin()
-        }
-    }
-
-    private fun checkFirstLogin() {
-        val sharedPreferences : SharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        val isFirstLogin = sharedPreferences.getBoolean(KEY_FIRST_LOGIN, true)
-
-        if (isFirstLogin) {
-            val intent = Intent(this@SplashActivity, StartUpTutorialActivity::class.java)
-            startActivity(intent)
-            sharedPreferences.edit().putBoolean(KEY_FIRST_LOGIN, false).apply()
-            finish()
-        } else {
             val currentUser = firebaseAuth.currentUser
 
             if (currentUser != null) {
