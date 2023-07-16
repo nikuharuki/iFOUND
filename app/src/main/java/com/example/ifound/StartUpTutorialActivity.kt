@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import com.example.ifound.databinding.ActivityStartUpTutorialBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class StartUpTutorialActivity : AppCompatActivity(), ViewPager.OnPageChangeListener{
 
@@ -44,7 +45,10 @@ class StartUpTutorialActivity : AppCompatActivity(), ViewPager.OnPageChangeListe
         binding.btnStart.visibility = View.GONE
 
         binding.btnStart.setOnClickListener {
-            intent = Intent(this@StartUpTutorialActivity, LoginActivity::class.java)
+            val firebaseAuth = FirebaseAuth.getInstance()
+            val user = firebaseAuth.currentUser
+            intent = Intent(this@StartUpTutorialActivity, MainActivity::class.java)
+            intent.putExtra("user", user)
             startActivity(intent)
             finish()
         }
