@@ -1,12 +1,13 @@
 package com.example.ifound
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.ifound.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
-
 
 class   LoginActivity : AppCompatActivity() {
 

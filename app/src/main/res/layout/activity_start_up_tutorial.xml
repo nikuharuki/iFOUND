@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,10 +9,11 @@
     android:padding="20dp">
 
 
-    <androidx.viewpager2.widget.ViewPager2
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/slider"
         android:layout_width="match_parent"
         android:layout_height="696dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -24,6 +26,7 @@
         android:layout_alignParentRight="true"
         android:text="skip"
         android:padding="10dp"
+        android:visibility="gone"
         android:drawableEnd="@drawable/skip"
         android:background="@color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,6 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:orientation="vertical" >
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_start"
             android:layout_width="match_parent"
@@ -44,23 +48,25 @@
             android:text="Let's get started"
             android:background="@color/blue_LostForm_Title"
             android:textColor="@color/white"/>
+
         <LinearLayout
+            android:id="@+id/dots"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:paddingBottom="20dp"/>
+            android:paddingBottom="20dp"
+            android:orientation="horizontal"/>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
+            android:visibility="gone"
             android:paddingBottom="30dp"
             android:background="@color/transparent"
             android:drawableEnd="@drawable/arrow_next"/>
-
-
-
 
     </RelativeLayout>
 
