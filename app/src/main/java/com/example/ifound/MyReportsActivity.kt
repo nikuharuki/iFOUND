@@ -1,5 +1,6 @@
 package com.example.ifound
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -22,8 +23,8 @@ class MyReportsActivity : AppCompatActivity() {
     private lateinit var foundAdapter: FoundItemAdapter
     private lateinit var firebaseAuth: FirebaseAuth
 
-    public val lostList = ArrayList<LostItemData>()
-    public val foundList = ArrayList<FoundItemData>()
+    private val lostList = ArrayList<LostItemData>()
+    private val foundList = ArrayList<FoundItemData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +43,9 @@ class MyReportsActivity : AppCompatActivity() {
         lostAdapter = LostItemAdapter(this@MyReportsActivity, lostList)
         lostItemRv.adapter = lostAdapter
 
-        lostItemList.clear()
+        lostList.clear()
+
+
         //add all the lost items where submittedBy == current user
         databaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/")
         databaseReference.getReference("Lost Items").addValueEventListener(object : ValueEventListener {
@@ -50,9 +53,12 @@ class MyReportsActivity : AppCompatActivity() {
                 for (dataSnapshot in snapshot.children) {
                     val lostItemData = dataSnapshot.getValue(LostItemData::class.java)
                     if (lostItemData!!.submittedBy == currentUser) {
-                        lostItemList.add(lostItemData)
+                        lostList.add(lostItemData)
                     }
                 }
+                binding.lostitemsrecycler.adapter = LostItemAdapter(this@MyReportsActivity,lostList)
+                binding.lostitemsrecycler.adapter = lostAdapter
+
                 lostAdapter.notifyDataSetChanged()
             }
 
@@ -66,7 +72,9 @@ class MyReportsActivity : AppCompatActivity() {
         foundAdapter = FoundItemAdapter(this@MyReportsActivity, foundList)
         foundItemRv.adapter = foundAdapter
 
-        foundItemList.clear()
+        foundList.clear()
+
+
         //add all the found items where submittedBy == current user
         databaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/")
         databaseReference.getReference("Found Items").addValueEventListener(object : ValueEventListener {
@@ -74,15 +82,33 @@ class MyReportsActivity : AppCompatActivity() {
                 for (dataSnapshot in snapshot.children) {
                     val foundItemData = dataSnapshot.getValue(FoundItemData::class.java)
                     if (foundItemData!!.submittedBy == currentUser) {
-                        foundItemList.add(foundItemData)
+                        foundList.add(foundItemData)
                     }
                 }
+                binding.founditemsrecycler.adapter = FoundItemAdapter(this@MyReportsActivity,foundList)
+                binding.founditemsrecycler.adapter = foundAdapter
                 foundAdapter.notifyDataSetChanged()
+
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(this@MyReportsActivity, "Error fetching data", Toast.LENGTH_SHORT).show()
             }
         })
+
+        lostAdapter.onItemClick = {
+            Toast.makeText(this, "Item Clicked", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, LostItemPageActivity::class.java)
+            intent.putExtra("PageMode", FoundItemPageActivity.PageMode.NORMAL)
+            intent.putExtra("LostItemData", it)
+            startActivity(intent)
+        }
+        foundAdapter.onItemClick = {
+            Toast.makeText(this, "Item Clicked", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, FoundItemPageActivity::class.java)
+            intent.putExtra("PageMode", FoundItemPageActivity.PageMode.NORMAL)
+            intent.putExtra("FoundItemData", it)
+            startActivity(intent)
+        }
     }
 }
