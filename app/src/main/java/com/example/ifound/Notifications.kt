@@ -42,8 +42,9 @@ class Notifications : AppCompatActivity() {
 
         val pageMode = intent.getSerializableExtra("PageMode") as PageMode
 
-
-
+        binding.button.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
 
         //init
         firebaseAuth = FirebaseAuth.getInstance()
