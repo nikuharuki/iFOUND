@@ -59,6 +59,7 @@ class ProfileFragment : Fragment() {
             binding.btnClaimRequest.visibility = View.VISIBLE
             binding.btnApproval.visibility = View.VISIBLE
             binding.btnMyReports.visibility = View.GONE
+            binding.btnMyTickets.visibility = View.GONE
             binding.star.visibility = View.GONE
         } else {
             binding.btnLogsAdmin.visibility = View.GONE
@@ -77,6 +78,17 @@ class ProfileFragment : Fragment() {
         binding.btnClaimRequest.setOnClickListener {
             val intent = Intent(this@ProfileFragment.requireContext(), LogsAdminActivity::class.java)
             intent.putExtra("PageMode", LogsAdminActivity.PageMode.CLAIM)
+            startActivity(intent)
+        }
+
+        binding.btnMyReports.setOnClickListener {
+            val intent = Intent(this@ProfileFragment.requireContext(), MyReportsActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnMyTickets.setOnClickListener {
+            val intent = Intent(this@ProfileFragment.requireContext(), Notifications::class.java)
+            intent.putExtra("PageMode", Notifications.PageMode.TICKETS)
             startActivity(intent)
         }
 
@@ -109,9 +121,11 @@ class ProfileFragment : Fragment() {
                 if (snapshot.exists()) {
                     val userName = snapshot.child("Name").getValue(String::class.java)
                     val email = snapshot.child("Email").getValue(String::class.java)
+                    val stars = snapshot.child("stars").getValue(Int::class.java)
 
                     binding.tvUsername.text = userName
                     binding.tvEmailUser.text = email
+                    binding.tvStar.text = "You have\n$stars stars"
                 }
             }
 

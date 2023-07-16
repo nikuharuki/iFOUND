@@ -135,11 +135,41 @@
                     android:textAllCaps="true" />
 
                 <TextView
+                    android:id="@+id/tv_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/medium"
+                    android:labelFor="@id/tv_I_Found_foundItemForm"
+                    android:text="Description"
+                    android:textColor="#000"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_edit_text"
+                    android:ems="10"
+                    android:hint="@string/et_hint3_where_foundItemForm"
+                    android:includeFontPadding="true"
+                    android:inputType="text"
+                    android:paddingBottom="35dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="0dp"
+                    android:textColor="#000"
+                    tools:ignore="LabelFor"
+                    android:importantForAutofill="no" />
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/medium"
-                    android:text="@string/txt_lost_item_form_q_4"
+                    android:text="Item Type"
                     android:textColor="#000"
+                    android:layout_marginTop="10dp"
                     android:textSize="18sp" />
 
                 <LinearLayout
