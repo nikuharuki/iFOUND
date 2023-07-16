@@ -1,18 +1,12 @@
 package com.example.ifound
 
 import android.content.Intent
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.SearchView
-import android.widget.SearchView.OnQueryTextListener
-import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifound.databinding.ActivityLostAndFoundItemFeedBinding
-import java.util.Locale
 
 class LostAndFoundItemFeed : AppCompatActivity() {
 
@@ -84,28 +78,29 @@ class LostAndFoundItemFeed : AppCompatActivity() {
             val foundItemFilteredList = ArrayList<FoundItemData>()
 
             for (i in lostItemList) {
-                if (i.name!!.lowercase(Locale.ROOT).contains(query.lowercase(Locale.ROOT))) {
+                if (i.name!!.lowercase().contains(query.lowercase())) {
                     lostItemFilteredList.add(i)
                 }
             }
+            lostItemAdapter.setFilteredList(lostItemFilteredList)
+//            if (lostItemFilteredList.isEmpty()) {
+//                Toast.makeText(this, "No Data found", Toast.LENGTH_SHORT).show()
+//            } else {
+//
+//            }
 
             for (i in foundItemList) {
-                if (i.name!!.lowercase(Locale.ROOT).contains(query.lowercase(Locale.ROOT))) {
+                if (i.name!!.lowercase().contains(query.lowercase())) {
                     foundItemFilteredList.add(i)
                 }
             }
-
-            if (lostItemFilteredList.isEmpty()) {
-                Toast.makeText(this, "No Data found", Toast.LENGTH_SHORT).show()
-            } else {
-                lostItemAdapter.setFilteredList(lostItemFilteredList)
-            }
-
-            if (foundItemFilteredList.isEmpty()) {
-                Toast.makeText(this, "No Data found", Toast.LENGTH_SHORT).show()
-            } else {
-                foundItemAdapter.setFilteredList(foundItemFilteredList)
-            }
+//            if  (foundItemFilteredList.isEmpty()) {
+//                foundItemAdapter.setFilteredList(foundItemFilteredList)
+//
+//            } else {
+//
+//            }
+            foundItemAdapter.setFilteredList(foundItemFilteredList)
         }
     }
 

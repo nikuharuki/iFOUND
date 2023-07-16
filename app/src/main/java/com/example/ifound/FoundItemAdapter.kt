@@ -17,7 +17,7 @@ class FoundItemAdapter(private val context: Context, private var foundItemList :
 
     fun setFilteredList(foundItemList: ArrayList<FoundItemData>){
         this.foundItemList = foundItemList
-
+        notifyDataSetChanged()
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoundItemAdapter.FoundItemViewHolder {
         val binding = EachItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)

@@ -18,7 +18,7 @@ class LostItemAdapter(private val context: Context, private var lostItemList : A
 
     fun setFilteredList(lostItemList: ArrayList<LostItemData>){
         this.lostItemList = lostItemList
-
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LostItemAdapter.LostItemViewHolder {
