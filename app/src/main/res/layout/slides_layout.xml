@@ -13,5 +13,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/found" />
+        app:srcCompat="@drawable/found_tutorial" />
 </androidx.constraintlayout.widget.ConstraintLayout>
