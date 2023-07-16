@@ -10,11 +10,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.ifound.databinding.EachItemBinding
 
-class FoundItemAdapter(private val context: Context, private val foundItemList : ArrayList<FoundItemData>):
+class FoundItemAdapter(private val context: Context, private var foundItemList : ArrayList<FoundItemData>):
     RecyclerView.Adapter<FoundItemAdapter.FoundItemViewHolder>() {
 
     var onItemClick: ((FoundItemData) -> Unit)? = null
 
+    fun setFilteredList(foundItemList: ArrayList<FoundItemData>){
+        this.foundItemList = foundItemList
+
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoundItemAdapter.FoundItemViewHolder {
         val binding = EachItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return FoundItemViewHolder(binding, context)
