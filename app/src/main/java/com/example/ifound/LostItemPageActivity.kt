@@ -111,6 +111,12 @@ class LostItemPageActivity() : AppCompatActivity() {
                     Log.d("TAG", "Failed to get username")
                 }
             })
+
+            setContentView(R.layout.found_message_screen)
+            val button = findViewById<Button>(R.id.btn_back_to_login_pw_recovery)
+            button.setOnClickListener {
+                finish()
+            }
         }
     }
 

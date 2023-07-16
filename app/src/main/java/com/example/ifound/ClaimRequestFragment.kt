@@ -137,6 +137,9 @@ class ClaimRequestFragment(private val context: Context,
                 Toast.makeText(context, "Failed to send notification", Toast.LENGTH_SHORT).show()
             }
 
+            val intent = Intent(context, MessageScreenActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
 
         binding.btnDatePicker.setOnClickListener {

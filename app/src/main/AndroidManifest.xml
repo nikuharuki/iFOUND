@@ -20,6 +20,9 @@
         android:theme="@style/Theme.IFOUND"
         tools:targetApi="31">
         <activity
+            android:name=".MessageScreenActivity"
+            android:exported="false" />
+        <activity
             android:name=".MyReportsActivity"
             android:exported="false" />
         <activity
