@@ -50,7 +50,7 @@ ArrayList<ClaimRequestData>):
 
             //database reference
 
-//
+
             foundItemRef = FirebaseDatabase.getInstance(
                 "https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/")
                 .getReference("Found Items")

@@ -113,11 +113,19 @@ class HomeFragment : Fragment() {
             Log.d("TAG", "Item clicked")
             val intent = Intent(requireContext(), FoundItemPageActivity::class.java)
             intent.putExtra("FoundItemData", it)
+            intent.putExtra("PageMode", FoundItemPageActivity.PageMode.NORMAL)
             startActivity(intent)
         }
 
         binding.btnNotifications.setOnClickListener {
             val intent = Intent(requireContext(), Notifications::class.java)
+            intent.putExtra("PageMode", Notifications.PageMode.NOTIFICATIONS)
+            startActivity(intent)
+        }
+        //temp
+        binding.btnProfile.setOnClickListener {
+            val intent = Intent(requireContext(), Notifications::class.java)
+            intent.putExtra("PageMode", Notifications.PageMode.TICKETS)
             startActivity(intent)
         }
 
