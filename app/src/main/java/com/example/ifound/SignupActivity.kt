@@ -125,6 +125,10 @@ class SignupActivity : AppCompatActivity() {
                 Toast.makeText(this, "Empty fields are not allowed", Toast.LENGTH_SHORT).show()
             }
         }
+        binding.tvClickableLogin.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun areFieldsNotEmpty(name : String, email : String, password : String, rePassword: String) : Boolean{
