@@ -1,188 +1,437 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".LostItemPageActivity">
-
-    <ImageView
-        android:id="@+id/iv_ifound_logo"
-        android:layout_width="150dp"
-        android:layout_height="75dp"
-        android:src="@drawable/ifound"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="240dp"
-        android:layout_marginTop="20dp"/>
 
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/horizontal_guideline_13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="106dp" />
-
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_found_item"
-        android:layout_width="380dp"
-        android:layout_height="510dp"
-        app:cardElevation="25dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:cardCornerRadius="44dp"
-        android:backgroundTint="@color/bg_found_items_per_page">
-
-
-        <TextView
-            android:id="@+id/tv_found_item"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/img_found_item_text"
-           android:gravity="center"
-            android:layout_marginTop="25dp"
-            android:text="@string/tv_found_item"
-            android:fontFamily="@font/extrabold"
-            android:textColor="@color/txt_color_title_found"
-            android:textSize="50sp" />
-
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".LostItemPageActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <ImageView
-            android:id="@+id/iv_item_img"
-            android:layout_width="350dp"
-            android:layout_height="250dp"
-            android:layout_marginStart="15dp"
-            android:src="@drawable/img_temp_vector"
-            android:layout_marginTop="90dp"/>
+            android:id="@+id/iv_ifound_logo"
+            android:layout_width="150dp"
+            android:layout_height="75dp"
+            android:src="@drawable/ifound"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="240dp"
+            android:layout_marginTop="20dp" />
 
-        <LinearLayout
-            android:id="@+id/ll"
-            android:layout_width="350dp"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal_guideline_13"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="340dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="30dp"
-            android:layout_marginStart="15dp"
-            android:orientation="vertical"
-            android:weightSum="6">
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="106dp" />
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/horizontal_guideline_13">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_gravity="center">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv_item_name_found_item"
-                    android:layout_width="match_parent"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_found_item1"
+                    android:layout_width="380dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="25sp"
-                    android:gravity="center"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:text="@string/txt_lost_item_page_item_name"
-                    android:fontFamily="@font/bold"/>
+                    android:layout_margin="20dp"
+                    android:backgroundTint="@color/bg_found_items_per_page"
+                    app:cardCornerRadius="44dp"
+                    app:cardElevation="3dp">
 
-                <ImageButton
-                    android:id="@+id/btn_edit"
-                    android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_found_item1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/extrabold"
+                            android:gravity="center"
+                            android:text="@string/tv_found_item"
+                            android:textColor="@color/txt_color_title_found"
+                            android:textSize="50sp" />
+
+                        <ImageView
+                            android:id="@+id/iv_item_img"
+                            android:layout_width="310dp"
+                            android:layout_height="290dp"
+                            android:layout_gravity="center_horizontal"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img_temp_vector" />
+
+                        <LinearLayout
+                            android:id="@+id/ll1"
+                            android:layout_width="350dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="20dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_item_name_found_item"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/bold"
+                                    android:text="@string/txt_lost_item_page_item_name"
+                                    android:textAllCaps="true"
+                                    android:textColor="@color/black"
+                                    android:textSize="25sp" />
+
+                                <ImageButton
+                                    android:id="@+id/btn_edit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:background="@color/transparent"
+                                    android:src="@drawable/edit_vector_button"
+                                    android:tint="@color/light_white" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/bold"
+                                    android:text="Date Found:"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp" />
+
+                                <TextView
+                                    android:id="@+id/tv_2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/bold"
+                                    android:text="Item Type:"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_dateFound"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/semibold"
+                                    android:text="MM/DD/YYYY"
+                                    android:textSize="15sp" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_itemType"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/bg_tags_found"
+                                    android:fontFamily="@font/regular"
+                                    android:gravity="center"
+                                    android:padding="5dp"
+                                    android:text="item type"
+                                    android:textColor="@color/black"
+                                    android:textSize="13sp" />
+                            </LinearLayout>
+
+
+                            <TextView
+                                android:id="@+id/tv_3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/bold"
+                                android:text="Item Specifics:"
+                                android:textColor="@color/black"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/tv_specifics"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/semibold"
+                                android:text="Dents"
+                                android:textSize="15sp" />
+
+
+                            <TextView
+                                android:id="@+id/tv_4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/bold"
+                                android:text="Location:"
+                                android:textColor="@color/black"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/tv_location"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/semibold"
+                                android:text="5th Floor"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_found_item2"
+                    android:layout_width="380dp"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/edit_vector_button"
-                    android:background="@color/transparent"
-                    android:layout_marginStart="10dp"
-                    android:tint="@color/light_white" />
+                    android:layout_margin="20dp"
+                    android:backgroundTint="#BBD2E4"
+                    app:cardCornerRadius="44dp"
+                    app:cardElevation="3dp">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_response"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/extrabold"
+                            android:gravity="center"
+                            android:text="Response"
+                            android:textColor="@color/txt_color_title_found"
+                            android:textSize="50sp" />
+
+
+
+                        <LinearLayout
+                            android:id="@+id/ll2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="20dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="100dp"
+                                    android:layout_height="120dp"
+                                    android:src="@drawable/profile_picture"/>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                    <TextView
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/semibold"
+                                        android:text="Name:"
+                                        android:textSize="18sp"
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_marginTop="10dp"/>
+
+                                    <TextView
+                                        android:id="@+id/tv_name"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/semibold"
+                                        android:text="Nikos Pasion"
+                                        android:textSize="28sp"
+                                        android:layout_marginLeft="20dp" />
+
+                                </LinearLayout>
+
+
+
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/medium"
+                                android:layout_marginTop="12dp"
+                                android:text="When did you lose the item?"
+                                android:textColor="@color/black"
+                                android:textSize="18sp" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_date_picker"
+                                android:clickable="false"
+                                style="?android:spinnerStyle"
+                                android:layout_width="290dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/bg_datepicker"
+                                android:fontFamily="@font/semibold"
+                                android:gravity="center"
+                                android:spinnerMode="dialog"
+                                android:text="@string/btn_date_picker"
+                                android:textAllCaps="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/medium"
+                                android:layout_marginTop="10dp"
+                                android:text="Where did you lose the item?"
+                                android:textColor="#000"
+                                android:textSize="18sp" />
+
+                            <EditText
+                                android:focusable="false"
+                                android:id="@+id/et_itemLocation"
+                                android:clickable="false"
+                                android:layout_width="match_parent"
+                                android:layout_height="55dp"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/bg_edit_text"
+                                android:ems="10"
+                                android:hint="ex: Cafeteria, 5th floor near Jimini"
+                                android:importantForAutofill="no"
+                                android:includeFontPadding="true"
+                                android:inputType="text"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="0dp"
+                                android:singleLine="true"
+                                android:textColor="#000"
+                                tools:ignore="LabelFor" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="@font/medium"
+                                android:labelFor="@id/tv_I_Found_foundItemForm"
+                                android:text="Provide a detailed description"
+                                android:textColor="#000"
+                                android:textSize="18sp" />
+
+                            <EditText
+                                android:focusable="false"
+                                android:id="@+id/et_anySpecifics"
+                                android:clickable="false"
+                                android:layout_width="match_parent"
+                                android:layout_height="95dp"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="12dp"
+                                android:background="@drawable/bg_edit_text"
+                                android:ems="10"
+                                android:hint="@string/et_hintFeatures"
+                                android:includeFontPadding="true"
+                                android:inputType="text"
+                                android:paddingBottom="50dp"
+                                android:paddingStart="15dp"
+                                android:paddingEnd="0dp"
+                                android:textColor="#000"
+                                tools:ignore="LabelFor"
+                                android:importantForAutofill="no" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
             </LinearLayout>
+        </HorizontalScrollView>
 
-            <TextView
-                android:id="@+id/tv_1"
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:weightSum="2"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_add_photo"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_button_add_photo"
+                android:text="@string/btn_claim_item" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@color/transparent"
+                android:fontFamily="@font/semibold"
+                android:gravity="center"
+                android:text="@string/btn_delete"
+                android:textColor="@color/light_white" />
+
+            <LinearLayout
+                android:id="@+id/ll_accept_reject"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:text="Date Found:"
-                android:fontFamily="@font/bold"
-                android:layout_marginTop="10dp"/>
-
-            <TextView
-                android:id="@+id/tv_dateFound"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="15sp"
-                android:text="MM/DD/YYYY"
-                android:fontFamily="@font/semibold"/>
-
-            <TextView
-                android:id="@+id/tv_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/bold"
-                android:text="Item Type:"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:layout_marginTop="5dp"/>
-
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_itemType"
-                    android:layout_width="120dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_accept"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:gravity="center"
-                    android:background="@drawable/bg_tags_found"
-                    android:fontFamily="@font/regular"
-                    android:padding="5dp"
-                    android:text="item type"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_button_add_photo"
+                    android:text="Accept" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_reject"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:backgroundTint="@color/pink"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_button_add_photo"
+                    android:text="Reject" />
+            </LinearLayout>
         </LinearLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
 
-    <LinearLayout
-        android:id="@+id/ll_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:weightSum="2"
-        app:layout_constraintTop_toBottomOf="@id/cv_found_item"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+</ScrollView>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_add_photo"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/btn_claim_item"
-            android:background="@drawable/bg_button_add_photo"/>
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:text="@string/btn_delete"
-            android:gravity="center"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/semibold"
-            android:textColor="@color/light_white"/>
 
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
