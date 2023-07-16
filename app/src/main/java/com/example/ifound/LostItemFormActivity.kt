@@ -61,6 +61,7 @@ class LostItemFormActivity() : AppCompatActivity() {
             setLostItemDetails(
                 it.name.toString(),
                 it.location.toString(),
+                it.itemType.toString(),
                 it.date.toString(),
                 it.description.toString(),
                 it.image.toString()
@@ -157,7 +158,8 @@ class LostItemFormActivity() : AppCompatActivity() {
         val location = binding.etItemLocation.text.toString()
         val date = binding.btnDatePicker.text.toString()
         val radioGroup = binding.rgSpecifics
-        val description = radioGroup.findViewById<RadioButton>(radioGroup.checkedRadioButtonId).text.toString()
+        val itemType = radioGroup.findViewById<RadioButton>(radioGroup.checkedRadioButtonId).text.toString()
+        val description = binding.etDescription.text.toString()
 
         Log.d("LostItemFormActivity", "ImageURL: $imageUrl")
 //        Log.d("LostItemFormActivity", "newPhotoURL: ${newPhotoUri.toString()}")
@@ -172,7 +174,7 @@ class LostItemFormActivity() : AppCompatActivity() {
                         .putFile(newPhotoUri)
                         .addOnSuccessListener { task ->
                             task.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
-                                UpdateData(name, location, description, date, it.toString(), childUid)
+                                UpdateData(name, location, itemType, description, date, it.toString(), childUid)
                             }
                         }
                 }.addOnFailureListener { exception ->
@@ -181,7 +183,7 @@ class LostItemFormActivity() : AppCompatActivity() {
                 }
             }
         } else {
-            UpdateData(name, location, description, date, imageUrl.toString(), childUid.toString())
+            UpdateData(name, location, itemType,description, date, imageUrl.toString(), childUid.toString())
         }
 
 
@@ -291,7 +293,8 @@ class LostItemFormActivity() : AppCompatActivity() {
 
 
         // Get the selected radio button text and store it in description
-        val description = radioGroup.findViewById<RadioButton>(radioGroup.checkedRadioButtonId).text.toString()
+        val itemType = radioGroup.findViewById<RadioButton>(radioGroup.checkedRadioButtonId).text.toString()
+        val description = binding.etDescription.text.toString()
 
 
 
@@ -316,7 +319,7 @@ class LostItemFormActivity() : AppCompatActivity() {
                         FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/")
                             .getReference("Lost Items")
 
-                    val lostItemData = LostItemData(name, location, description, date, submittedBy, contact, mapImage["url"], childUid)
+                    val lostItemData = LostItemData(name, location, itemType, description, date, submittedBy, contact, mapImage["url"], childUid)
                     database.child(childUid).setValue(lostItemData).addOnSuccessListener {
                         binding.etItemName.setText("")
                         binding.etItemLocation.setText("")
@@ -413,6 +416,7 @@ class LostItemFormActivity() : AppCompatActivity() {
     private fun UpdateData(
         name: String,
         location: String,
+        itemType: String,
         description: String,
         date: String,
         image: String,
@@ -425,6 +429,7 @@ class LostItemFormActivity() : AppCompatActivity() {
         val user = mapOf(
             "name" to name,
             "location" to location,
+            "itemType" to itemType,
             "date" to date,
             "description" to description,
             "image" to image
@@ -444,12 +449,13 @@ class LostItemFormActivity() : AppCompatActivity() {
             Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
         }
     }
-    private fun setLostItemDetails(name: String, location: String, date: String, description: String, imageUrl: String) {
+    private fun setLostItemDetails(name: String, location: String, itemType: String, date: String, description: String, imageUrl: String) {
         binding.btnSubmit.text = "Save"
         binding.etItemName.setText(name)
         binding.etItemLocation.setText(location)
         binding.btnDatePicker.setText(date)
-        binding.rgSpecifics.check(when (description) {
+        binding.etDescription.setText(description)
+        binding.rgSpecifics.check(when (itemType) {
             "Electronics" -> binding.rgSpecifics.findViewById<RadioButton>(binding.rbtnElectronics.id).id
             "Clothing" -> binding.rgSpecifics.findViewById<RadioButton>(binding.rbtnClothing.id).id
             "Documents" -> binding.rgSpecifics.findViewById<RadioButton>(binding.rbtnDocuments.id).id

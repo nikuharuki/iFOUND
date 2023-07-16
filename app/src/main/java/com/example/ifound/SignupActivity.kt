@@ -25,7 +25,6 @@ import com.google.firebase.ktx.Firebase
 
 
 class SignupActivity : AppCompatActivity() {
-
     private lateinit var oneTapClient: SignInClient
     private lateinit var signUpRequest: BeginSignInRequest
     private lateinit var binding : ActivitySignupBinding
@@ -101,9 +100,9 @@ class SignupActivity : AppCompatActivity() {
                                 val user = firebaseAuth.currentUser
                                 if (user != null) {
                                     val userId = user.uid
-
                                     database.child(userId).child("Name").setValue(name)
                                     database.child(userId).child("Email").setValue(email)
+                                    database.child(userId).child("stars").setValue(0)
                                 }
 
                                 setContentView(R.layout.email_verification_message)

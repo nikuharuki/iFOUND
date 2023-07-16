@@ -114,6 +114,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tv_star"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -154,25 +155,40 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_myTickets"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_button_add_photo"
+        android:elevation="4dp"
+        android:text="my Tickets"
+        android:layout_marginTop="14dp"
+        android:textColor="@color/blue_LostForm_Title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_myReports" />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_logsAdmin"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_gravity="center"
         android:background="@drawable/bg_button_verification_submit"
         android:elevation="4dp"
+        android:layout_marginTop="14dp"
+
         android:text="Logs"
         android:textColor="@color/blue_LostForm_Title"
-        android:layout_gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/btn_myReports"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_myTickets" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_claimRequest"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="14dp"
         android:background="@drawable/bg_button_verification_submit"
         android:elevation="4dp"
         android:text="Request Logs"
@@ -186,7 +202,7 @@
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="14dp"
         android:background="@drawable/bg_button_verification_submit"
         android:elevation="4dp"
         android:text="Archived Requests"
@@ -200,7 +216,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/transparent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="14dp"
         android:text="sign out"
         android:fontFamily="@font/semibold"
         android:textColor="@color/light_white"

@@ -63,6 +63,10 @@ class HomeFragment : Fragment() {
 
 
     }
+    override fun onResume() {
+        super.onResume()
+        getUserName()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -77,6 +81,7 @@ class HomeFragment : Fragment() {
         foundItemRv = binding.founditemsrecycler
 
         getUserName()
+
 
         lostItemRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         lostItemRv.setHasFixedSize(true)
@@ -156,12 +161,14 @@ class HomeFragment : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
         val userId = firebaseAuth.currentUser?.uid
         val databaseReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app/").reference
-        usernameReference = databaseReference.child("Users").child(userId!!).child("Name")
+        usernameReference = databaseReference.child("Users").child(userId!!)
 
         usernameReference.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    val username = snapshot.getValue(String::class.java)
+                    val username = snapshot.child("Name").getValue(String::class.java)
+                    val currentStars = snapshot.child("stars").getValue(Int::class.java) ?: 0
+                    binding.tvStars.text = "You have\n$currentStars stars"
 
                     binding.tvHelloUser.text = "Hello, $username"
                 }
@@ -170,6 +177,9 @@ class HomeFragment : Fragment() {
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
+
+
+
 
         })
     }

@@ -137,6 +137,7 @@ class FoundItemPageActivity : AppCompatActivity() {
 
                     binding.btnAccept.setOnClickListener {
 
+
                         //notif for returned item
                         val foundItemReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app")
                             .getReference("Found Items").child(claimRequest.foundItemId.toString())
@@ -176,6 +177,53 @@ class FoundItemPageActivity : AppCompatActivity() {
                                     .getReference("Notifications").child(claimerNotifId)
                                 notifReference.setValue(claimerNotif)
                                 notifReference.setValue(founderNotif)
+
+                                //increment that 'Stars' of the claimer and founder
+                                val claimerReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app")
+                                    .getReference("Users").child(currentUser.toString())
+
+                                val founderReference = FirebaseDatabase.getInstance("https://ifound-731c1-default-rtdb.asia-southeast1.firebasedatabase.app")
+                                    .getReference("Users").child(claimRequest.foundItemSubmitter.toString())
+                                claimerReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        val currentStars = snapshot.child("stars").getValue(Int::class.java) ?: 0
+                                        val newStars = currentStars + 5
+                                        claimerReference.child("stars").setValue(newStars)
+                                            .addOnSuccessListener {
+                                                //
+                                            }
+                                            .addOnFailureListener { error ->
+                                                Toast.makeText(this@FoundItemPageActivity, "Failed to increment stars: ${error.message}", Toast.LENGTH_SHORT).show()
+                                            }
+                                    }
+
+                                    override fun onCancelled(error: DatabaseError) {
+                                        Toast.makeText(this@FoundItemPageActivity, error.message, Toast.LENGTH_SHORT).show()
+                                    }
+
+
+                                })
+
+                                founderReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        val currentStars = snapshot.child("stars").getValue(Int::class.java) ?: 0
+                                        val newStars = currentStars + 5
+                                        founderReference.child("stars").setValue(newStars)
+                                            .addOnSuccessListener {
+                                                //
+                                            }
+                                            .addOnFailureListener { error ->
+                                                Toast.makeText(this@FoundItemPageActivity, "Failed to increment stars: ${error.message}", Toast.LENGTH_SHORT).show()
+                                            }
+                                    }
+
+                                    override fun onCancelled(error: DatabaseError) {
+                                        Toast.makeText(this@FoundItemPageActivity, error.message, Toast.LENGTH_SHORT).show()
+                                    }
+
+
+                                })
+
 
 
 
