@@ -10,10 +10,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.ifound.databinding.EachItemBinding
 
-class LostItemAdapter(private val context: Context, private val lostItemList : ArrayList<LostItemData>):
+class LostItemAdapter(private val context: Context, private var lostItemList : ArrayList<LostItemData>):
     RecyclerView.Adapter<LostItemAdapter.LostItemViewHolder>() {
 
     var onItemClick: ((LostItemData) -> Unit)? = null
+
+
+    fun setFilteredList(lostItemList: ArrayList<LostItemData>){
+        this.lostItemList = lostItemList
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LostItemAdapter.LostItemViewHolder {
         val binding = EachItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
