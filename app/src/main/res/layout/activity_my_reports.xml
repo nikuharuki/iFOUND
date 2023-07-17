@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyReportsActivity">
+
+    <ImageView
+        android:id="@+id/button"
+        android:layout_width="36dp"
+        android:layout_margin="16dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/baseline_keyboard_backspace_24"
+        android:background="@color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#524B6B" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/bold"
+        android:text="My Reports"
+        android:textColor="#292730"
+        android:textSize="26sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
+
+    <View
+        android:id="@+id/foundheading"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:background="@drawable/foldertop"
+        android:backgroundTint="#FBA21C"
+        app:layout_constraintBottom_toTopOf="@+id/founditems"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_found_items_clickable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bold"
+        android:text="Found Items"
+        android:textColor="#2B4563"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/foundheading"
+        app:layout_constraintEnd_toEndOf="@+id/foundheading"
+        app:layout_constraintHorizontal_bias="0.39"
+        app:layout_constraintStart_toStartOf="@+id/foundheading"
+        app:layout_constraintTop_toTopOf="@+id/foundheading"
+        app:layout_constraintVertical_bias="0.777" />
+
+    <LinearLayout
+        android:id="@+id/founditems"
+        android:layout_width="match_parent"
+        android:layout_height="255dp"
+        android:layout_marginTop="76dp"
+        android:background="@drawable/folder1"
+
+        android:backgroundTint="#F3CD9D"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/founditemsrecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            tools:itemCount="1"
+            tools:listitem="@layout/each_item" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/lostheading"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:background="@drawable/foldertop_inverted"
+        android:backgroundTint="#E8D82965"
+        app:layout_constraintBottom_toTopOf="@+id/lostitems"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_lost_items_clickable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:fontFamily="@font/bold"
+        android:text="Lost Items"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/lostheading"
+        app:layout_constraintStart_toStartOf="@+id/lostheading"
+        app:layout_constraintTop_toTopOf="@+id/lostheading"/>
+
+    <LinearLayout
+        android:id="@+id/lostitems"
+        android:layout_width="match_parent"
+        android:layout_height="255dp"
+        android:layout_marginTop="40dp"
+
+        android:background="@drawable/folder2"
+        android:backgroundTint="#F39FAB"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/founditems"
+        app:layout_constraintVertical_bias="0.189"
+        tools:layout_editor_absoluteX="0dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lostitemsrecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            tools:itemCount="1"
+            tools:listitem="@layout/each_item" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

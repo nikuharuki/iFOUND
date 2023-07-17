@@ -6,6 +6,7 @@ import android.os.Parcelable
 data class LostItemData(
     val name: String? = null,
     val location: String? = null,
+    val itemType: String? = null,
     val description: String? = null,
     val date: String? = null,
     val submittedBy: String? = null,
@@ -20,6 +21,7 @@ data class LostItemData(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
+        parcel.readString(),
         parcel.readString()
     ) {
     }
@@ -27,6 +29,7 @@ data class LostItemData(
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)
         parcel.writeString(location)
+        parcel.writeString(itemType)
         parcel.writeString(description)
         parcel.writeString(date)
         parcel.writeString(submittedBy)
