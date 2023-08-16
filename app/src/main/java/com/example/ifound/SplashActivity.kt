@@ -1,11 +1,18 @@
 package com.example.ifound
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import java.util.Timer
 import kotlin.concurrent.schedule
+
+private const val PREFS_NAME = "MyPrefs"
+private const val KEY_FIRST_LOGIN = "firstLogin"
+
 
 class SplashActivity : AppCompatActivity() {
 
@@ -16,6 +23,8 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         firebaseAuth = FirebaseAuth.getInstance()
+
+
 
         Timer().schedule(3000) {
             val currentUser = firebaseAuth.currentUser
